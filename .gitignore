@@ -1,0 +1,49 @@
+# Compiled source code
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Compiled JavaScript
+*.js
+*.js.map
+
+# Compiled CSS
+*.css
+*.css.map
+
+# Temporary files
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment variables and sensitive information
+.env
+.env.*
+.secret
+
+# IDE and editor files
+.idea/
+.vscode/
+
+# Dependency directories
+/node_modules/
+/vendor/
+
+# Compiled output or build artifacts
+/build/
+/dist/
+/out/
+
+# Django-specific files
+*.sqlite3
+/static/
+/media/
+
+# Virtual environment
+venv/
+.venv/
+env/

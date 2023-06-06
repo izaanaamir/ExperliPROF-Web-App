@@ -1,4 +1,4 @@
-# School-Management-System
+# ExperliPROF Web Application
 EXPERLIPROF is a groundbreaking web application designed to streamline the activities of freelance teachers who work with multiple schools independently. The primary objective of this innovative platform is to facilitate the planning, management, and data extraction processes for honorary teachers. By providing a comprehensive and multidimensional view, EXPERLIPROF empowers teachers to efficiently oversee students, training sessions, and interventions in schools, while generating valuable annual statistics.
 
 A vital aspect of the project is the implementation of an innovative business intelligence interface. This interface will empower users to create predefined states, generate on-demand reports, and effortlessly query the database. It will also feature configurability and accessibility for all users, ensuring a smooth and intuitive experience. Furthermore, the application will be designed to support multiple languages, enabling easy translation and adaptation to diverse linguistic requirements.

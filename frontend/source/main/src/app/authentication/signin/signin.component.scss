@@ -77,3 +77,24 @@
     font-weight: bold;
     text-align: center;
 }
+.auth-form-btn {
+    background-color: #164987;
+    border-radius: 20px;
+    padding: 15px 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .auth-form-btn:hover {
+    background-color: #0f2d46;
+  }
+  
+  .container-auth-form-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  

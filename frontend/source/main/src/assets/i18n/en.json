@@ -1,0 +1,104 @@
+{
+    "LOGIN": {
+        "TITLE": "Welcome to ExperliPROF"
+    },
+    "MENUITEMS": {
+        "MAIN": {
+            "TEXT": "Main"
+        },
+        "DASHBOARD": {
+            "TEXT": "Dashboard",
+            "LIST": {
+                "DASHBOARD": "Admin-Dashboard ",
+                "DASHBOARD2": "Dashboard 2",
+                "TEACHER-DASHBOARD": "Teacher Dashboard",
+                "STUDENT-DASHBOARD": "Student Dashboard"
+            }
+        },
+        "TEACHERS": {
+            "TEXT": "Teachers",
+            "LIST": {
+                "ALL-TEACHERS": "All-Teachers",
+                "ADD-TEACHER": "Add-Teachers",
+                "EDIT-TEACHER": "Edit-Teacher",
+                "ABOUT-TEACHER": "About-Teacher"
+            }
+        },
+        "STUDENTS": {
+            "TEXT": "Student",
+            "LIST": {
+                "ALL-STUDENT": "All-Student",
+                "ADD-STUDENT": "Add-Student",
+                "EDIT-STUDENT": "Edit-Student",
+                "ABOUT-STUDENT": "About-Student",
+                "STUDENT-ATTENDANCE": "Student-Attendance"
+            }
+        },
+        "COURSES": {
+            "TEXT": "Courses",
+            "LIST": {
+                "ALL-COURSES": "All Courses",
+                "ADD-COURSE": "Add Course",
+                "EDIT-COURSE": "Edit Course",
+                "ABOUT-COURSE": "About Course"
+            }
+        },
+        "SCHOOLS": {
+            "TEXT": "Schools",
+            "LIST": {
+                "ALL-SCHOOLS": "All Schools"
+            }
+        },
+        "FEES": {
+            "TEXT": "Fees",
+            "LIST": {
+                "ALL-FEES": "All Fees",
+                "ADD-FEES": "Add fees",
+                "EDIT-FEES": "Edit fees",
+                "FEE-RECEIPT": "Fee Receipt"
+            }
+        },
+        "ATTENDANCE": {
+            "TEXT": "Attendance",
+            "LIST": {
+                "STAFF": "Staff Attendance",
+                "DETAILS": "Attendance Details",
+                "SHEET": "Attendance Sheet"
+            }
+        },
+
+        "TEACHER": {
+            "TEXT": "Teacher",
+            "LIST": {
+                "DASHBOARD": "Dashboard",
+                "LECTURES": "Lectures",
+                "LEAVE-REQUEST": "Leave Request",
+                "EXAM-SCHEDULE": "Exam Schedule",
+                "SETTINGS": "Settings"
+            }
+        },
+        "STUDENT": {
+            "TEXT": "Student",
+            "LIST": {
+                "DASHBOARD": "Dashboard",
+                "HOMEWORK": "Homework",
+                "LEAVE-REQUEST": "Leave Request",
+                "TIME-TABLE": "Time Table",
+                "SETTINGS": "Settings",
+                "FEEDBACK": "Feedback"
+            }
+        },
+        "APPS": {
+            "TEXT": "Apps"
+        },
+        "CALENDAR": {
+            "TEXT": "Calendar"
+        },
+        "TASK": {
+            "TEXT": "Task"
+        },
+        "CONTACTS": {
+            "TEXT": "Contacts"
+        }
+    }
+}

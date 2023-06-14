@@ -1,0 +1,38 @@
+$primary-color: #f8f9fa;
+$secondary-color: #164987;
+$background-color: #6d7175;
+$text-color: #ffffff;
+.sidebar {
+    background-color: $primary-color;
+    color: $text-color;
+    width: 250px;
+}
+
+.sidebar-header {
+    background-color: $secondary-color;
+    padding: 10px;
+}
+
+.sidebar-menu {
+    padding: 10px;
+}
+
+.sidebar-menu-item {
+    margin-bottom: 5px;
+}
+
+.sidebar-menu-link {
+    color: $text-color;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.sidebar-menu-link:hover {
+    background-color: lighten($secondary-color, 10%);
+}
+
+.sidebar-menu-link.active {
+    background-color: lighten($secondary-color, 20%);
+}

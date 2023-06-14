@@ -1,0 +1,51 @@
+[{
+        "id": "001",
+        "no": "B123451",
+        "school": "Chandigarh university",
+        "CITY": "INDIA",
+        "phone": "(123)456789",
+        "email": "test@example.com",
+        "sYear": "2023",
+        "ID": "125"
+    },
+    {
+        "id": "009",
+        "no": "B123459",
+        "dName": "Esipe",
+        "CITY": "Paris",
+        "phone": "(123)456789",
+        "email": "test@example.com",
+        "sYear": "2023",
+        "ID": "140"
+    },
+    {
+        "id": "010",
+        "no": "B1234510",
+        "school": "ESIEE",
+        "CITY": "Paris",
+        "phone": "(123)456789",
+        "email": "test@example.com",
+        "sYear": "2023",
+        "ID": "143"
+    },
+    {
+        "id": "011",
+        "no": "B1234511",
+        "school": "Esipe",
+        "CITY": "Paris",
+        "phone": "(123)456789",
+        "email": "test@example.com",
+        "sYear": "2023",
+        "ID": "300"
+    },
+    {
+        "id": "012",
+        "no": "B1234512",
+        "school": "ESIEE",
+        "CITY": "Paris",
+        "phone": "(123)456789",
+        "email": "test@example.com",
+        "sYear": "2023",
+        "ID": "100"
+    }
+]

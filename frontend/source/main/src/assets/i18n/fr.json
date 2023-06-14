@@ -1,0 +1,137 @@
+{
+    "LOGIN": {
+        "TITLE": "Bienvenue à ExperliPROF"
+    },
+    "MENUITEMS": {
+        "MAIN": {
+            "TEXT": "Accueil"
+        },
+        "DASHBOARD": {
+            "TEXT": "Tableau de bord",
+            "LIST": {
+                "DASHBOARD": "Tableau de bord ",
+                "DASHBOARD2": "Tableau de bord 2",
+                "TEACHER-DASHBOARD": "Tableau de bord des enseignants",
+                "STUDENT-DASHBOARD": "Tableau de bord des étudiants"
+            }
+        },
+        "TEACHERS": {
+            "TEXT": "Enseignants",
+            "LIST": {
+                "ALL-TEACHERS": "Tous les enseignants",
+                "ADD-TEACHER": "Ajouter un enseignant",
+                "EDIT-TEACHER": "Modifier un enseignant",
+                "ABOUT-TEACHER": "À propos de l'enseignant"
+            }
+        },
+        "STUDENTS": {
+            "TEXT": "Étudiant",
+            "LIST": {
+                "ALL-STUDENT": "Tous les étudiants",
+                "ADD-STUDENT": "Ajouter un étudiant",
+                "EDIT-STUDENT": "Modifier un étudiant",
+                "ABOUT-STUDENT": "À propos de l'étudiant",
+                "STUDENT-ATTENDANCE": "Présence des étudiants"
+            }
+        },
+        "COURSES": {
+            "TEXT": "Cours",
+            "LIST": {
+                "ALL-COURSES": "Tous les cours",
+                "ADD-COURSE": "Ajouter un cours",
+                "EDIT-COURSE": "Modifier un cours",
+                "ABOUT-COURSE": "À propos du cours"
+            }
+        },
+        "SCHOOLS": {
+            "TEXT": "École",
+            "LIST": {
+                "ALL-SCHOOLS": "Toutes les écoles"
+            }
+        },
+        "LIBRARY": {
+            "TEXT": "Bibliothèque",
+            "LIST": {
+                "ALL-LIBRARY": "Tous les éléments de la bibliothèque",
+                "ADD-LIBRARY": "Ajouter un élément de la bibliothèque",
+                "EDIT-LIBRARY": "Modifier un élément de la bibliothèque"
+            }
+        },
+        "DEPARTMENTS": {
+            "TEXT": "Départements",
+            "LIST": {
+                "ALL-DEPARTMENT": "Tous les départements",
+                "ADD-DEPARTMENT": "Ajouter un département",
+                "EDIT-DEPARTMENT": "Modifier un département"
+            }
+        },
+        "STAFF": {
+            "TEXT": "Personnel",
+            "LIST": {
+                "ALL-STAFF": "Tout le personnel",
+                "ADD-STAFF": "Ajouter un membre du personnel",
+                "EDIT-STAFF": "Modifier un membre du personnel",
+                "ABOUT-STAFF": "À propos du personnel"
+            }
+        },
+        "HOLIDAY": {
+            "TEXT": "Congé",
+            "LIST": {
+                "ALL-HOLIDAY": "Tous les congés",
+                "ADD-HOLIDAY": "Ajouter un congé",
+                "EDIT-HOLIDAY": "Modifier un congé"
+            }
+        },
+        "FEES": {
+            "TEXT": "Frais",
+            "LIST": {
+                "ALL-FEES": "Tous les frais",
+                "ADD-FEES": "Ajouter des frais",
+                "EDIT-FEES": "Modifier des frais",
+                "FEE-RECEIPT": "Reçu de paiement des frais"
+            }
+        },
+        "ATTENDANCE": {
+            "TEXT": "Présence",
+            "LIST": {
+                "STAFF": "Présence du personnel",
+                "DETAILS": "Détails de la présence",
+                "SHEET": "Feuille de présence"
+            }
+        },
+
+        "TEACHER": {
+            "TEXT": "Enseignant",
+            "LIST": {
+                "DASHBOARD": "Tableau de bord",
+                "LECTURES": "Cours",
+                "LEAVE-REQUEST": "Demande de congé",
+                "EXAM-SCHEDULE": "Calendrier des examens",
+                "SETTINGS": "Paramètres"
+            }
+        },
+        "STUDENT": {
+            "TEXT": "Étudiant",
+            "LIST": {
+                "DASHBOARD": "Tableau de bord",
+                "HOMEWORK": "Devoirs",
+                "LEAVE-REQUEST": "Demande de congé",
+                "TIME-TABLE": "Emploi du temps",
+                "SETTINGS": "Paramètres",
+                "FEEDBACK": "Retour"
+            }
+        },
+        "APPS": {
+            "TEXT": "Applications"
+        },
+        "CALENDAR": {
+            "TEXT": "Calendrier"
+        },
+        "TASK": {
+            "TEXT": "Tâche"
+        },
+        "CONTACTS": {
+            "TEXT": "Contacts"
+        }
+    }
+}

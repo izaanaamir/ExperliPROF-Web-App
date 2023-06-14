@@ -1,0 +1,32 @@
+.feedback-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../../../assets/images/pages/bg-01.png');
+    background-size: 30% auto;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.feedback-form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-weight: bold;
+    width: 400px;
+}
+
+.rating-stars {
+    font-size: 24px;
+}
+
+.rating-stars .star {
+    cursor: pointer;
+}
+
+.rating-stars .filled {
+    color: #ffc107;
+}

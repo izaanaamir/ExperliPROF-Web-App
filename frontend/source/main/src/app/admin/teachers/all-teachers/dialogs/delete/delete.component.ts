@@ -5,7 +5,7 @@ import { TeachersService } from '../../teachers.service';
 export interface DialogData {
   id: number;
   name: string;
-  department: string;
+  school: string;
   mobile: string;
 }
 

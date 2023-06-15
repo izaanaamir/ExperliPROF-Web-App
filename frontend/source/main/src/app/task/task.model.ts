@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 export class Task {
   id: string;
-  img: string;
+  // img: string;
   name: string;
   title: string;
   done: boolean;
@@ -11,7 +11,7 @@ export class Task {
   constructor(appointment: Task) {
     {
       this.id = appointment.id || this.getRandomID();
-      this.img = appointment.img || 'assets/images/user/user1.jpg';
+      // this.img = appointment.img || 'assets/images/user/user1.jpg';
       this.name = appointment.name || '';
       this.title = appointment.title || '';
       this.done = appointment.done || true;

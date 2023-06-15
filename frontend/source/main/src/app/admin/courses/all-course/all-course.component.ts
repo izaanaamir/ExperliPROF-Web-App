@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class AllCourseComponent {
   breadscrums = [
     {
-      title: 'All Course',
       items: ['Course'],
       active: 'All Course',
     },

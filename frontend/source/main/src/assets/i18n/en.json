@@ -18,7 +18,7 @@
         "TEACHERS": {
             "TEXT": "Teachers",
             "LIST": {
-                "ALL-TEACHERS": "All-Teachers",
+                "ALL TEACHERS": "All Teachers",
                 "ADD-TEACHER": "Add-Teachers",
                 "EDIT-TEACHER": "Edit-Teacher",
                 "ABOUT-TEACHER": "About-Teacher"
@@ -27,11 +27,11 @@
         "STUDENTS": {
             "TEXT": "Student",
             "LIST": {
-                "ALL-STUDENT": "All-Student",
-                "ADD-STUDENT": "Add-Student",
-                "EDIT-STUDENT": "Edit-Student",
-                "ABOUT-STUDENT": "About-Student",
-                "STUDENT-ATTENDANCE": "Student-Attendance"
+                "ALL STUDENT": "All Student",
+                "ADD STUDENT": "Add Student",
+                "EDIT STUDENT": "Edit Student",
+                "ABOUT STUDENT": "About Student",
+                "STUDENT ATTENDANCE": "Student Attendance"
             }
         },
         "COURSES": {

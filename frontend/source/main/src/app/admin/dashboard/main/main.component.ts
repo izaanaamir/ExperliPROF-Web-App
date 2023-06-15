@@ -52,9 +52,8 @@ export class MainComponent implements OnInit {
   public polarChartOptions!: Partial<chartOptions>;
   breadscrums = [
     {
-      title: 'Dashboad',
       items: [],
-      active: 'Dashboard 1',
+      active: 'Dashboard',
     },
   ];
   constructor() {

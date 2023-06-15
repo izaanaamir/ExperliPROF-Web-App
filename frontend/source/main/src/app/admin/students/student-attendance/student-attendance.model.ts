@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 export class StudentAttendance {
   id: number;
-  img: string;
+  // img: string;
   rollNo: string;
   sName: string;
   class: string;
@@ -11,7 +11,7 @@ export class StudentAttendance {
   constructor(studentAttendance: StudentAttendance) {
     {
       this.id = studentAttendance.id || this.getRandomID();
-      this.img = studentAttendance.img || 'assets/images/user/user1.jpg';
+      // this.img = studentAttendance.img || 'assets/images/user/user1.jpg';
       this.rollNo = studentAttendance.rollNo || '';
       this.sName = studentAttendance.sName || '';
       this.class = studentAttendance.class || '';

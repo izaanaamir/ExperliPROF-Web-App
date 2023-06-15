@@ -37,7 +37,7 @@ export class HeaderComponent
   public config!: InConfiguration;
   userImg?: string;
   homePage?: string;
-  isNavbarCollapsed = true;
+  // isNavbarCollapsed = true;
   flagvalue: string | string[] | undefined;
   countryName: string | string[] = [];
   langStoreValue?: string;
@@ -162,28 +162,28 @@ export class HeaderComponent
     this.langStoreValue = lang;
     this.languageService.setLanguage(lang);
   }
-  mobileMenuSidebarOpen(event: Event, className: string) {
-    const hasClass = (event.target as HTMLInputElement).classList.contains(
-      className
-    );
-    if (hasClass) {
-      this.renderer.removeClass(this.document.body, className);
-    } else {
-      this.renderer.addClass(this.document.body, className);
-    }
-  }
-  callSidemenuCollapse() {
-    const hasClass = this.document.body.classList.contains('side-closed');
-    if (hasClass) {
-      this.renderer.removeClass(this.document.body, 'side-closed');
-      this.renderer.removeClass(this.document.body, 'submenu-closed');
-      localStorage.setItem('collapsed_menu', 'false');
-    } else {
-      this.renderer.addClass(this.document.body, 'side-closed');
-      this.renderer.addClass(this.document.body, 'submenu-closed');
-      localStorage.setItem('collapsed_menu', 'true');
-    }
-  }
+  // mobileMenuSidebarOpen(event: Event, className: string) {
+  //   const hasClass = (event.target as HTMLInputElement).classList.contains(
+  //     className
+  //   );
+  //   if (hasClass) {
+  //     this.renderer.removeClass(this.document.body, className);
+  //   } else {
+  //     this.renderer.addClass(this.document.body, className);
+  //   }
+  // }
+  // callSidemenuCollapse() {
+  //   const hasClass = this.document.body.classList.contains('side-closed');
+  //   if (hasClass) {
+  //     this.renderer.removeClass(this.document.body, 'side-closed');
+  //     this.renderer.removeClass(this.document.body, 'submenu-closed');
+  //     localStorage.setItem('collapsed_menu', 'false');
+  //   } else {
+  //     this.renderer.addClass(this.document.body, 'side-closed');
+  //     this.renderer.addClass(this.document.body, 'submenu-closed');
+  //     localStorage.setItem('collapsed_menu', 'true');
+  //   }
+  // }
   logout() {
     this.subs.sink = this.authService.logout().subscribe((res) => {
       if (!res.success) {

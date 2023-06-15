@@ -1,19 +1,15 @@
 from django.db import models
+from sqlalchemy import Column, Integer, String, LargeBinary
+import uuid
 
 class User(models.Model):
-    STATUS_CHOICES = [
-        ('Student', 'Student'),
-        ('Teacher', 'Teacher'),
-        ('Admin', 'Admin'),
-    ]
-    
-    username = models.CharField(max_length=255)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
-    email = models.EmailField()
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
-
-    def __str__(self):
-        return self.username
-
+    role = models.CharField(max_length=50)
+    display_image = models.BinaryField(blank=True, null=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    
     class Meta:
         db_table = "users"

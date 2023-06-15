@@ -16,9 +16,9 @@
   width: 100%;
   padding: 0;
 
-  .navbar-brand {
-    @include three-dots-overflow();
-  }
+  // .navbar-brand {
+  //   @include three-dots-overflow();
+  // }
 
   .navbar-custom-right-menu {
     float: right;

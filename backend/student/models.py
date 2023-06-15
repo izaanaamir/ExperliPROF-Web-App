@@ -1,6 +1,6 @@
 from django.db import models
 #from ..teacher.models import Teacher
-from teacher.models import School, Teacher
+from teacher.models import School, Teacher, Course
 class Student(models.Model):
     StudentID = models.AutoField(primary_key=True)
     FirstName = models.CharField(max_length=255, null=True)
@@ -29,23 +29,6 @@ class Student(models.Model):
     class Meta:
         db_table = "students"
         
-class Course(models.Model):
-    CourseID = models.AutoField(primary_key=True)
-    CourseName = models.CharField(max_length=255)
-    Subject = models.CharField(max_length=255)
-    Duration = models.IntegerField()
-    School = models.ForeignKey(School, on_delete=models.CASCADE)
-    ListUpdatedDate = models.DateField()
-    Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    SchoolYear = models.IntegerField()
-    Class = models.CharField(max_length=255)
-    LEVEL_CHOICES = (
-        ('Value1', 'Value1'),
-        ('Value2', 'Value2'),
-        ('Value3', 'Value3'),
-    )
-    Level = models.CharField(max_length=255, choices=LEVEL_CHOICES)
-    InternalCourseCode = models.CharField(max_length=255)
 
 class Lesson(models.Model):
     LessonID = models.AutoField(primary_key=True)

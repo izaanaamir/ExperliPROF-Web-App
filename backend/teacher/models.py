@@ -1,5 +1,4 @@
 from django.db import models
-from student.models import Course
 class School(models.Model):
     SchoolID = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=255)
@@ -20,6 +19,26 @@ class Teacher(models.Model):
     Qualifications = models.CharField(max_length=255)
     School = models.ForeignKey(School, on_delete=models.CASCADE)
     
+
+class Course(models.Model):
+    CourseID = models.AutoField(primary_key=True)
+    CourseName = models.CharField(max_length=255)
+    Subject = models.CharField(max_length=255)
+    Duration = models.IntegerField()
+    School = models.ForeignKey(School, on_delete=models.CASCADE)
+    ListUpdatedDate = models.DateField()
+    Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    SchoolYear = models.IntegerField()
+    Class = models.CharField(max_length=255)
+    LEVEL_CHOICES = (
+        ('Value1', 'Value1'),
+        ('Value2', 'Value2'),
+        ('Value3', 'Value3'),
+    )
+    Level = models.CharField(max_length=255, choices=LEVEL_CHOICES)
+    InternalCourseCode = models.CharField(max_length=255)
+
+
 class ContactInfo(models.Model):
     ContactInfoID = models.AutoField(primary_key=True)
     Course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -68,3 +87,5 @@ class PriorToTrainingInfo(models.Model):
     ContentOfCourse = models.CharField(max_length=255)
     TeachingMethodUsed = models.CharField(max_length=255)
     TeachingMaterial = models.CharField(max_length=255)
+
+

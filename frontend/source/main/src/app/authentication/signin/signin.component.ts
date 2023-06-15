@@ -34,34 +34,19 @@ export class SigninComponent extends UnsubscribeOnDestroyAdapter implements OnIn
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      username: ['admin@school.org', Validators.required],
-      password: ['admin@123', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
 
     // Hide the welcome message after 3 seconds
     setTimeout(() => {
       this.showWelcomeMessage = false;
-    }, 3000);
+    }, 2000);
     this.languageService.setLanguage('fr');
   }
 
   get f() {
     return this.authForm.controls;
-  }
-
-  adminSet() {
-    this.authForm.get('username')?.setValue('admin@school.org');
-    this.authForm.get('password')?.setValue('admin@123');
-  }
-
-  teacherSet() {
-    this.authForm.get('username')?.setValue('teacher@school.org');
-    this.authForm.get('password')?.setValue('teacher@123');
-  }
-
-  studentSet() {
-    this.authForm.get('username')?.setValue('student@school.org');
-    this.authForm.get('password')?.setValue('student@123');
   }
 
   onSubmit() {

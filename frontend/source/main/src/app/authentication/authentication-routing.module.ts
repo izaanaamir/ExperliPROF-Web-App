@@ -6,6 +6,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LockedComponent } from './locked/locked.component';
 import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -36,6 +38,10 @@ const routes: Routes = [
     path: 'page500',
     component: Page500Component,
   },
+  {
+    path: 'new-password',
+    component: NewPasswordComponent,
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

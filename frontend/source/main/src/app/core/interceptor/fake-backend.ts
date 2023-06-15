@@ -14,7 +14,7 @@ import { Role } from '../models/role';
 
 const users: User[] = [
   {
-    id: 1,
+    uuid: '',
     img: 'assets/images/user/admin.jpg',
     username: 'admin@school.org',
     password: 'admin@123',
@@ -24,7 +24,7 @@ const users: User[] = [
     token: 'admin-token',
   },
   {
-    id: 2,
+    uuid: '2',
     img: 'assets/images/user/teacher.jpg',
     username: 'teacher@school.org',
     password: 'teacher@123',
@@ -34,7 +34,7 @@ const users: User[] = [
     token: 'teacher-token',
   },
   {
-    id: 3,
+    uuid: '3',
     img: 'assets/images/user/student.jpg',
     username: 'student@school.org',
     password: 'student@123',
@@ -76,7 +76,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return error('Username or password is incorrect');
       }
       return ok({
-        id: user.id,
+        uuid: user.uuid,
         img: user.img,
         username: user.username,
         firstName: user.firstName,
@@ -89,7 +89,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // helper functions
 
     function ok(body?: {
-      id: number;
+      uuid: string;
       img: string;
       username: string;
       firstName: string;

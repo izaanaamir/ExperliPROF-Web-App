@@ -2,13 +2,6 @@
 
 .auth-container {
     position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding-top: 50px;
-    /* Add some padding to move the content downwards */
 }
 
 .burst-animation {
@@ -124,12 +117,6 @@
     margin-bottom: 20px;
 }
 
-.login-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: left !important;
-}
-
 .example-full-width {
     width: 100%;
     margin-bottom: 1%;
@@ -177,38 +164,30 @@
     justify-content: center;
 }
 
-.logo-image {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 50%;
-    /* Adjust the width as needed */
-    height: auto;
-    /* Adjust the height as needed */
-    z-index: 2;
-}
-
 .auth-wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .logo-image {
     position: absolute;
-    top: -55px;
+    top: -60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 140px;
+    width: 200px;
     /* Adjust the width as per your requirement */
     opacity: 0.7;
     /* Adjust the opacity as per your preference */
 }
 
 .login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 90px;
+    margin-bottom: 25px;
     text-align: center;
-    margin-bottom: 15px;
+    /* Align the text to the left */
 }
 
 .example-full-width {

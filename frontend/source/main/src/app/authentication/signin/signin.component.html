@@ -16,14 +16,10 @@
             <div class="form-section">
                 <div class="auth-wrapper">
                     <img class="logo-image" src="../../../assets/images/heading.png" alt="Logo">
-                    <p class="auth-signup-text text-muted">
-                        <strong style="font-weight: bold !important;"></strong>
-                        <a routerLink="/authentication/signup" class=""></a>
-                    </p>
                     <h2 class="login-title">Sign in</h2>
                     <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
                         <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>Username</mat-label>
                                     <input matInput formControlName="username" />
@@ -33,7 +29,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>Password</mat-label>
                                     <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
@@ -46,7 +42,7 @@
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-5">
+                        <div class="d-flex justify-content-between align-items-center">
                             <a class="txt1" routerLink="/authentication/forgot-password">Forgot Password?</a>
                         </div>
                         <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>

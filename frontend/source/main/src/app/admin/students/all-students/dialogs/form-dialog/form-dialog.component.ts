@@ -58,7 +58,7 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       id: [this.students.id],
-      img: [this.students.img],
+      // img: [this.students.img],
       name: [this.students.name],
       email: [
         this.students.email,
@@ -70,7 +70,7 @@ export class FormDialogComponent {
       ],
       gender: [this.students.gender],
       mobile: [this.students.mobile],
-      department: [this.students.department],
+      school: [this.students.school],
       rollNo: [this.students.rollNo],
     });
   }
@@ -83,4 +83,6 @@ export class FormDialogComponent {
   public confirmAdd(): void {
     this.studentsService.addStudents(this.stdForm.getRawValue());
   }
+  // Inside your component class
+
 }

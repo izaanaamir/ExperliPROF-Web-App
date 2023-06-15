@@ -36,10 +36,9 @@ export class AllStudentsComponent
 {
   displayedColumns = [
     'select',
-    'img',
     'rollNo',
     'name',
-    'department',
+    'school',
     'gender',
     'mobile',
     'email',
@@ -53,7 +52,7 @@ export class AllStudentsComponent
   students?: Students;
   breadscrums = [
     {
-      title: 'All Student',
+      title: '',
       items: ['Student'],
       active: 'All Student',
     },
@@ -237,7 +236,7 @@ export class AllStudentsComponent
       this.dataSource.filteredData.map((x) => ({
         'Roll No': x.rollNo,
         Name: x.name,
-        Department: x.department,
+        School: x.school,
         Gender: x.gender,
         Mobile: x.mobile,
         Email: x.email,
@@ -353,7 +352,7 @@ export class ExampleDataSource extends DataSource<Students> {
           [propertyA, propertyB] = [a.date, b.date];
           break;
         case 'time':
-          [propertyA, propertyB] = [a.department, b.department];
+          [propertyA, propertyB] = [a.school, b.school];
           break;
         case 'mobile':
           [propertyA, propertyB] = [a.mobile, b.mobile];

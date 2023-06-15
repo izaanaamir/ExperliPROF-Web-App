@@ -62,7 +62,7 @@ export class FormDialogComponent {
     console.log(this.studentAttendance.id);
     return this.fb.group({
       id: [this.studentAttendance.id],
-      img: [this.studentAttendance.img],
+      // img: [this.studentAttendance.img],
       rollNo: [this.studentAttendance.rollNo, [Validators.required]],
       sName: [this.studentAttendance.sName, [Validators.required]],
       class: [this.studentAttendance.class, [Validators.required]],

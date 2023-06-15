@@ -14,7 +14,6 @@ export class AddCourseComponent {
   courseForm: UntypedFormGroup;
   breadscrums = [
     {
-      title: 'Add Course',
       items: ['Course'],
       active: 'Add Course',
     },

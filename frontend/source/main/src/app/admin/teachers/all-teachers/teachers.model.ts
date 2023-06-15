@@ -7,7 +7,7 @@ export class Teachers {
   date: string;
   gender: string;
   mobile: string;
-  department: string;
+  school: string;
   degree: string;
   constructor(teachers: Teachers) {
     {
@@ -18,7 +18,7 @@ export class Teachers {
       this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
       this.gender = teachers.gender || '';
       this.mobile = teachers.mobile || '';
-      this.department = teachers.department || '';
+      this.school = teachers.school || '';
       this.degree = teachers.degree || '';
     }
   }

@@ -27,26 +27,14 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Department</mat-label>
-            <mat-select formControlName="department" required>
-              <mat-option [value]="'mechanical'">
-                Mechanical
-              </mat-option>
-              <mat-option [value]="'science'">
-                Science
-              </mat-option>
-              <mat-option [value]="'mathematics'">
-                Mathematics
-              </mat-option>
-              <mat-option [value]="'computer'">
-                Computer
-              </mat-option>
-              <mat-option [value]="'civil'">
-                Civil
+            <mat-label>Schools</mat-label>
+            <mat-select formControlName="school" required multiple>
+              <mat-option *ngFor="let school of schools" [value]="school.value">
+                {{ school.label }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="proForm.get('department')?.hasError('required')">
-              Department is required
+            <mat-error *ngIf="proForm.get('school')?.hasError('required')">
+              School is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -71,18 +59,16 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Degree</mat-label>
             <input matInput formControlName="degree" required>
             <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>school</mat-icon>
             <mat-error *ngIf="proForm.get('degree')?.hasError('required')">
-              Department is required
+              School is required
             </mat-error>
           </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
+        </div> -->
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Mobile</mat-label>
@@ -93,6 +79,18 @@
             </mat-error>
           </mat-form-field>
         </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="mobile" type="number">
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>phone</mat-icon>
+            <mat-error *ngIf="proForm.get('mobile')?.hasError('required')">
+              Mobile is required
+            </mat-error>
+          </mat-form-field>
+        </div> -->
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Email</mat-label>
@@ -103,8 +101,6 @@
             </mat-error>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Joining date</mat-label>
@@ -115,6 +111,27 @@
               Please select date
             </mat-error>
           </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Joining date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="proForm.get('date')?.hasError('required')">
+              Please select date
+            </mat-error>
+          </mat-form-field>
+        </div> -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+          <label>Upload CV</label>
+          <app-file-upload formControlName="uploadFile"></app-file-upload>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+          <label>Upload Image</label>
+          <app-file-upload formControlName="uploadFile"></app-file-upload>
         </div>
       </div>
       <div class="row">

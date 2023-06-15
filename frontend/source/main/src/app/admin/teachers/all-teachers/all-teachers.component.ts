@@ -36,11 +36,9 @@ export class AllTeachersComponent
 {
   displayedColumns = [
     'select',
-    'img',
     'name',
-    'department',
+    'school',
     'gender',
-    'degree',
     'mobile',
     'email',
     'date',
@@ -53,7 +51,7 @@ export class AllTeachersComponent
   teachers?: Teachers;
   breadscrums = [
     {
-      title: 'All Teacher',
+      title: '',
       items: ['Teacher'],
       active: 'All Teacher',
     },
@@ -236,7 +234,7 @@ export class AllTeachersComponent
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         Name: x.name,
-        Department: x.department,
+        School: x.school,
         Gender: x.gender,
         Degree: x.degree,
         Mobile: x.mobile,
@@ -309,7 +307,7 @@ export class ExampleDataSource extends DataSource<Teachers> {
           .filter((teachers: Teachers) => {
             const searchStr = (
               teachers.name +
-              teachers.department +
+              teachers.school +
               teachers.gender +
               teachers.degree +
               teachers.email +
@@ -354,7 +352,7 @@ export class ExampleDataSource extends DataSource<Teachers> {
           [propertyA, propertyB] = [a.date, b.date];
           break;
         case 'time':
-          [propertyA, propertyB] = [a.department, b.department];
+          [propertyA, propertyB] = [a.school, b.school];
           break;
         case 'mobile':
           [propertyA, propertyB] = [a.mobile, b.mobile];

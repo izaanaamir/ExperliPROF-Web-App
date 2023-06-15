@@ -50,7 +50,6 @@ export class AllSchoolsComponent
   schools?: Schools;
   breadscrums = [
     {
-      title: 'All Schools',
       items: ['Schools'],
       active: 'All',
     },

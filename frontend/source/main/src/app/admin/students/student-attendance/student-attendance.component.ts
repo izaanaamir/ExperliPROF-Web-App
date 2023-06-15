@@ -52,7 +52,6 @@ export class StudentAttendanceComponent
 
   breadscrums = [
     {
-      title: 'Student Attendance',
       items: ['Students'],
       active: 'Student Attendance',
     },

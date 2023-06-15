@@ -20,12 +20,11 @@ export class TaskComponent {
   showFiller = false;
   isNewEvent = false;
   dialogTitle?: string;
-  userImg?: string;
+  // userImg?: string;
   tasks: Task[] = [];
 
   breadscrums = [
     {
-      title: 'Task',
       items: [],
       active: 'Task',
     },
@@ -61,13 +60,13 @@ export class TaskComponent {
     this.resetFormField();
     this.isNewEvent = true;
     this.dialogTitle = 'New Task';
-    this.userImg = 'assets/images/user/user1.jpg';
+    // this.userImg = 'assets/images/user/user1.jpg';
     nav.open();
   }
   taskClick(task: Task, nav: MatSidenav): void {
     this.isNewEvent = false;
     this.dialogTitle = 'Edit Task';
-    this.userImg = task.img;
+    // this.userImg = task.img;
     nav.open();
     this.taskForm = this.createFormGroup(task);
   }
@@ -77,7 +76,7 @@ export class TaskComponent {
   createFormGroup(data: Task) {
     return this.fb.group({
       id: [data ? data.id : this.getRandomID()],
-      img: [data ? data.img : 'assets/images/user/user1.jpg'],
+      // img: [data ? data.img : 'assets/images/user/user1.jpg'],
       name: [data ? data.name : null],
       title: [data ? data.title : null],
       done: [data ? data.done : null],

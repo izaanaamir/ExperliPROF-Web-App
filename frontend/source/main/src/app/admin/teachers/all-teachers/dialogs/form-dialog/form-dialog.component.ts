@@ -70,7 +70,7 @@ export class FormDialogComponent {
       ],
       gender: [this.teachers.gender],
       mobile: [this.teachers.mobile],
-      department: [this.teachers.department],
+      school: [this.teachers.school],
       degree: [this.teachers.degree],
     });
   }
@@ -83,4 +83,13 @@ export class FormDialogComponent {
   public confirmAdd(): void {
     this.teachersService.addTeachers(this.proForm.getRawValue());
   }
+  // Inside your component class
+  schools = [
+    { label: 'Esiee', value: 'Esiee' },
+    { label: 'Bilkent', value: 'Bilkent' },
+    { label: 'Chandigarh University', value: 'Chandigarh University' },
+    { label: 'Limerick', value: 'Limerick' },
+    { label: 'Kyoto', value: 'Kyoto' }
+    ];
+
 }

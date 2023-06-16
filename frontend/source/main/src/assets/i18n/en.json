@@ -24,7 +24,7 @@
             }
         },
         "STUDENTS": {
-            "TEXT": "Student",
+            "TEXT": "Students",
             "LIST": {
                 "ALL STUDENT": "All Student",
                 "ADD STUDENT": "Add Student",

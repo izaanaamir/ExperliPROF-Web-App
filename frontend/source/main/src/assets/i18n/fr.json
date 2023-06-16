@@ -25,13 +25,13 @@
             }
         },
         "STUDENTS": {
-            "TEXT": "Student",
+            "TEXT": "Étudiants",
             "LIST": {
-                "ALL STUDENT": "All Student",
+                "ALL STUDENT": "Tout Étudiant",
                 "ADD STUDENT": "Add Student",
                 "EDIT STUDENT": "Edit Student",
                 "ABOUT STUDENT": "About Student",
-                "STUDENT ATTENDANCE": "Student Attendance"
+                "STUDENT ATTENDANCE": "Fréquentation des Étudiants"
             }
         },
         "COURSES": {

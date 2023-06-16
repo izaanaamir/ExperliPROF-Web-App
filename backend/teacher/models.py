@@ -17,7 +17,10 @@ class Teacher(models.Model):
     Email = models.EmailField()
     Phone = models.CharField(max_length=255)
     Qualifications = models.CharField(max_length=255)
-    School = models.ForeignKey(School, on_delete=models.CASCADE)
+    School = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
+    
+    class Meta:
+        db_table = 'teachers'
     
 
 class Course(models.Model):

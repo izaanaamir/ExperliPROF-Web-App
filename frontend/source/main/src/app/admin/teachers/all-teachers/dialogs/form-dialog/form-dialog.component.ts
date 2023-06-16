@@ -35,7 +35,7 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.teachers.name;
+      this.dialogTitle = data.teachers.FirstName;
       this.teachers = data.teachers;
     } else {
       this.dialogTitle = 'New Teachers';
@@ -57,11 +57,11 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.teachers.id],
+      id: [this.teachers.TeacherID],
       img: [this.teachers.img],
-      name: [this.teachers.name],
+      name: [this.teachers.FirstName],
       email: [
-        this.teachers.email,
+        this.teachers.Email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
       date: [

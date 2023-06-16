@@ -108,7 +108,7 @@ export class AllTeachersComponent
     });
   }
   editCall(row: Teachers) {
-    this.id = row.id;
+    this.id = row.TeacherID;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -126,7 +126,7 @@ export class AllTeachersComponent
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
-          (x) => x.id === this.id
+          (x) => x.TeacherID === this.id
         );
         // Then you update that record using data from dialogData (values you enetered)
         if (foundIndex != null && this.exampleDatabase) {
@@ -145,7 +145,7 @@ export class AllTeachersComponent
     });
   }
   deleteItem(row: Teachers) {
-    this.id = row.id;
+    this.id = row.TeacherID;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -159,7 +159,7 @@ export class AllTeachersComponent
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
-          (x) => x.id === this.id
+          (x) => x.TeacherID === this.id
         );
         // for delete we use splice in order to remove single object from DataService
         if (foundIndex != null && this.exampleDatabase) {
@@ -232,11 +232,11 @@ export class AllTeachersComponent
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        Name: x.name,
+        Name: x.FirstName,
         Gender: x.gender,
         Degree: x.degree,
         Mobile: x.mobile,
-        Email: x.email,
+        Email: x.Email,
         'Joining Date': formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
       }));
 
@@ -288,43 +288,51 @@ export class ExampleDataSource extends DataSource<Teachers> {
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Teachers[]> {
-    // Listen for any changes in the base data, sorting, filtering, or pagination
-    const displayDataChanges = [
-      this.exampleDatabase.dataChange,
-      this._sort.sortChange,
-      this.filterChange,
-      this.paginator.page,
-    ];
-    this.exampleDatabase.getAllTeacherss();
-    return merge(...displayDataChanges).pipe(
-      map(() => {
-        // Filter data
-        this.filteredData = this.exampleDatabase.data
-          .slice()
-          .filter((teachers: Teachers) => {
-            const searchStr = (
-              teachers.name +
-              teachers.school +
-              teachers.gender +
-              teachers.degree +
-              teachers.email +
-              teachers.mobile
-            ).toLowerCase();
-            return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-          });
-        // Sort filtered data
-        const sortedData = this.sortData(this.filteredData.slice());
-        // Grab the page's slice of the filtered sorted data.
-        const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-        this.renderedData = sortedData.splice(
-          startIndex,
-          this.paginator.pageSize
-        );
-        return this.renderedData;
-      })
-    );
-  }
+connect(): Observable<Teachers[]> {
+  // Listen for any changes in the base data, sorting, filtering, or pagination
+  const displayDataChanges = [
+    this.exampleDatabase.dataChange,
+    this._sort.sortChange,
+    this.filterChange,
+    this.paginator.page,
+  ];
+  
+  this.exampleDatabase.getAllTeachers().subscribe((teachers: Teachers[]) => {
+    // Update the data in the exampleDatabase
+    this.exampleDatabase.dataChange.next(teachers);
+  });
+  console.log(this.exampleDatabase.data)
+  // Create a new Observable to return
+  return merge(...displayDataChanges).pipe(
+    map(() => {
+      // Filter data
+      this.filteredData = this.exampleDatabase.data
+        .slice()
+        .filter((teacher: Teachers) => {
+          const searchStr = (
+            teacher.FirstName +
+            teacher.LastName +
+            teacher.Email +
+            teacher.Phone
+          ).toLowerCase();
+          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+        });
+      
+      // Sort filtered data
+      const sortedData = this.sortData(this.filteredData.slice());
+      
+      // Grab the page's slice of the filtered sorted data.
+      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+      this.renderedData = sortedData.splice(
+        startIndex,
+        this.paginator.pageSize
+      );
+      
+      return this.renderedData;
+    })
+  );
+}
+
   disconnect() {
     //disconnect
   }
@@ -338,13 +346,13 @@ export class ExampleDataSource extends DataSource<Teachers> {
       let propertyB: number | string = '';
       switch (this._sort.active) {
         case 'id':
-          [propertyA, propertyB] = [a.id, b.id];
+          [propertyA, propertyB] = [a.TeacherID, b.TeacherID];
           break;
         case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
+          [propertyA, propertyB] = [a.FirstName, b.FirstName];
           break;
         case 'email':
-          [propertyA, propertyB] = [a.email, b.email];
+          [propertyA, propertyB] = [a.Email, b.Email];
           break;
         case 'date':
           [propertyA, propertyB] = [a.date, b.date];
@@ -364,3 +372,32 @@ export class ExampleDataSource extends DataSource<Teachers> {
     });
   }
 }
+// let dynamicCode = '';
+// for (const user of users) {dynamicCode += `
+//     <div class="col-md-4">
+//       <div class="card border-apply">
+//         <div class="m-b-20">
+//           <div class="contact-grid">
+//             <div class="profile-header bg-dark">
+//               <div class="user-name">${user.name}</div>
+//             </div>
+//             <img src="${user.image}" class="user-img" alt="">
+//             <p>${user.email}</p>
+//             <div>
+//               <span class="phone">
+//                 <i class="material-icons">phone</i>${user.phone}</span>
+//             </div>
+//             <div class="profile-userbuttons">
+//               <button mat-flat-button color="primary">Read More</button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   `;
+// }
+
+// const container = document.getElementById('userCardsContainer');
+
+// // Set the innerHTML of the container to the dynamically generated code
+// container.innerHTML = dynamicCode;

@@ -18,7 +18,6 @@
         "TEACHERS": {
             "TEXT": "Teachers",
             "LIST": {
-                "ALL TEACHERS": "All Teachers",
                 "ADD-TEACHER": "Add-Teachers",
                 "EDIT-TEACHER": "Edit-Teacher",
                 "ABOUT-TEACHER": "About-Teacher"

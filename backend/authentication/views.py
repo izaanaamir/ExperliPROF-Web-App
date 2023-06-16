@@ -25,7 +25,7 @@ def login_view(request: Request):
                 last_name = user.last_name
                 display_image = user.display_image
                 display_image = base64.b64encode(display_image).decode('utf-8')
-                return JsonResponse({'success': True, 'uuid': str(user_uuid), 'role': user_status, 'firstname': first_name, 'last_name': last_name, 'display_image': display_image})
+                return JsonResponse({'success': True, 'uuid': str(user_uuid), 'role': user_status, 'firstname': first_name, 'lastname': last_name, 'display_image': display_image})
             else:
                 # Invalid username or password
                 return JsonResponse({'success': False, 'error': 'Invalid username or password.'})

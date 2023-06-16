@@ -37,7 +37,6 @@ export class AllTeachersComponent
   displayedColumns = [
     'select',
     'name',
-    'school',
     'gender',
     'mobile',
     'email',
@@ -234,7 +233,6 @@ export class AllTeachersComponent
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         Name: x.name,
-        School: x.school,
         Gender: x.gender,
         Degree: x.degree,
         Mobile: x.mobile,

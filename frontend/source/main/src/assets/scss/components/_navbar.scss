@@ -142,6 +142,7 @@
   color: white;
   font-size: 24px;
   font-weight: 400;
+  align-items: center;
 }
 .navbar-nav {
   > li {
@@ -296,7 +297,7 @@
   border-radius: 3px;
 }
 .navbar-brand {
-  float: left;
+  float: none;
   height: 45px;
   padding: 6px 25px;
   font-size: 18px;
@@ -305,7 +306,7 @@
   width: 100%;
   img {
     /*float: left;*/
-    vertical-align: top;
+    vertical-align: middle;
   }
   span {
     line-height: 32px;

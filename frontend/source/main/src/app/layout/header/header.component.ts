@@ -37,6 +37,8 @@ export class HeaderComponent
   public config!: InConfiguration;
   userImg?: string;
   homePage?: string;
+  firstName?: string;
+  lastName?: string;
   // isNavbarCollapsed = true;
   flagvalue: string | string[] | undefined;
   countryName: string | string[] = [];
@@ -119,6 +121,8 @@ export class HeaderComponent
 
     const userRole = this.authService.currentUserValue.role;
     this.userImg = this.authService.currentUserValue.img;
+    this.firstName = this.authService.currentUserValue.firstName;
+    this.lastName = this.authService.currentUserValue.lastName;
 
     if (userRole === Role.Admin) {
       this.homePage = 'admin/dashboard/main';

@@ -18,6 +18,7 @@ class Teacher(models.Model):
     Phone = models.CharField(max_length=255)
     Qualifications = models.CharField(max_length=255)
     School = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
+    image_data = models.BinaryField(blank=True, null=True, default= b'')
     
     class Meta:
         db_table = 'teachers'

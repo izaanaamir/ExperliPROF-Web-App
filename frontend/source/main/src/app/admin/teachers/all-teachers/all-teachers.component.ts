@@ -90,7 +90,7 @@ export class AllTeachersComponent
             <div class="profile-header bg-dark">
               <div class="user-name">${user.FirstName}</div>
             </div>
-            <img src="${user.img}" class="user-img" alt="">
+            <img src="${'data:image/png;base64,' + user.img}" class="user-img" alt="">
             <p>${user.Email}</p>
             <div>
               <span class="phone">

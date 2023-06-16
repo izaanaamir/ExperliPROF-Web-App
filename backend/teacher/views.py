@@ -17,7 +17,7 @@ def get_all_teachers(request: Request):
             for teacher in list_of_teachers: 
                 data.append({
                         "TeacherID": str(teacher["TeacherID"]),
-                        'img': '',
+                        'img': base64.b64encode(teacher['image_data']).decode('utf-8'),
                         'FirstName': teacher['FirstName'],
                         'LastName': teacher['LastName'],
                         'Email': teacher['Email'],

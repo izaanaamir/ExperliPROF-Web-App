@@ -38,6 +38,7 @@ export class AuthService {
               token: '',
               username: ''
             };
+            console.log(this.currentUser)
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
             return user;

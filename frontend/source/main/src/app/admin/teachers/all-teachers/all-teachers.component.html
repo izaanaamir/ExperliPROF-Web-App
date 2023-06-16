@@ -245,8 +245,8 @@
               <i class="material-icons-two-tone psr-3">grid_on</i>
               Grid View
             </ng-template>
-            <div id="userCardsContainer"></div>
             <div class="row mt-5 ml-0 mr-0">
+            <div [innerHTML]="dynamicCode"></div>
               <div class="col-md-4">
                 <div class="card border-apply">
                   <div class="m-b-20">
@@ -271,6 +271,7 @@
                   </div>
                 </div>
               </div>
+              
             </div>
           </mat-tab>
         </mat-tab-group>

@@ -24,6 +24,7 @@ import {
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
 import { formatDate } from '@angular/common';
+import { connect } from 'echarts';
 
 @Component({
   selector: 'app-all-teachers',
@@ -49,6 +50,8 @@ export class AllTeachersComponent
   selection = new SelectionModel<Teachers>(true, []);
   id?: number;
   teachers?: Teachers;
+  dynamicCode: string = '';
+  dataRendered: string = '';
   breadscrums = [
     {
       title: '',
@@ -73,9 +76,76 @@ export class AllTeachersComponent
 
   ngOnInit() {
     this.loadData();
+    this.dataSource.connect().subscribe(data => {
+  // Here, you can access the populated `renderedData` array
+     if (data.length > 0 && this.dynamicCode.length == 0 ) {
+    // Perform the desired action when the data is present
+    console.log("Data is present:", data);
+        for (const user of this.dataSource.renderedData) {
+      this.dataRendered += `
+    <div class="col-md-4">
+      <div class="card border-apply">
+        <div class="m-b-20">
+          <div class="contact-grid">
+            <div class="profile-header bg-dark">
+              <div class="user-name">${user.FirstName}</div>
+            </div>
+            <img src="${user.img}" class="user-img" alt="">
+            <p>${user.Email}</p>
+            <div>
+              <span class="phone">
+                <i class="material-icons">phone</i>${user.Phone}</span>
+            </div>
+            <div class="profile-userbuttons">
+              <button mat-flat-button color="primary">Read More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  `;
+       }
+    this.dynamicCode = this.dataRendered;
   }
+});
+ }
   refresh() {
     this.loadData();
+    this.dataSource.connect().subscribe(data => {
+  // Here, you can access the populated `renderedData` array
+     if (data.length > 0 && this.dynamicCode.length == 0 ) {
+    // Perform the desired action when the data is present
+    console.log("Data is present:", data);
+        for (const user of this.dataSource.renderedData) {
+      this.dataRendered += `
+    <div class="col-md-4">
+      <div class="card border-apply">
+        <div class="m-b-20">
+          <div class="contact-grid">
+            <div class="profile-header bg-dark">
+              <div class="user-name">${user.FirstName}</div>
+            </div>
+            <img src="${user.img}" class="user-img" alt="">
+            <p>${user.Email}</p>
+            <div>
+              <span class="phone">
+                <i class="material-icons">phone</i>${user.Phone}</span>
+            </div>
+            <div class="profile-userbuttons">
+              <button mat-flat-button color="primary">Read More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  `;
+    }
+      console.log(this.dataRendered)
+      this.dynamicCode = this.dataRendered;
+  }
+});
   }
   addNew() {
     let tempDirection: Direction;
@@ -227,6 +297,8 @@ export class AllTeachersComponent
         this.dataSource.filter = this.filter.nativeElement.value;
       }
     );
+
+// Set the innerHTML of the container to the dynamically generated code
   }
   // export table data in excel file
   exportExcel() {
@@ -287,6 +359,7 @@ export class ExampleDataSource extends DataSource<Teachers> {
     super();
     // Reset to the first page when the user changes the filter.
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
+     this.connect();
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
 connect(): Observable<Teachers[]> {
@@ -298,11 +371,8 @@ connect(): Observable<Teachers[]> {
     this.paginator.page,
   ];
   
-  this.exampleDatabase.getAllTeachers().subscribe((teachers: Teachers[]) => {
-    // Update the data in the exampleDatabase
-    this.exampleDatabase.dataChange.next(teachers);
-  });
-  console.log(this.exampleDatabase.data)
+  this.exampleDatabase.getAllTeacherss();
+  // console.log(this.exampleDatabase.data)
   // Create a new Observable to return
   return merge(...displayDataChanges).pipe(
     map(() => {
@@ -373,32 +443,4 @@ connect(): Observable<Teachers[]> {
     });
   }
 }
-// let dynamicCode = '';
-// for (const user of users) {dynamicCode += `
-//     <div class="col-md-4">
-//       <div class="card border-apply">
-//         <div class="m-b-20">
-//           <div class="contact-grid">
-//             <div class="profile-header bg-dark">
-//               <div class="user-name">${user.name}</div>
-//             </div>
-//             <img src="${user.image}" class="user-img" alt="">
-//             <p>${user.email}</p>
-//             <div>
-//               <span class="phone">
-//                 <i class="material-icons">phone</i>${user.phone}</span>
-//             </div>
-//             <div class="profile-userbuttons">
-//               <button mat-flat-button color="primary">Read More</button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   `;
-// }
 
-// const container = document.getElementById('userCardsContainer');
-
-// // Set the innerHTML of the container to the dynamically generated code
-// container.innerHTML = dynamicCode;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Teachers } from './teachers.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
@@ -20,22 +20,18 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
     return this.dialogData;
   }
   /** CRUD METHODS */
- getAllTeachers(): Observable<any> {
-  return this.httpClient.get<any>("http://localhost:8000/api/teacher/get_teachers/")
-    .pipe(
-      tap((data) => {
+  getAllTeacherss(): void {
+    this.subs.sink = this.httpClient.get<Teachers[]>("http://localhost:8000/api/teacher/get_teachers/").subscribe({
+      next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
-        console.log(data);
-      }),
-      catchError((error: HttpErrorResponse) => {
+      },
+      error: (error: HttpErrorResponse) => {
         this.isTblLoading = false;
         console.log(error.name + ' ' + error.message);
-        return throwError(error);
-      })
-    );
-}
-
+      },
+    });
+  }
   addTeachers(teachers: Teachers): void {
     this.dialogData = teachers;
 

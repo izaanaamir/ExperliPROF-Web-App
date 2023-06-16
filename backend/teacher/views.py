@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from requests import Request
+from sqlalchemy import JSON
 from .models import Teacher
 from django.core.exceptions import ObjectDoesNotExist
 import json
@@ -10,10 +11,26 @@ def get_all_teachers(request: Request):
     if request.method == 'GET':
         # Authenticate the user
         try:
+            data = []
             all_teachers = Teacher.objects.values()
-            serialized_data = json.dumps(list(all_teachers))
+            list_of_teachers = list(all_teachers)
+            for teacher in list_of_teachers: 
+                data.append({
+                        "TeacherID": str(teacher["TeacherID"]),
+                        'img': '',
+                        'FirstName': teacher['FirstName'],
+                        'LastName': teacher['LastName'],
+                        'Email': teacher['Email'],
+                        'Phone': teacher['Phone'],
+                        'date': '',
+                        'gender': '',
+                        'mobile': '',
+                        'school': '',
+                        'degree': ''
+                })
+            print(data)
                 # Compare the password
-            return JsonResponse({'success': True, 'data': serialized_data})
+            return JsonResponse(data=data, safe=False)
         except ObjectDoesNotExist:
             # User not found
             return JsonResponse({'success': False, 'error': 'Server Error'})

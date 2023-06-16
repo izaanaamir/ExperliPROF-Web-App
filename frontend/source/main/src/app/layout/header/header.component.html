@@ -27,7 +27,7 @@
                 </li>
                 <!-- #END# Full Screen Button -->
                 <!-- #START# Notifications-->
-                <li>
+                <!-- <li>
                     <button mat-button [matMenuTriggerFor]="notificationMenu" class="nav-notification-icons"> <i
               class="material-icons-outlined icon-color">
               notifications_active
@@ -69,7 +69,7 @@
                         </div>
                     </mat-menu>
                 </li>
-                <!-- #END# Notifications-->
+                 #END# Notifications-->
                 <li class="nav-item">
                     <button mat-button [matMenuTriggerFor]="languagemenu" class="lang-dropdown nav-notification-icons"> <img
               *ngIf="flagvalue !== undefined" src="{{flagvalue}}" height="16">
@@ -82,11 +82,11 @@
                         </div>
                     </mat-menu>
                 </li>
-                <li class="nav-item user_profile">
+                <!-- <li class="nav-item user_profile">
                     <button mat-button [matMenuTriggerFor]="profilemenu">
-            <div class="chip dropdown-toggle" ngbDropdownToggle class="pt-0">
+            <div class="chip dropdown-toggle" ngbDropdownToggle class="pt-0"> -->
               <span>{{ firstName }} {{ lastName }}</span>
-            </div>
+            <!-- </div>
           </button>
                     <mat-menu #profilemenu="matMenu" class="profile-menu">
                         <div class="noti-list">
@@ -106,9 +106,9 @@
                   </button>
                                 </div>
                             </div>
-                        </div>
-                    </mat-menu>
-                </li>
+                        </div> -->
+                    <!-- </mat-menu> -->
+                <!-- </li> -->
                 <!-- #END# Tasks -->
             </ul>
         </div>

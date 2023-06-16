@@ -36,11 +36,12 @@ export class AllTeachersComponent
 {
   displayedColumns = [
     'select',
-    'name',
-    'gender',
+    'lastName',
+    'firstName',
+    // 'gender',
     'mobile',
     'email',
-    'date',
+    // 'date',
     'actions',
   ];
   exampleDatabase?: TeachersService;
@@ -233,11 +234,11 @@ export class AllTeachersComponent
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         Name: x.FirstName,
-        Gender: x.gender,
+        // Gender: x.gender,
         Degree: x.degree,
         Mobile: x.mobile,
         Email: x.Email,
-        'Joining Date': formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
+        // 'Joining Date': formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');

@@ -36,13 +36,14 @@ export class AllStudentsComponent
 {
   displayedColumns = [
     'select',
-    'rollNo',
-    'name',
+    // 'rollNo',
+    'lastName',
+    'firstName',
     'school',
-    'gender',
+    // 'gender',
     'mobile',
     'email',
-    'date',
+    // 'date',
     'actions',
   ];
   exampleDatabase?: StudentsService;
@@ -53,8 +54,8 @@ export class AllStudentsComponent
   breadscrums = [
     {
       title: '',
-      items: ['Student'],
-      active: 'All Student',
+      items: [],
+      active: 'Students',
     },
   ];
   constructor(
@@ -234,14 +235,14 @@ export class AllStudentsComponent
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        'Roll No': x.rollNo,
+        // 'Roll No': x.rollNo,
         Name: x.name,
         School: x.school,
-        Gender: x.gender,
+        // Gender: x.gender,
         Mobile: x.mobile,
         Email: x.email,
-        'Admission Date':
-          formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
+        // 'Admission Date':
+          // formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');

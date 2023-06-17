@@ -176,14 +176,15 @@
           </mat-form-field>
         </div> -->
         <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
-          <label>Upload CV</label>
-          <app-file-upload formControlName="uploadFile"></app-file-upload>
-        </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
-          <label>Upload Image</label>
-          <app-file-upload formControlName="uploadFile"></app-file-upload>
-        </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+            <label>Upload CV</label>
+            <app-file-upload formControlName="uploadFile" required></app-file-upload>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+            <label>Upload Image</label>
+            <app-file-upload formControlName="uploadFile" required></app-file-upload>
+          </div>
+          
       </div>
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">

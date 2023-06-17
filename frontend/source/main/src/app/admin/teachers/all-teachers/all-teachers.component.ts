@@ -347,7 +347,7 @@ connect(): Observable<Teachers[]> {
     this.filterChange,
     this.paginator.page,
   ];
-  
+
   this.exampleDatabase.getAllTeacherss();
   // console.log(this.exampleDatabase.data)
   // Create a new Observable to return
@@ -365,17 +365,17 @@ connect(): Observable<Teachers[]> {
           ).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
-      
+
       // Sort filtered data
       const sortedData = this.sortData(this.filteredData.slice());
-      
+
       // Grab the page's slice of the filtered sorted data.
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       this.renderedData = sortedData.splice(
         startIndex,
         this.paginator.pageSize
       );
-      
+
       return this.renderedData;
     })
   );

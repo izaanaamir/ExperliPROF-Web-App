@@ -35,12 +35,12 @@ export class AllFeesComponent
   implements OnInit
 {
   displayedColumns = [
-    'select',
-    'rollNo',
+    // 'select',
+    // 'rollNo',
     'sName',
     'fType',
     'date',
-    'invoiceNo',
+    // 'invoiceNo',
     'pType',
     'status',
     'amount',
@@ -54,9 +54,9 @@ export class AllFeesComponent
 
   breadscrums = [
     {
-      title: 'All Fees',
-      items: ['Fees'],
-      active: 'All Fees',
+
+      items: [],
+      active: 'Fees',
     },
   ];
   constructor(

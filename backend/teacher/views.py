@@ -62,6 +62,12 @@ def add_teacher(request: Request):
                     LastName=data['LastName'],
                     Email=data['Email'],
                     Phone=data['Phone'],
+                    image_data=data['img'],
+                    cv_file=data['cvData'],
+                    joining_date=data['date'],
+                    about_me=data['aboutMe'],
+                    address=data['address'],
+                    title=data['title']
                 )           
             new_teacher.save()
                 # Compare the password

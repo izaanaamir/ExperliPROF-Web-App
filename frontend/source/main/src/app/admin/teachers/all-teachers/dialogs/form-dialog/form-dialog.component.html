@@ -53,7 +53,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Title</mat-label>
-            <mat-select formControlName="gender" required>
+            <mat-select formControlName="title" required>
               <mat-option [value]="'Mr'">
                 Mr
               </mat-option>
@@ -64,7 +64,7 @@
                 Other
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="proForm.get('gender')?.hasError('required')">
+            <mat-error *ngIf="proForm.get('title')?.hasError('required')">
               School is required
             </mat-error>
           </mat-form-field>
@@ -178,11 +178,11 @@
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
             <label>Upload CV</label>
-            <app-file-upload formControlName="uploadFile" required></app-file-upload>
+            <app-file-upload formControlName="cvData" required></app-file-upload>
           </div>
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
             <label>Upload Image</label>
-            <app-file-upload formControlName="uploadFile" required></app-file-upload>
+            <app-file-upload formControlName="img" required></app-file-upload>
           </div>
           
       </div>

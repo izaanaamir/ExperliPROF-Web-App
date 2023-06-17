@@ -69,10 +69,12 @@ export class FormDialogComponent {
         formatDate(this.teachers.date, 'yyyy-MM-dd', 'en'),
         [Validators.required],
       ],
-      gender: [this.teachers.gender],
       Phone: [this.teachers.Phone],
       school: [this.teachers.school],
-      degree: [this.teachers.degree],
+      cvData: [this.teachers.cvData],
+      aboutMe: [this.teachers.aboutMe],
+      address: [this.teachers.address],
+      title: [this.teachers.title]
     });
   }
   submit() {

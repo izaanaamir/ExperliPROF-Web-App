@@ -4,13 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvanceTableRoutingModule } from './contacts-routing.module';
 import { ContactsComponent } from './contacts.component';
 import { FormComponent as contactForm } from './form/form.component';
-import { DeleteComponent } from './delete/delete.component';
+import { DeleteDialogComponent } from './delete/delete.component';
 import { ContactsService } from './contacts.service';
 import { ComponentsModule } from '../shared/components/components.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [ContactsComponent, contactForm, DeleteComponent],
+  declarations: [ContactsComponent, contactForm, DeleteDialogComponent],
   imports: [
     CommonModule,
     FormsModule,

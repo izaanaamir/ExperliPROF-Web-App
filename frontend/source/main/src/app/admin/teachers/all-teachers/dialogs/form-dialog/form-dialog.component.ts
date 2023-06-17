@@ -59,8 +59,9 @@ export class FormDialogComponent {
     return this.fb.group({
       id: [this.teachers.TeacherID],
       img: [this.teachers.img],
-      name: [this.teachers.FirstName],
-      email: [
+      FirstName: [this.teachers.FirstName],
+      LastName: [this.teachers.LastName],
+      Email: [
         this.teachers.Email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
@@ -69,7 +70,7 @@ export class FormDialogComponent {
         [Validators.required],
       ],
       gender: [this.teachers.gender],
-      mobile: [this.teachers.mobile],
+      Phone: [this.teachers.Phone],
       school: [this.teachers.school],
       degree: [this.teachers.degree],
     });

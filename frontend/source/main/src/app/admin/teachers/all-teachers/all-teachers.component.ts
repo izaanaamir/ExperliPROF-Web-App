@@ -78,7 +78,7 @@ export class AllTeachersComponent
     this.loadData();
     this.dataSource.connect().subscribe(data => {
   // Here, you can access the populated `renderedData` array
-     if (data.length > 0 && this.dynamicCode.length == 0 ) {
+     if (data.length > 0 && this.dynamicCode.length != 0 && this.dynamicCode.length != this.dataSource.renderedData.length) {
     // Perform the desired action when the data is present
     console.log("Data is present:", data);
         for (const user of this.dataSource.renderedData) {
@@ -111,8 +111,7 @@ export class AllTeachersComponent
 });
  }
   refresh() {
-    this.loadData();
-    this.dataSource.connect().subscribe(data => {
+        this.dataSource.connect().subscribe(data => {
   // Here, you can access the populated `renderedData` array
      if (data.length > 0 && this.dynamicCode.length == 0 ) {
     // Perform the desired action when the data is present
@@ -146,6 +145,8 @@ export class AllTeachersComponent
       this.dynamicCode = this.dataRendered;
   }
 });
+    this.loadData();
+
   }
   addNew() {
     let tempDirection: Direction;
@@ -270,7 +271,8 @@ export class AllTeachersComponent
       const index: number = this.dataSource.renderedData.findIndex(
         (d) => d === item
       );
-      // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+      //console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+      this.exampleDatabase?.deleteTeachers(item.TeacherID);
       this.exampleDatabase?.dataChange.value.splice(index, 1);
       this.refreshTable();
       this.selection = new SelectionModel<Teachers>(true, []);
@@ -305,10 +307,9 @@ export class AllTeachersComponent
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        Name: x.FirstName,
-        // Gender: x.gender,
-        Degree: x.degree,
-        Mobile: x.mobile,
+        FirstName: x.FirstName,
+        LastName: x.LastName,
+        Phone: x.Phone,
         Email: x.Email,
         // 'Joining Date': formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
       }));

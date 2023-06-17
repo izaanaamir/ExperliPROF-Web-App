@@ -35,15 +35,15 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
   addTeachers(teachers: Teachers): void {
     this.dialogData = teachers;
 
-    // this.httpClient.post(this.API_URL, teachers)
-    //   .subscribe({
-    //     next: (data) => {
-    //       this.dialogData = teachers;
-    //     },
-    //     error: (error: HttpErrorResponse) => {
-    //        // error code here
-    //     },
-    //   });
+    this.httpClient.post("http://localhost:8000/api/teacher/add_teacher/", teachers)
+      .subscribe({
+        next: (data) => {
+          this.dialogData = teachers;
+        },
+        error: (error: HttpErrorResponse) => {
+           // error code here
+        },
+      });
   }
   updateTeachers(teachers: Teachers): void {
     this.dialogData = teachers;

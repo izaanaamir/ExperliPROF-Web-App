@@ -18,9 +18,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>First Name</mat-label>
-            <input matInput formControlName="name" required>
+            <input matInput formControlName="FirstName" required>
             <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
-            <mat-error *ngIf="proForm.get('name')?.hasError('required')">
+            <mat-error *ngIf="proForm.get('FirstName')?.hasError('required')">
               First Name is required
             </mat-error>
           </mat-form-field>
@@ -28,9 +28,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Last Name</mat-label>
-            <input matInput formControlName="name" required>
+            <input matInput formControlName="LastName" required>
             <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
-            <mat-error *ngIf="proForm.get('name')?.hasError('required')">
+            <mat-error *ngIf="proForm.get('LastName')?.hasError('required')">
               Last Name is required
             </mat-error>
           </mat-form-field>
@@ -82,9 +82,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Mobile</mat-label>
-            <input matInput formControlName="mobile" type="number">
+            <input matInput formControlName="Phone" type="number">
             <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>phone</mat-icon>
-            <mat-error *ngIf="proForm.get('mobile')?.hasError('required')">
+            <mat-error *ngIf="proForm.get('Phone')?.hasError('required')">
               Mobile is required
             </mat-error>
           </mat-form-field>
@@ -104,8 +104,8 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email" required>
-            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>email</mat-icon>
+            <input matInput formControlName="Email" required>
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>Email</mat-icon>
             <mat-error *ngIf="proForm.get('email')?.hasError('required') || proForm.get('email')?.touched">
               Please enter a valid email address
             </mat-error>

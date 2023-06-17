@@ -48,7 +48,7 @@ class Course(models.Model):
 
 class ContactInfo(models.Model):
     ContactInfoID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
     Trainer = models.CharField(max_length=255)
     PedagogicalSupervisorName = models.CharField(max_length=255)
     PedagogicalSupervisorContact = models.CharField(max_length=255)
@@ -57,9 +57,12 @@ class ContactInfo(models.Model):
     PlanningCoordinatorName = models.CharField(max_length=255)
     PlanningCoordinatorContact = models.CharField(max_length=255)
     
+    class Meta:
+        db_table = 'contactinfo'
+    
 class Checklist(models.Model):
     ChecklistID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
     ListOfStudents = models.BooleanField()
     SyllabusContent = models.BooleanField()
     CoursePreparation = models.BooleanField()
@@ -70,11 +73,17 @@ class Checklist(models.Model):
     CatchUpTopic = models.BooleanField()
     Notes = models.BooleanField()
     
+    class Meta:
+        db_table = 'checklist'
+    
 class TrainingAssessment(models.Model):
     TrainingAssessmentID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
     LearnerFeedback = models.CharField(max_length=255)
     SchoolFeedback = models.CharField(max_length=255)
+    
+    class Meta:
+        db_table = 'trainingassessment'
 
 class PedagogicalSynopsis(models.Model):
     PedagogicalSynopsisID = models.AutoField(primary_key=True)
@@ -85,7 +94,7 @@ class PedagogicalSynopsis(models.Model):
 
 class PriorToTrainingInfo(models.Model):
     PriorToTrainingInfoID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
     Duration = models.CharField(max_length=255)
     SegmentNumber = models.IntegerField()
     SequenceEvaluationMethod = models.CharField(max_length=255)
@@ -94,5 +103,8 @@ class PriorToTrainingInfo(models.Model):
     ContentOfCourse = models.CharField(max_length=255)
     TeachingMethodUsed = models.CharField(max_length=255)
     TeachingMaterial = models.CharField(max_length=255)
+    
+    class Meta:
+        db_table = 'priortotraininginfo'
 
 

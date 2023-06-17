@@ -41,7 +41,29 @@ def remove_teacher(request: Request, teacher_id):
     if request.method == 'DELETE':
         try:
             print(teacher_id)
-            Teacher.objects.filter(TeacherID=teacher_id).delete()
+            teacher = Teacher.objects.filter(TeacherID=teacher_id)
+            teacher.delete()
+                # Compare the password
+            return JsonResponse({'statusCode': 200})
+        except ObjectDoesNotExist:
+            # User not found
+            return JsonResponse({'success': False, 'error': 'Server Error'})
+    else:
+        # Return an error response for unsupported HTTP methods
+        return JsonResponse({'success': False, 'error': 'Server Error'})
+    
+def add_teacher(request: Request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            print(data)
+            new_teacher = Teacher(
+                    FirstName=data['FirstName'],
+                    LastName=data['LastName'],
+                    Email=data['Email'],
+                    Phone=data['Phone'],
+                )           
+            new_teacher.save()
                 # Compare the password
             return JsonResponse({'statusCode': 200})
         except ObjectDoesNotExist:

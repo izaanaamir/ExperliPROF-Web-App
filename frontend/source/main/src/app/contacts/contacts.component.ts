@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormComponent } from './form/form.component';
-import { DeleteComponent } from './delete/delete.component';
+import { DeleteDialogComponent } from './delete/delete.component';
 import { Direction } from '@angular/cdk/bidi';
 import {
   TableExportUtil,
@@ -170,7 +170,7 @@ export class ContactsComponent
     } else {
       tempDirection = 'ltr';
     }
-    const dialogRef = this.dialog.open(DeleteComponent, {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
       height: '250px',
       width: '300px',
       data: row,

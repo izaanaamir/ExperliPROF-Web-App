@@ -32,7 +32,7 @@ class Student(models.Model):
 
 class Lesson(models.Model):
     LessonID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
     NumberOfLecture = models.IntegerField()
     StartingTime = models.TimeField()
     EndingTime = models.TimeField()
@@ -57,6 +57,11 @@ class Lesson(models.Model):
         ('Remote', 'Remote'),
     )
     ClassType = models.CharField(max_length=255, choices=CLASS_TYPE_CHOICES)
+    
+    class Meta:
+        db_table = 'lessons'
+    
+    
     
 class Attendance(models.Model):
     AttendanceID = models.AutoField(primary_key=True)

@@ -14,9 +14,9 @@ export interface DialogData {
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
 })
-export class DeleteComponent {
+export class DeleteDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<DeleteComponent>,
+    public dialogRef: MatDialogRef<DeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public contactsService: ContactsService
   ) {}

@@ -187,10 +187,9 @@ export class AllTeachersComponent
     });
   }
   editCall(row: Teachers) {
-    if (this.authService.currentUserValue) {
-      console.log("HI")
-      this.router.navigate(['/teacher/about-teacher'])
-    }
+    console.log('hello')
+    localStorage.setItem('rowData', JSON.stringify(row));
+    this.router.navigate(['/admin/teachers/about-teacher']);
   }
   deleteItem(row: Teachers) {
     this.id = row.TeacherID;

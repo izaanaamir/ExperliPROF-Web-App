@@ -24,7 +24,11 @@ import {
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
 import { formatDate } from '@angular/common';
-import { connect } from 'echarts';
+import { Router } from '@angular/router';
+import { AuthService } from '@core/service/auth.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SafeCall } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-all-teachers',
@@ -52,6 +56,7 @@ export class AllTeachersComponent
   teachers?: Teachers;
   dynamicCode: string = '';
   dataRendered: string = '';
+  trustedDynamicCode: SafeHtml = '';
   breadscrums = [
     {
       title: '',
@@ -63,7 +68,10 @@ export class AllTeachersComponent
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public teachersService: TeachersService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private authService: AuthService,
+    private sanitizer: DomSanitizer
   ) {
     super();
   }
@@ -78,7 +86,7 @@ export class AllTeachersComponent
     this.loadData();
     this.dataSource.connect().subscribe(data => {
   // Here, you can access the populated `renderedData` array
-     if (data.length > 0 && this.dynamicCode.length != 0 && this.dynamicCode.length != this.dataSource.renderedData.length) {
+     if (data.length > 0 && this.dynamicCode.length == 0) {
     // Perform the desired action when the data is present
     console.log("Data is present:", data);
         for (const user of this.dataSource.renderedData) {
@@ -88,7 +96,7 @@ export class AllTeachersComponent
         <div class="m-b-20">
           <div class="contact-grid">
             <div class="profile-header bg-dark">
-              <div class="user-name">${user.FirstName}</div>
+              <div class="user-name">${user.FirstName} ${user.LastName}</div>
             </div>
             <img src="${'data:image/png;base64,' + user.img}" class="user-img" alt="">
             <p>${user.Email}</p>
@@ -97,7 +105,7 @@ export class AllTeachersComponent
                 <i class="material-icons">phone</i>${user.Phone}</span>
             </div>
             <div class="profile-userbuttons">
-              <button mat-flat-button color="primary">Read More</button>
+              <button mat-flat-button color="primary" class="custom-button" (click)="redirectToAnotherPage()">Read More</button>
             </div>
           </div>
         </div>
@@ -106,8 +114,7 @@ export class AllTeachersComponent
     </div>
   `;
        }
-    this.dynamicCode = this.dataRendered;
-  }
+      this.trustedDynamicCode = this.sanitizer.bypassSecurityTrustHtml(this.dataRendered);  }
 });
  }
   refresh() {
@@ -117,7 +124,7 @@ export class AllTeachersComponent
     // Perform the desired action when the data is present
     console.log("Data is present:", data);
         for (const user of this.dataSource.renderedData) {
-      this.dataRendered += `
+          this.dataRendered += `
     <div class="col-md-4">
       <div class="card border-apply">
         <div class="m-b-20">
@@ -132,7 +139,7 @@ export class AllTeachersComponent
                 <i class="material-icons">phone</i>${user.Phone}</span>
             </div>
             <div class="profile-userbuttons">
-              <button mat-flat-button color="primary">Read More</button>
+              <button mat-flat-button color="primary" class="mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-base" ng-reflect-color="primary">Read More</button>
             </div>
           </div>
         </div>
@@ -180,41 +187,10 @@ export class AllTeachersComponent
     });
   }
   editCall(row: Teachers) {
-    this.id = row.TeacherID;
-    let tempDirection: Direction;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
+    if (this.authService.currentUserValue) {
+      console.log("HI")
+      this.router.navigate(['/teacher/about-teacher'])
     }
-    const dialogRef = this.dialog.open(FormDialogComponent, {
-      data: {
-        teachers: row,
-        action: 'edit',
-      },
-      direction: tempDirection,
-    });
-    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
-          (x) => x.TeacherID === this.id
-        );
-        // Then you update that record using data from dialogData (values you enetered)
-        if (foundIndex != null && this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value[foundIndex] =
-            this.teachersService.getDialogData();
-          // And lastly refresh table
-          this.refreshTable();
-          this.showNotification(
-            'black',
-            'Edit Record Successfully...!!!',
-            'bottom',
-            'center'
-          );
-        }
-      }
-    });
   }
   deleteItem(row: Teachers) {
     this.id = row.TeacherID;

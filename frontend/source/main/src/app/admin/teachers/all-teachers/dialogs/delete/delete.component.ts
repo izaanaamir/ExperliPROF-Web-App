@@ -3,10 +3,11 @@ import { Component, Inject } from '@angular/core';
 import { TeachersService } from '../../teachers.service';
 
 export interface DialogData {
-  id: number;
-  name: string;
-  school: string;
-  mobile: string;
+  TeacherID: number;
+  FirstName: string;
+  LastName: string;
+  Phone: string;
+  Email: string;
 }
 
 @Component({
@@ -24,6 +25,6 @@ export class DeleteDialogComponent {
     this.dialogRef.close();
   }
   confirmDelete(): void {
-    this.teachersService.deleteTeachers(this.data.id);
+    this.teachersService.deleteTeachers(this.data.TeacherID);
   }
 }

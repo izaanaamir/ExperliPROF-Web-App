@@ -28,7 +28,6 @@ def get_all_teachers(request: Request):
                         'school': '',
                         'degree': ''
                 })
-            print(data)
                 # Compare the password
             return JsonResponse(data=data, safe=False)
         except ObjectDoesNotExist:
@@ -38,3 +37,16 @@ def get_all_teachers(request: Request):
         # Return an error response for unsupported HTTP methods
         return JsonResponse({'success': False, 'error': 'Server Error'})
 
+def remove_teacher(request: Request, teacher_id):
+    if request.method == 'DELETE':
+        try:
+            print(teacher_id)
+            Teacher.objects.filter(TeacherID=teacher_id).delete()
+                # Compare the password
+            return JsonResponse({'statusCode': 200})
+        except ObjectDoesNotExist:
+            # User not found
+            return JsonResponse({'success': False, 'error': 'Server Error'})
+    else:
+        # Return an error response for unsupported HTTP methods
+        return JsonResponse({'success': False, 'error': 'Server Error'})

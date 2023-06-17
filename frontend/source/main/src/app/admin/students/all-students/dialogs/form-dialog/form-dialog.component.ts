@@ -12,7 +12,7 @@ import { formatDate } from '@angular/common';
 
 export interface DialogData {
   id: number;
-  action: string;
+  action: string
   students: Students;
 }
 
@@ -35,7 +35,7 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.students.name;
+      this.dialogTitle = data.students.lastname;
       this.students = data.students;
     } else {
       this.dialogTitle = 'New Students';
@@ -59,19 +59,24 @@ export class FormDialogComponent {
     return this.fb.group({
       id: [this.students.id],
       // img: [this.students.img],
-      name: [this.students.name],
-      email: [
-        this.students.email,
+      lastname: [this.students.lastname],
+      firstname: [this.students.firstname],
+      schoolemail: [
+        this.students.schoolemail,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      date: [
-        formatDate(this.students.date, 'yyyy-MM-dd', 'en'),
-        [Validators.required],
+      personalemail: [
+        this.students.personalemail,
+        [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      gender: [this.students.gender],
-      mobile: [this.students.mobile],
-      school: [this.students.school],
-      rollNo: [this.students.rollNo],
+
+      Title: [this.students.Title],
+      registrationnumber: [this.students.registrationnumber],
+      groupmajor: [this.students.groupmajor],
+      GSM: [this.students.GSM],
+      statusofstudent: [this.students.statusofstudent],
+      specialrequirements: [this.students.specialrequirements],
+      schoolid: [this.students.schoolid],
     });
   }
   submit() {

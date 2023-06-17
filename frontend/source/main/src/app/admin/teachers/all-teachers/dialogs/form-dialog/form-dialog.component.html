@@ -135,7 +135,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Address</mat-label>
-            <input matInput formControlName="Phone" type="number" required>
+            <input matInput formControlName="Phone" required>
             <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_on</mat-icon>
             <mat-error *ngIf="proForm.get('Phone')?.hasError('required')">
               Address is required

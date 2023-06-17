@@ -16,10 +16,13 @@ class Teacher(models.Model):
     LastName = models.CharField(max_length=255)
     Email = models.EmailField()
     Phone = models.CharField(max_length=255)
-    Qualifications = models.CharField(max_length=255)
-    School = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
+    about_me = models.TextField(db_column='aboutMe')
+    school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
     image_data = models.BinaryField(blank=True, null=True, default= b'')
-    
+    cv_file = models.FileField(upload_to='cv/', db_column='cvData')
+    joining_date = models.DateField(db_column='joiningDate')
+    address = models.TextField()
+    title=models.CharField(max_length=255,db_column='title' )
     class Meta:
         db_table = 'teachers'
     

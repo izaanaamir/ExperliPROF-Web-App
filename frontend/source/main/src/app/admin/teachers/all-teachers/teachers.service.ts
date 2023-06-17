@@ -34,7 +34,7 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
   }
   addTeachers(teachers: Teachers): void {
     this.dialogData = teachers;
-
+    console.log(this.dialogData)
     this.httpClient.post("http://localhost:8000/api/teacher/add_teacher/", teachers)
       .subscribe({
         next: (data) => {

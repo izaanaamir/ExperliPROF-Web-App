@@ -50,6 +50,25 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Title</mat-label>
+            <mat-select formControlName="title" required>
+              <mat-option [value]="'Mr'">
+                Mr
+              </mat-option>
+              <mat-option [value]="'Ms'">
+                Ms
+              </mat-option>
+              <mat-option [value]="'other'">
+                Other
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="proForm.get('title')?.hasError('required')">
+              School is required
+            </mat-error>
+          </mat-form-field>
+        </div>
         <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Gender</mat-label>
@@ -79,18 +98,18 @@
             </mat-error>
           </mat-form-field>
         </div> -->
+      </div>
+      <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Mobile</mat-label>
-            <input matInput formControlName="Phone" type="number">
+            <input matInput formControlName="Phone" type="number" required>
             <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>phone</mat-icon>
             <mat-error *ngIf="proForm.get('Phone')?.hasError('required')">
               Mobile is required
             </mat-error>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
         <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Mobile</mat-label>
@@ -105,25 +124,46 @@
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput formControlName="Email" required>
-            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>Email</mat-icon>
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>mail</mat-icon>
             <mat-error *ngIf="proForm.get('email')?.hasError('required') || proForm.get('email')?.touched">
               Please enter a valid email address
             </mat-error>
           </mat-form-field>
         </div>
+      </div>
+      <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Joining date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="proForm.get('date')?.hasError('required')">
-              Please select date
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="Phone" required>
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_on</mat-icon>
+            <mat-error *ngIf="proForm.get('Phone')?.hasError('required')">
+              Address is required
             </mat-error>
           </mat-form-field>
         </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Joining date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="proForm.get('date')?.hasError('required')">
+            Please select date
+          </mat-error>
+        </mat-form-field>
       </div>
-      <div class="row">
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>About Me</mat-label>
+          <textarea matInput formControlName="aboutMe" rows="5" required></textarea>
+          <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>person</mat-icon>
+          <mat-error *ngIf="proForm.get('aboutMe')?.hasError('required')">
+            About Me is required
+          </mat-error>
+        </mat-form-field>
+      </div>
         <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Joining date</mat-label>
@@ -135,14 +175,16 @@
             </mat-error>
           </mat-form-field>
         </div> -->
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
-          <label>Upload CV</label>
-          <app-file-upload formControlName="uploadFile"></app-file-upload>
-        </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
-          <label>Upload Image</label>
-          <app-file-upload formControlName="uploadFile"></app-file-upload>
-        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+            <label>Upload CV</label>
+            <app-file-upload formControlName="cvData" required></app-file-upload>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+            <label>Upload Image</label>
+            <app-file-upload formControlName="img" required></app-file-upload>
+          </div>
+          
       </div>
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">

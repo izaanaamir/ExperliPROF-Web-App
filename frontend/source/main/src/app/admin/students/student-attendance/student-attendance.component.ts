@@ -52,7 +52,7 @@ export class StudentAttendanceComponent
 
   breadscrums = [
     {
-      items: ['Students'],
+      items: [],
       active: 'Student Attendance',
     },
   ];

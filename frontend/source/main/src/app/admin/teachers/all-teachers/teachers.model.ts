@@ -2,15 +2,17 @@ import { formatDate } from '@angular/common';
 export class Teachers {
   TeacherID: number;
   img: string;
+  cvData: string;
   FirstName: string;
   LastName: string;
   Email: string;
   Phone: string;
   date: string;
-  gender: string;
-  mobile: string;
   school: string;
-  degree: string;
+  aboutMe: string;
+  address: string;
+  title: string;
+
 
   constructor(teachers: Teachers) {
     this.TeacherID = teachers.TeacherID;
@@ -20,10 +22,11 @@ export class Teachers {
     this.Email = teachers.Email || '';
     this.Phone = teachers.Phone || '';
     this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-    this.gender = teachers.gender || '';
-    this.mobile = teachers.mobile || '';
     this.school = teachers.school || '';
-    this.degree = teachers.degree || '';
+    this.cvData = teachers.cvData || '';
+    this.aboutMe = teachers.aboutMe || '';
+    this.address = teachers.address || '';
+    this.title = teachers.title || '';
   }
 }
 

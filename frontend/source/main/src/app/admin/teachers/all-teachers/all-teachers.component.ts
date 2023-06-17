@@ -43,10 +43,8 @@ export class AllTeachersComponent
     'select',
     'lastName',
     'firstName',
-    // 'gender',
     'mobile',
     'email',
-    // 'date',
     'actions',
   ];
   exampleDatabase?: TeachersService;
@@ -86,9 +84,9 @@ export class AllTeachersComponent
     this.loadData();
     this.dataSource.connect().subscribe(data => {
   // Here, you can access the populated `renderedData` array
-     if (data.length > 0 && this.dynamicCode.length == 0) {
+      if (data.length > 0 && this.dynamicCode.length == 0) {
+        console.log(this.dataSource.renderedData);
     // Perform the desired action when the data is present
-    console.log("Data is present:", data);
         for (const user of this.dataSource.renderedData) {
       this.dataRendered += `
     <div class="col-md-4">
@@ -104,9 +102,6 @@ export class AllTeachersComponent
               <span class="phone">
                 <i class="material-icons">phone</i>${user.Phone}</span>
             </div>
-            <div class="profile-userbuttons">
-              <button mat-flat-button color="primary" class="custom-button" (click)="redirectToAnotherPage()">Read More</button>
-            </div>
           </div>
         </div>
       </div>
@@ -114,7 +109,7 @@ export class AllTeachersComponent
     </div>
   `;
        }
-      this.trustedDynamicCode = this.sanitizer.bypassSecurityTrustHtml(this.dataRendered);  }
+      this.dynamicCode = this.dataRendered;  }
 });
  }
   refresh() {
@@ -122,7 +117,6 @@ export class AllTeachersComponent
   // Here, you can access the populated `renderedData` array
      if (data.length > 0 && this.dynamicCode.length == 0 ) {
     // Perform the desired action when the data is present
-    console.log("Data is present:", data);
         for (const user of this.dataSource.renderedData) {
           this.dataRendered += `
     <div class="col-md-4">
@@ -148,7 +142,6 @@ export class AllTeachersComponent
     </div>
   `;
     }
-      console.log(this.dataRendered)
       this.dynamicCode = this.dataRendered;
   }
 });
@@ -406,9 +399,6 @@ connect(): Observable<Teachers[]> {
           break;
         case 'time':
           [propertyA, propertyB] = [a.school, b.school];
-          break;
-        case 'mobile':
-          [propertyA, propertyB] = [a.mobile, b.mobile];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

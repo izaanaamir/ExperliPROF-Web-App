@@ -21,7 +21,7 @@
             <input matInput formControlName="name" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
             <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
-              Name is required
+             First Name is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -31,7 +31,7 @@
             <input matInput formControlName="name" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
             <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
-              Name is required
+             Last Name is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -74,20 +74,7 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Mobile</mat-label>
-            <input matInput formControlName="mobile" type="number">
-            <i class="material-icons-two-tone color-icon p-3" matSuffix>phone</i>
-            <mat-error *ngIf="stdForm.get('mobile')?.hasError('required')">
-              Mobile is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Email</mat-label>
+            <mat-label>School Email</mat-label>
             <input matInput formControlName="email" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>email</i>
             <mat-error *ngIf="stdForm.get('email')?.hasError('required') || stdForm.get('email')?.touched">
@@ -95,7 +82,112 @@
             </mat-error>
           </mat-form-field>
         </div>
+      </div>
+      <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Title</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option [value]="'Mr'">
+                Mr
+              </mat-option>
+              <mat-option [value]="'Ms'">
+                Ms
+              </mat-option>
+              <mat-option [value]="'other'">
+                Other
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="stdForm.get('gender')?.hasError('required')">
+              Title is required
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Registraion number</mat-label>
+            <input matInput formControlName="mobile" type="number">
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>assignment</i>
+            <!-- <mat-error *ngIf="stdForm.get('mobile')?.hasError('required')">
+              Registration number is required
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Group Major</mat-label>
+            <input matInput formControlName="name" required>
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>people</i>
+            <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
+              Group major is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>GSM (Optional)</mat-label>
+            <input matInput formControlName="name" >
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>signal_cellular_alt</i>
+            <!-- <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
+             Group major is required
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Status of Student</mat-label>
+            <mat-select formControlName="school" required>
+              <mat-option [value]="'Initial'">
+                Initial
+              </mat-option>
+              <mat-option [value]="'Alternating'">
+                Alternating
+              </mat-option>
+              <mat-option [value]="'Professional'">
+                Professional
+              </mat-option>
+              <mat-option [value]="'Other'">
+                Other
+              </mat-option>
+              <!-- <mat-option [value]="'Limerick'">
+                Limerick
+              </mat-option> -->
+            </mat-select>
+            <mat-error *ngIf="stdForm.get('school')?.hasError('required')">
+              Select Any Status
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Special Requirements</mat-label>
+            <input matInput formControlName="name" >
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>info</i>
+            <!-- <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
+             First Name is required
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Personal Email</mat-label>
+            <input matInput formControlName="email">
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>email</i>
+            <!-- <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
+              First Name is required
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+      </div>
+      
+
+        <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Admission date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="date">
@@ -106,7 +198,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-      </div>
+      </div> -->
       <!-- <div class="row"> -->
         <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
@@ -147,3 +239,18 @@
     </form>
   </div>
 </div>
+
+
+
+
+
+<!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="mobile" type="number">
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>phone</i>
+            <mat-error *ngIf="stdForm.get('mobile')?.hasError('required')">
+              Mobile is required
+            </mat-error>
+          </mat-form-field>
+        </div> -->

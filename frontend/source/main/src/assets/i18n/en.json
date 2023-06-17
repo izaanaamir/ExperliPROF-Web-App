@@ -51,7 +51,7 @@
         "FEES": {
             "TEXT": "Fees",
             "LIST": {
-                "ALL-FEES": "All Fees",
+                "ALL-FEES": "Fees",
                 "ADD-FEES": "Add fees",
                 "EDIT-FEES": "Edit fees",
                 "FEE-RECEIPT": "Fee Receipt"

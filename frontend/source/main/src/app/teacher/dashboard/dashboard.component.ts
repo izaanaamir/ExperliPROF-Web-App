@@ -54,8 +54,7 @@ export class DashboardComponent implements OnInit {
 
   breadscrums = [
     {
-      title: 'Dashboard',
-      items: ['Teacher'],
+      items: [],
       active: 'Dashboard',
     },
   ];

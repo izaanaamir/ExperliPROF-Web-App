@@ -58,17 +58,17 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
     //       },
     //     });
   }
-  deleteTeachers(id: number): void {
-    console.log(id);
-
-    // this.httpClient.delete(this.API_URL + id)
-    //     .subscribe({
-    //       next: (data) => {
-    //         console.log(id);
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
+  deleteTeachers(teacherID: number): void {
+    this.httpClient.delete("http://localhost:8000/api/teacher/remove_teacher/" + teacherID)
+      .subscribe(
+        () => {
+          console.log('Teacher deleted successfully.');
+          // Perform any necessary actions after successful deletion
+        },
+        (error: HttpErrorResponse) => {
+          console.error(error.name + ' ' + error.message);
+          // Handle the error appropriately
+        }
+      );
   }
 }

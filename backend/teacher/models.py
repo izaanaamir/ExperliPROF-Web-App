@@ -31,7 +31,7 @@ class Course(models.Model):
     Duration = models.IntegerField()
     School = models.ForeignKey(School, on_delete=models.CASCADE)
     ListUpdatedDate = models.DateField()
-    Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, db_column='TeacherID')
     SchoolYear = models.IntegerField()
     Class = models.CharField(max_length=255)
     LEVEL_CHOICES = (
@@ -41,6 +41,9 @@ class Course(models.Model):
     )
     Level = models.CharField(max_length=255, choices=LEVEL_CHOICES)
     InternalCourseCode = models.CharField(max_length=255)
+    
+    class Meta:
+        db_table = 'courses'
 
 
 class ContactInfo(models.Model):

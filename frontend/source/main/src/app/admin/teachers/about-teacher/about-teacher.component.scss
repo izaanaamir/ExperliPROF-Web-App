@@ -1,83 +1,25 @@
-.section {
-    .content-block {
-        .row {
-            .col-lg-4 {
-                .card {
-                    // Styling for the profile card
-                    .m-b-20 {
-                        .contact-grid {
-                            .profile-header {
-                                // Styling for the profile header
-                                &.bg-dark {
-                                    // Styling for the background color
-                                }
-                                .user-name {
-                                    // Styling for the user name
-                                }
-                                .name-center {
-                                    // Styling for the designation
-                                }
-                            }
-                            .user-img {
-                                // Styling for the user image
-                            }
-                            p {
-                                // Styling for the address
-                            }
-                            .phone {
-                                // Styling for the phone number
-                            }
-                            .row {
-                                // Styling for the following, followers, and posts
-                            }
-                        }
-                    }
-                }
+.profile-header {
+    background-color: #164987; // Add this line to change the background color of the image
+    // Other styling for the profile header
+}
+
+.card {
+    .p-4 {
+        h4 {
+            text-align: center; // Add this line to center the heading
+            // Other styling for the heading
+        }
+        p {
+            // Styling for the text
+            text-align: center; // Add this line to center the text
+        }
+        .list-group-item {
+            // Styling for the list items
+            b {
+                // Styling for the label
             }
-            .col-lg-8 {
-                .card {
-                    // Styling for the about section
-                    .p-4 {
-                        h4 {
-                            // Styling for the heading
-                        }
-                        p {
-                            // Styling for the text
-                        }
-                        .list-group-item {
-                            // Styling for the list items
-                            b {
-                                // Styling for the label
-                            }
-                            .profile-desc-item {
-                                // Styling for the value
-                            }
-                        }
-                    }
-                }
-                .card {
-                    // Styling for the skills section
-                    .p-4 {
-                        h4 {
-                            // Styling for the heading
-                        }
-                        ul {
-                            // Styling for the skills list
-                            li {
-                                // Styling for each skill item
-                                div {
-                                    // Styling for the skill name
-                                }
-                                .progress {
-                                    // Styling for the progress bar container
-                                    .progress-bar {
-                                        // Styling for the progress bar
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+            .profile-desc-item {
+                // Styling for the value
             }
         }
     }

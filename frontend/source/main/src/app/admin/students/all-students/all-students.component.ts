@@ -236,11 +236,12 @@ export class AllStudentsComponent
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         // 'Roll No': x.rollNo,
-        Name: x.name,
-        School: x.school,
+        lastname: x.lastname,
+        first: x.firstname,
+        statusofstudent: x.statusofstudent,
         // Gender: x.gender,
-        Mobile: x.mobile,
-        Email: x.email,
+        registrationnumber: x.registrationnumber,
+        schoolemail: x.schoolemail,
         // 'Admission Date':
           // formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
       }));
@@ -310,9 +311,10 @@ export class ExampleDataSource extends DataSource<Students> {
           .filter((students: Students) => {
             const searchStr = (
               students.id +
-              students.name +
-              students.email +
-              students.mobile
+              students.lastname +
+              students.firstname +
+              students.schoolemail
+
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -343,20 +345,38 @@ export class ExampleDataSource extends DataSource<Students> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
+        case 'lastname':
+          [propertyA, propertyB] = [a.lastname, b.lastname];
           break;
-        case 'email':
-          [propertyA, propertyB] = [a.email, b.email];
+          case ' firstname':
+            [propertyA, propertyB] = [a. firstname, b. firstname];
+            break;
+        case 'schoolemail':
+          [propertyA, propertyB] = [a.schoolemail, b.schoolemail];
           break;
-        case 'date':
-          [propertyA, propertyB] = [a.date, b.date];
+          case 'personalemailemail':
+            [propertyA, propertyB] = [a. personalemail, b. personalemail];
+            break;
+            case 'Title':
+              [propertyA, propertyB] = [a.Title, b.Title];
+              break;
+              case 'registrationnumber':
+                [propertyA, propertyB] = [a.registrationnumber, b.registrationnumber];
+                break;
+        case 'groupmajor':
+          [propertyA, propertyB] = [a.groupmajor, b.groupmajor];
           break;
-        case 'time':
-          [propertyA, propertyB] = [a.school, b.school];
+        case 'GSM':
+          [propertyA, propertyB] = [a.GSM, b.GSM];
           break;
-        case 'mobile':
-          [propertyA, propertyB] = [a.mobile, b.mobile];
+        case 'statusofstudent':
+          [propertyA, propertyB] = [a.statusofstudent, b.statusofstudent];
+          break;
+          case 'specialrequirements':
+          [propertyA, propertyB] = [a.specialrequirements, b.specialrequirements];
+          break;
+          case 'schoolid':
+          [propertyA, propertyB] = [a.schoolid, b.schoolid];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

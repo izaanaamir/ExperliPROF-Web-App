@@ -78,6 +78,7 @@ export class FormDialogComponent {
     });
   }
   submit() {
+    this.confirmAdd();
     // emppty stuff
   }
   onNoClick(): void {

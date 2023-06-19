@@ -34,3 +34,29 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+.profile-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-top {
+    padding-bottom: 30%;
+}
+
+.user-name {
+    padding-bottom: 30%;
+}
+
+.email-section {
+    position: relative;
+    text-align: center;
+}
+
+.email-icon {
+    position: relative;
+    margin-right: 5px;
+    padding-bottom: 50%;
+}

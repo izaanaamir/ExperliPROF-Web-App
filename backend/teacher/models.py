@@ -18,7 +18,7 @@ class Teacher(models.Model):
     Phone = models.CharField(max_length=255)
     about_me = models.TextField(db_column='aboutMe')
     school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
-    image_data = models.BinaryField(blank=True, null=True, default= b'')
+    image_data = models.BinaryField(blank=True, null=True, default= b'', db_column='image_data')
     cv_file = models.FileField(upload_to='cv/', db_column='cvData')
     joining_date = models.DateField(db_column='joiningDate')
     address = models.TextField()

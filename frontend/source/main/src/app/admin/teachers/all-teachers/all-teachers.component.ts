@@ -82,69 +82,8 @@ export class AllTeachersComponent
 
   ngOnInit() {
     this.loadData();
-    this.dataSource.connect().subscribe(data => {
-  // Here, you can access the populated `renderedData` array
-      if (data.length > 0 && this.dynamicCode.length == 0) {
-        console.log(this.dataSource.renderedData);
-    // Perform the desired action when the data is present
-        for (const user of this.dataSource.renderedData) {
-      this.dataRendered += `
-    <div class="col-md-4">
-      <div class="card border-apply">
-        <div class="m-b-20">
-          <div class="contact-grid">
-            <div class="profile-header bg-dark">
-              <div class="user-name">${user.FirstName} ${user.LastName}</div>
-            </div>
-            <img src="${'data:image/png;base64,' + user.img}" class="user-img" alt="">
-            <p>${user.Email}</p>
-            <div>
-              <span class="phone">
-                <i class="material-icons">phone</i>${user.Phone}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  `;
-       }
-      this.dynamicCode = this.dataRendered;  }
-});
  }
   refresh() {
-        this.dataSource.connect().subscribe(data => {
-  // Here, you can access the populated `renderedData` array
-     if (data.length > 0 && this.dynamicCode.length == 0 ) {
-    // Perform the desired action when the data is present
-        for (const user of this.dataSource.renderedData) {
-          this.dataRendered += `
-    <div class="col-md-4">
-      <div class="card border-apply">
-        <div class="m-b-20">
-          <div class="contact-grid">
-            <div class="profile-header bg-dark">
-              <div class="user-name">${user.FirstName}</div>
-            </div>
-            <img src="${user.img}" class="user-img" alt="">
-            <p>${user.Email}</p>
-            <div>
-              <span class="phone">
-                <i class="material-icons">phone</i>${user.Phone}</span>
-            </div>
-            <div class="profile-userbuttons">
-              <button mat-flat-button color="primary" class="mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-base" ng-reflect-color="primary">Read More</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  `;
-    }
-      this.dynamicCode = this.dataRendered;
-  }
-});
     this.loadData();
 
   }
@@ -155,6 +94,7 @@ export class AllTeachersComponent
     } else {
       tempDirection = 'ltr';
     }
+    console.log("in addNEw", this.teachers)
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
         teachers: this.teachers,
@@ -186,6 +126,7 @@ export class AllTeachersComponent
   }
   deleteItem(row: Teachers) {
     this.id = row.TeacherID;
+    console.log("In teacher component", this.id)
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';

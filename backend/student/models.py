@@ -2,26 +2,22 @@ from django.db import models
 #from ..teacher.models import Teacher
 from teacher.models import School, Teacher, Course
 class Student(models.Model):
-    StudentID = models.AutoField(primary_key=True)
-    FirstName = models.CharField(max_length=255, null=True)
-    LastName = models.CharField(max_length=255, null=True)
-    Title = models.CharField(max_length=255, null=True)
-    Matricule = models.CharField(max_length=255, null=True)
-    GroupMajor = models.CharField(max_length=255, null=True)
-    CellphoneNumber = models.CharField(max_length=255, null=True)
+    StudentID = models.AutoField(primary_key=True, db_column='studentId')
+    FirstName = models.CharField(max_length=255, null=True, db_column='firstName')
+    LastName = models.CharField(max_length=255, null=True, db_column='lastName')
+    Title = models.CharField(max_length=255, null=True, db_column='Title')
+    Matricule = models.CharField(max_length=255, null=True, db_column='GSM')
+    GroupMajor = models.CharField(max_length=255, null=True, db_column='groupMajor')
     StudentStatus = models.CharField(
         max_length=255,
-        choices=(
-            ("Value1", "Value1"),
-            ("Value2", "Value2"),
-            ("Value3", "Value3"),
-        ),
         null=True,
+        db_column='statusOfStudent'
     )
-    SpecialArrangement = models.CharField(max_length=255, null=True)
-    PersonalEmail = models.CharField(max_length=255, null=True)
-    SchoolEmail = models.CharField(max_length=255, null=True)
-    SchoolID = models.IntegerField(null=True)
+    SpecialArrangement = models.CharField(max_length=255, null=True, db_column='specialRequirements')
+    PersonalEmail = models.CharField(max_length=255, null=True, db_column='personalEmail')
+    SchoolEmail = models.CharField(max_length=255, null=True, db_column='schoolEmail')
+    School = models.IntegerField(null=True, db_column='schoolId')
+    registrationNumber = models.CharField(max_length=255, null=True, db_column='registrationNumber')
 
     def __str__(self):
         return f"{self.FirstName} {self.LastName}"

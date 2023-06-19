@@ -21,10 +21,11 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllStudentss(): void {
-    this.subs.sink = this.httpClient.get<Students[]>(this.API_URL).subscribe({
+    this.subs.sink = this.httpClient.get<Students[]>("http://localhost:8000/api/student/get_students/").subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
+        console.log(data)
       },
       error: (error: HttpErrorResponse) => {
         this.isTblLoading = false;
@@ -35,15 +36,15 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
   addStudents(students: Students): void {
     this.dialogData = students;
 
-    // this.httpClient.post(this.API_URL, students)
-    //   .subscribe({
-    //     next: (data) => {
-    //       this.dialogData = students;
-    //     },
-    //     error: (error: HttpErrorResponse) => {
-    //        // error code here
-    //     },
-    //   });
+    this.httpClient.post("http://localhost:8000/api/teacher/add_student/", students)
+      .subscribe({
+        next: (data) => {
+          this.dialogData = students;
+        },
+        error: (error: HttpErrorResponse) => {
+           // error code here
+        },
+      });
   }
   updateStudents(students: Students): void {
     this.dialogData = students;

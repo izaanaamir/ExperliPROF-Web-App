@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { StudentAttendance } from './student-attendance.model';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
 import {
   MatSnackBar,
@@ -31,6 +32,7 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./student-attendance.component.scss'],
 })
 export class StudentAttendanceComponent
+
   extends UnsubscribeOnDestroyAdapter
   implements OnInit
 {
@@ -49,6 +51,9 @@ export class StudentAttendanceComponent
   selection = new SelectionModel<StudentAttendance>(true, []);
   id?: number;
   studentAttendance?: StudentAttendance;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+
 
   breadscrums = [
     {
@@ -56,6 +61,7 @@ export class StudentAttendanceComponent
       active: 'Student Attendance',
     },
   ];
+  attendanceForm: UntypedFormGroup;
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
@@ -63,7 +69,12 @@ export class StudentAttendanceComponent
     private snackBar: MatSnackBar
   ) {
     super();
+    this.attendanceForm = new UntypedFormGroup({
+      fromDate: new UntypedFormControl(),
+      toDate: new UntypedFormControl(),
+    });
   }
+
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild('filter', { static: true }) filter!: ElementRef;

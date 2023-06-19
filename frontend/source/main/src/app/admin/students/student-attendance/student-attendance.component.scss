@@ -1,0 +1,14 @@
+.tbl-search-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    label {
+        margin-right: 10px;
+    }
+    input[type="date"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+}

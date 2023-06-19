@@ -16,7 +16,7 @@ def student_list(request):
     return HttpResponse(cell_number)
 
 def add_student(request: Request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         try:
             data = json.loads(request.body)
             print(data)
@@ -28,7 +28,7 @@ def add_student(request: Request):
                     StudentStatus=data['statusOfStudent'],
                     SpecialArrangement=data['specialRequirement'],
                     PersonalEmail=data['PersonalEmail'],
-                    School=data['ESIEE'],
+                    School=data['school'],
                     registrationNumber=data['registrationNumber'],
                     SchoolEmail=data['Email'],
                     Title=data['title']

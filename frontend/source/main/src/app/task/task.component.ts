@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
@@ -40,13 +40,17 @@ export class TaskComponent {
   }
 
   fetch(cb: (i: Task[]) => void) {
-    const req = new XMLHttpRequest();
-    req.open('GET', 'assets/data/task.json');
-    req.onload = () => {
-      const data = JSON.parse(req.response);
-      cb(data);
-    };
-    req.send();
+    var url = "http://localhost:8000/api/user/get_user_tasks/" + localStorage.getItem("user_uuid")
+      this.http.get<Task[]>(url)
+    .subscribe({
+      next: (data: Task[]) => {
+        console.log(data);
+        cb(data); // Pass the data to the callback function
+      },
+      error: (error: HttpErrorResponse) => {
+        // Handle the error code here
+      },
+    });
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -55,6 +59,17 @@ export class TaskComponent {
   toggle(task: { done: boolean }, nav: MatSidenav) {
     nav.close();
     task.done = !task.done;
+    var data = this.taskForm.value;
+    data['userID'] = localStorage.getItem('user_uuid')
+    this.http.put("http://localhost:8000/api/user/add_user_task/", data)
+    .subscribe({
+      next: (data) => {
+      },
+      error: (error: HttpErrorResponse) => {
+          // error code here
+      },
+    });
+
   }
   addNewTask(nav: MatSidenav) {
     this.resetFormField();
@@ -86,21 +101,53 @@ export class TaskComponent {
     });
   }
   saveTask() {
+    var data = this.taskForm.value;
+    data['userID'] = localStorage.getItem('user_uuid')
+    this.http.post("http://localhost:8000/api/user/add_user_task/", data)
+    .subscribe({
+      next: (data) => {
+      },
+      error: (error: HttpErrorResponse) => {
+          // error code here
+      },
+    });
     this.tasks.unshift(this.taskForm.value);
     this.resetFormField();
+
   }
   editTask() {
     const targetIdx = this.tasks
       .map((item) => item.id)
       .indexOf(this.taskForm.value.id);
     this.tasks[targetIdx] = this.taskForm.value;
+    var data = this.taskForm.value;
+    data['userID'] = localStorage.getItem('user_uuid')
+    this.http.put("http://localhost:8000/api/user/add_user_task/", data)
+    .subscribe({
+      next: (data) => {
+      },
+      error: (error: HttpErrorResponse) => {
+          // error code here
+      },
+    });
+
   }
   deleteTask(nav: MatSidenav) {
+    const taskId = this.taskForm.value.id;
+    this.http.post("http://localhost:8000/api/user/delete_user_task/", taskId)
+    .subscribe({
+      next: (data) => {
+      },
+      error: (error: HttpErrorResponse) => {
+          // error code here
+      },
+    });
     const targetIdx = this.tasks
       .map((item) => item.id)
       .indexOf(this.taskForm.value.id);
     this.tasks.splice(targetIdx, 1);
     nav.close();
+
   }
   resetFormField() {
     this.taskForm.controls['name'].reset();

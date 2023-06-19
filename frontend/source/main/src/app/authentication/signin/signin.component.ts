@@ -65,6 +65,7 @@ export class SigninComponent extends UnsubscribeOnDestroyAdapter implements OnIn
             if (res) {
               setTimeout(() => {
                 const role = this.authService.currentUserValue.role;
+                localStorage.setItem('user_uuid', this.authService.currentUserValue.uuid);
                 console.log(role)
                 if (role === Role.All || role === Role.Admin) {
                   this.router.navigate(['/admin/dashboard/main']);

@@ -59,7 +59,7 @@ export class AllCourseComponent
     {
       title: '',
       items: [],
-      active: 'Course',
+      active: 'Courses',
     },
   ];
   constructor(

@@ -56,6 +56,9 @@
                 "FEE-RECEIPT": "Fee Receipt"
             }
         },
+        "SETTINGS": {
+            "TEXT": "Settings"
+        },
         "ATTENDANCE": {
             "TEXT": "Attendance",
             "LIST": {

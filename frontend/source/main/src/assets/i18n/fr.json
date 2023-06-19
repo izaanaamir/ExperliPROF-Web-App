@@ -34,7 +34,7 @@
                 "STUDENT ATTENDANCE": "Fréquentation des Étudiants"
             }
         },
-        "COURSES": {
+        "COURSE": {
             "TEXT": "Cours",
             "LIST": {
                 "ALL-COURSES": "Tous les cours",
@@ -90,6 +90,9 @@
                 "EDIT-FEES": "Modifier des frais",
                 "FEE-RECEIPT": "Reçu de paiement des frais"
             }
+        },
+        "SETTINGS": {
+            "TEXT": "Paramètres"
         },
         "ATTENDANCE": {
             "TEXT": "Présence",

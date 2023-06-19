@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class SettingsComponent {
   breadscrums = [
     {
-      title: 'Settings',
-      items: ['Admin'],
+      title: '',
+      items: [],
       active: 'Settings',
     },
   ];

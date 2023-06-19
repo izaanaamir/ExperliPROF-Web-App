@@ -11,7 +11,8 @@ export class Students {
   GSM: string;
   statusofstudent: string;
   specialrequirements: string;
-  schoolid: string;
+  school: string;
+  img: string;
 
 
   constructor(students: Students) {
@@ -27,7 +28,8 @@ export class Students {
       this.GSM = students.GSM || '';
       this.statusofstudent = students.statusofstudent || '';
       this.specialrequirements = students.specialrequirements || '';
-      this.schoolid = students.schoolid || '';
+      this.school = students.school || '';
+      this.img = students.img || "";
     }
   }
   public getRandomID(): number {

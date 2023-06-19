@@ -76,7 +76,7 @@ export class FormDialogComponent {
       GSM: [this.students.GSM],
       statusofstudent: [this.students.statusofstudent],
       specialrequirements: [this.students.specialrequirements],
-      schoolid: [this.students.schoolid],
+      school: [this.students.school],
     });
   }
   submit() {

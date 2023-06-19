@@ -37,12 +37,11 @@ export class AllStudentsComponent
   displayedColumns = [
     'select',
     // 'rollNo',
-    'lastName',
-    'firstName',
+    'lastname',
+    'firstname',
     'school',
     // 'gender',
-    'mobile',
-    'email',
+    'schoolemail',
     // 'date',
     'actions',
   ];
@@ -310,10 +309,10 @@ export class ExampleDataSource extends DataSource<Students> {
           .slice()
           .filter((students: Students) => {
             const searchStr = (
-              students.id +
               students.lastname +
               students.firstname +
-              students.schoolemail
+              students.schoolemail +
+              students.school
 
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
@@ -375,8 +374,8 @@ export class ExampleDataSource extends DataSource<Students> {
           case 'specialrequirements':
           [propertyA, propertyB] = [a.specialrequirements, b.specialrequirements];
           break;
-          case 'schoolid':
-          [propertyA, propertyB] = [a.schoolid, b.schoolid];
+          case 'school':
+          [propertyA, propertyB] = [a.school, b.school];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

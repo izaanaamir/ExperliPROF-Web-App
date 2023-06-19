@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SettingsComponent } from 'app/teacher/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./attendance/attendance.module').then((m) => m.AttendanceModule),
   },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+  }
 ];
 
 @NgModule({

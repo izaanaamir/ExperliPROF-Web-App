@@ -336,7 +336,7 @@ export const ROUTES: RouteInfo[] = [
     ],
   },
       {
-    path: 'settings',
+    path: '/admin/settings',
     title: 'MENUITEMS.ADMIN.LIST.SETTINGS',
     iconType: 'material-icons-two-tone',
     icon: 'settings',

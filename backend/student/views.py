@@ -23,14 +23,15 @@ def add_student(request: Request):
             new_student = Student(
                     FirstName=data['FirstName'],
                     LastName=data['LastName'],
-                    Email=data['Email'],
-                    Phone=data['Phone'],
-                    image_data=bytes(data['img'].encode('utf-8')),
-                    cv_file=bytes(data['cvData'].encode('utf-8')),
-                    joining_date=data['date'],
-                    about_me=data['aboutMe'],
-                    address=data['address'],
-                    title=data['title']
+                    Matricule=data['Matricule'],
+                    GroupMajor=data['GroupMajor'],
+                    StudentStatus=data['statusOfStudent'],
+                    SpecialArrangement=data['specialRequirement'],
+                    PersonalEmail=data['PersonalEmail'],
+                    School=data['ESIEE'],
+                    registrationNumber=data['registrationNumber'],
+                    SchoolEmail=data['Email'],
+                    Title=data['title']
                 )           
             new_student.save()
                 # Compare the password

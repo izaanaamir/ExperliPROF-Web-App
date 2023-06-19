@@ -58,7 +58,6 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       id: [this.teachers.TeacherID],
-      img: [this.teachers.img],
       FirstName: [this.teachers.FirstName],
       LastName: [this.teachers.LastName],
       Email: [
@@ -71,10 +70,11 @@ export class FormDialogComponent {
       ],
       Phone: [this.teachers.Phone],
       school: [this.teachers.school],
-      cvData: [this.teachers.cvData],
       aboutMe: [this.teachers.aboutMe],
       address: [this.teachers.address],
-      title: [this.teachers.title]
+      title: [this.teachers.title],
+      cvData: [this.teachers.cvData],
+      img: [this.teachers.img],
     });
   }
   submit() {
@@ -84,8 +84,39 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.teachersService.addTeachers(this.proForm.getRawValue());
+    const cvFileInput = document.getElementById('cvFileInput') as HTMLInputElement;
+    const imgFileInput = document.getElementById('imgFileInput') as HTMLInputElement;
+    console.log(cvFileInput.files)
+    console.log(imgFileInput.files)
+
+    // Check if files were selected
+    if (cvFileInput.files) {
+      const cvFile = cvFileInput.files[0];
+      const cvReader = new FileReader();
+      cvReader.onload = () => {
+        const base64String = cvReader.result?.toString().split(',')[1];
+        this.teachers.cvData = base64String || '';
+      };
+      cvReader.readAsDataURL(cvFile);
+    }
+    if (imgFileInput.files) {
+      const imgFile = imgFileInput.files[0];
+      const imgReader = new FileReader();
+      imgReader.onload = () => {
+        const base64String = imgReader.result?.toString().split(',')[1];
+        this.teachers.img = base64String || '';
+      };
+      imgReader.readAsDataURL(imgFile);
+    }
+    this.teachers = this.proForm.getRawValue()
+    console.log("Before sending request", this.teachers)
+    this.teachersService.addTeachers(this.teachers);
+
   }
+
+  // Inside your component class
+
+
   // Inside your component class
   schools = [
     { label: 'Esiee', value: 'Esiee' },

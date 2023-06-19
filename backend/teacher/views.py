@@ -22,11 +22,11 @@ def get_all_teachers(request: Request):
                         'LastName': teacher['LastName'],
                         'Email': teacher['Email'],
                         'Phone': teacher['Phone'],
-                        'date': '',
-                        'gender': '',
-                        'mobile': '',
-                        'school': '',
-                        'degree': ''
+                        'date': teacher['joining_date'],
+                        'cvData': base64.b64encode(teacher['cv_file']).decode('utf-8'),
+                        'aboutMe': teacher['about_me'],
+                        'address': teacher['address'],
+                        'title': teacher['title']
                 })
                 # Compare the password
             return JsonResponse(data=data, safe=False)
@@ -62,8 +62,8 @@ def add_teacher(request: Request):
                     LastName=data['LastName'],
                     Email=data['Email'],
                     Phone=data['Phone'],
-                    image_data=data['img'],
-                    cv_file=data['cvData'],
+                    image_data=bytes(data['img'].encode('utf-8')),
+                    cv_file=bytes(data['cvData'].encode('utf-8')),
                     joining_date=data['date'],
                     about_me=data['aboutMe'],
                     address=data['address'],

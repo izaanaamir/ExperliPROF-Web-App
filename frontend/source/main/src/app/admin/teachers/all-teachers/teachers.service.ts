@@ -25,6 +25,7 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
+        console.log("In get teachers", data)
       },
       error: (error: HttpErrorResponse) => {
         this.isTblLoading = false;
@@ -34,7 +35,6 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
   }
   addTeachers(teachers: Teachers): void {
     this.dialogData = teachers;
-    console.log(this.dialogData)
     this.httpClient.post("http://localhost:8000/api/teacher/add_teacher/", teachers)
       .subscribe({
         next: (data) => {
@@ -59,6 +59,7 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
     //     });
   }
   deleteTeachers(teacherID: number): void {
+    console.log(teacherID)
     this.httpClient.delete("http://localhost:8000/api/teacher/remove_teacher/" + teacherID)
       .subscribe(
         () => {

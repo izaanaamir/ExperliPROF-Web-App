@@ -15,7 +15,7 @@ export class Teachers {
 
 
   constructor(teachers: Teachers) {
-    this.TeacherID = teachers.TeacherID;
+    this.TeacherID = teachers.TeacherID || this.getRandomID();
     this.img = teachers.img || 'assets/images/user/user1.jpg';
     this.FirstName = teachers.FirstName || '';
     this.LastName = teachers.LastName || '';
@@ -27,6 +27,12 @@ export class Teachers {
     this.aboutMe = teachers.aboutMe || '';
     this.address = teachers.address || '';
     this.title = teachers.title || '';
+  }
+  public getRandomID(): number {
+  const S4 = () => {
+    return ((1 + Math.random()) * 0x10000) | 0;
+  };
+  return S4() + S4();
   }
 }
 

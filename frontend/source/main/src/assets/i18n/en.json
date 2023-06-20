@@ -42,11 +42,11 @@
                 "ABOUT-COURSES": "About Courses"
             }
         },
-        "LESSONS": {
-            "TEXT": "Lessons",
+        "SECTIONS": {
+            "TEXT": "Sections",
             "LIST": {
-                "ALL-LESSONS": "All-Lessons",
-                "ABOUT-LESSONS": "About-Lessons"
+                "ALL-SECTIONS": "All Sections",
+                "ABOUT-SECTIONS": "About Sections"
 
             }
         },

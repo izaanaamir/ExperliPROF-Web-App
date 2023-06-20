@@ -276,7 +276,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
       path: '',
-      title: 'MENUITEMS.LESSONS.TEXT',
+      title: 'MENUITEMS.SECTIONS.TEXT',
       iconType: 'material-icons-two-tone',
       icon: 'school',
       class: 'menu-toggle',
@@ -287,7 +287,7 @@ export const ROUTES: RouteInfo[] = [
       submenu: [
         {
           path: '/admin/lessons/all-lessons',
-          title: 'MENUITEMS.LESSONS.LIST.ALL-LESSONS',
+          title: 'MENUITEMS.SECTIONS.LIST.ALL-SECTIONS',
           iconType: '',
           icon: '',
           class: 'ml-menu',
@@ -301,7 +301,7 @@ export const ROUTES: RouteInfo[] = [
         {
 
          path: '/admin/lessons/about-lessons',
-         title: 'MENUITEMS.LESSONS.LIST.ABOUT-LESSONS',
+         title: 'MENUITEMS.SECTIONS.LIST.ABOUT-SECTIONS',
          iconType: '',
          icon: '',
          class: 'ml-menu',

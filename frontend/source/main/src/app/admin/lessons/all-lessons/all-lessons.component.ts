@@ -44,7 +44,7 @@ export class AllLessonsComponent
     'lastName',
     'firstName',
     'mobile',
-    'email',
+    // 'email',
     'actions',
   ];
   exampleDatabase?: lessonsService;

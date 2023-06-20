@@ -17,26 +17,26 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>First Name</mat-label>
+                        <mat-label>Section ID</mat-label>
                         <input matInput formControlName="FirstName" required>
-                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>confirmation_number</mat-icon>
                         <mat-error *ngIf="proForm.get('FirstName')?.hasError('required')">
-                            First Name is required
+                            Section ID is required
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Last Name</mat-label>
+                        <mat-label>Course Name</mat-label>
                         <input matInput formControlName="LastName" required>
-                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>book</mat-icon>
                         <mat-error *ngIf="proForm.get('LastName')?.hasError('required')">
                             Last Name is required
                         </mat-error>
                     </mat-form-field>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Schools</mat-label>
@@ -68,7 +68,7 @@
                             School is required
                         </mat-error>
                     </mat-form-field>
-                </div>
+                </div> -->
                 <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Gender</mat-label>
@@ -98,15 +98,15 @@
             </mat-error>
           </mat-form-field>
         </div> -->
-            </div>
+            <!-- </div> -->
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Mobile</mat-label>
+                        <mat-label>Number of students</mat-label>
                         <input matInput formControlName="Phone" type="number" required>
-                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>phone</mat-icon>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>group</mat-icon>
                         <mat-error *ngIf="proForm.get('Phone')?.hasError('required')">
-                            Mobile is required
+                            Number of students is required
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -120,7 +120,7 @@
             </mat-error>
           </mat-form-field>
         </div> -->
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Email</mat-label>
                         <input matInput formControlName="Email" required>
@@ -129,9 +129,9 @@
                             Please enter a valid email address
                         </mat-error>
                     </mat-form-field>
-                </div>
+                </div> -->
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Address</mat-label>
@@ -163,7 +163,7 @@
                         About Me is required
                     </mat-error>
                 </mat-form-field>
-            </div>
+            </div> -->
             <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Joining date</mat-label>
@@ -175,7 +175,7 @@
             </mat-error>
           </mat-form-field>
         </div> -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
                     <label>Upload CV</label>
                     <app-file-upload formControlName="cvData"></app-file-upload>
@@ -185,7 +185,7 @@
                     <app-file-upload formControlName="img"></app-file-upload>
                 </div>
 
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <div class="example-button-row">

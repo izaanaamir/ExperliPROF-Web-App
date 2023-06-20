@@ -86,5 +86,13 @@ class Grades(models.Model):
     OverallModuleScore = models.FloatField()
     Comments = models.CharField(max_length=255)
     
-
-
+class CoursesList(models.Model):
+    courseName = models.CharField(max_length=255)
+    courseDetails = models.TextField()
+    nameofProf = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    courseCode = models.CharField(max_length=50)
+    courseFile = models.BinaryField()
+    school = models.ForeignKey(School, on_delete=models.CASCADE)
+    
+    class Meta:
+        db_table = 'courses_list'

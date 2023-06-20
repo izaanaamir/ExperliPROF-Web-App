@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
-from requests import Request
+from itsdangerous import Serializer
+from requests import Request, Response
 from .models import User, Task
 from django.core.exceptions import ObjectDoesNotExist
 import json
 import base64
-
+from django.core.serializers import serialize
 def login_view(request: Request):
     if request.method == 'POST':
         print(request.method)
@@ -89,7 +90,6 @@ def add_user_task(request: Request):
     if request.method == 'PUT':
         try:
             data = json.loads(request.body)
-            print(data)
             id = data['id']
             row = Task.objects.get(TaskId=id)
             row.TaskName = data['title']
@@ -113,6 +113,35 @@ def delete_user_task(request: Request):
             row.delete()
                 # Compare the password
             return JsonResponse({'statusCode': 200})
+        except ObjectDoesNotExist:
+            # User not found
+            return JsonResponse({'success': False, 'error': 'Server Error'})
+        
+def get_user_data(request: Request, user_id):
+    if request.method == 'GET':
+        try:
+            user_info = User.objects.get(uuid=user_id)
+            data = {
+                'email': user_info.email,
+                'firstName': user_info.first_name,
+                'lastName': user_info.last_name
+            }
+                # Compare the password
+            return JsonResponse({'statusCode': 200, 'data': data})
+        except ObjectDoesNotExist:
+            # User not found
+            return JsonResponse({'success': False, 'error': 'Server Error'})
+        
+    if request.method == 'POST':
+        try:
+            row = User.objects.get(uuid=user_id)
+            user_data = json.loads(request.body)
+            if row.password == user_data['currentPassword']:
+                row.password = user_data['newPassword']
+                row.save()
+                # Compare the password
+                return JsonResponse({'success': True})
+            return JsonResponse({'success': False, 'error': 'Server Error'})
         except ObjectDoesNotExist:
             # User not found
             return JsonResponse({'success': False, 'error': 'Server Error'})

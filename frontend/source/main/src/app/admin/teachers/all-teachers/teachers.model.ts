@@ -1,8 +1,8 @@
 import { formatDate } from '@angular/common';
 export class Teachers {
   TeacherID: number;
-  img: string;
-  cvData: string;
+  img: File;
+  cvData: File;
   FirstName: string;
   LastName: string;
   Email: string;

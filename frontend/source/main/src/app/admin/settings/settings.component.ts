@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   breadscrums = [
     {
       title: '',
@@ -15,45 +15,52 @@ export class SettingsComponent {
     },
   ];
 
-  securityForm: FormGroup;
-  passwordMismatch: boolean;
-  saveSuccess: boolean;
+  email!: string;
+  currentPassword!: string;
+  newPassword!: string;
+  firstName!: string;
+  lastName!: string;
 
-  get currentPassword() {
-    return this.securityForm.get('currentPassword') as FormControl;
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.loadUserData();
   }
 
-  constructor(private formBuilder: FormBuilder) {
-    this.securityForm = this.formBuilder.group({
-      currentPassword: ['', Validators.required],
-      newPassword: ['', Validators.required],
-    });
+  loadUserData() {
+    var url = "http://localhost:8000/api/user/get_user_info/" + localStorage.getItem("user_uuid")
 
-    this.passwordMismatch = false;
-    this.saveSuccess = false;
+    this.http.get<any>(url).subscribe(
+      (response) => {
+        var data = response['data'];
+        console.log(data);
+        this.email = data['email'];
+        this.firstName = data['firstName'];
+        this.lastName = data['lastName'];
+      },
+      (error) => {
+        // Handle error here
+      }
+    );
   }
 
-  savePassword() {
-    if (this.securityForm.invalid) {
-      // Mark form controls as touched to trigger validation messages
-      this.securityForm.markAllAsTouched();
-      return;
-    }
-
-    const currentPassword = this.securityForm.get('currentPassword')?.value;
-    const newPassword = this.securityForm.get('newPassword')?.value;
-
-    // Validate current password
-    if (currentPassword !== 'correctpassword') {
-      this.passwordMismatch = true;
-      return;
-    }
-
-    // Save the new password
-    // Your saving logic goes here
-
-    // Clear form and display success message
-    this.securityForm.reset();
-    this.saveSuccess = true;
+  saveSecuritySettings() {
+    // Perform API request to save security settings
+    const payload = {
+      email: this.email,
+      currentPassword: this.currentPassword,
+      newPassword: this.newPassword,
+    };
+    var url = "http://localhost:8000/api/user/get_user_info/" + localStorage.getItem("user_uuid")
+    this.http.post(url, payload).subscribe(
+      (response) => {
+        // Handle success response
+      this.currentPassword = '';
+      this.newPassword = '';
+      },
+      (error) => {
+        // Handle error response
+      }
+    );
   }
 }

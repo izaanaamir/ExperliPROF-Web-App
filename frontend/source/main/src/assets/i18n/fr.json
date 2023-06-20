@@ -34,15 +34,23 @@
                 "STUDENT ATTENDANCE": "Fréquentation des Étudiants"
             }
         },
-        "COURSE": {
+        "COURSES": {
             "TEXT": "Cours",
             "LIST": {
                 "ALL-COURSES": "Tous les cours",
-                "ADD-COURSE": "Ajouter un cours",
-                "EDIT-COURSE": "Modifier un cours",
-                "ABOUT-COURSE": "À propos du cours"
+                "ADD-COURSES": "Ajouter un cours",
+                "EDIT-COURSES": "Modifier un cours",
+                "ABOUT-COURSES": "À propos du cours"
             }
         },
+        "LESSONS": {
+            "TEXT": "Leçons",
+            "LIST": {
+                "ALL-LESSONS": "Toutes les leçons",
+                "ABOUT-LESSONS": "À propos des leçons"
+            }
+        },
+
         "SCHOOLS": {
             "TEXT": "École",
             "LIST": {

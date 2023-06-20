@@ -33,12 +33,21 @@
                 "STUDENT ATTENDANCE": "Student Attendance"
             }
         },
-        "COURSE": {
-            "TEXT": "Course",
+        "COURSES": {
+            "TEXT": "Courses",
             "LIST": {
-                "ADD-COURSE": "Add-Course",
-                "EDIT-COURSE": "Edit-Course",
-                "ABOUT-COURSE": "About-Course"
+                "ALL-COURSES": "All Courses",
+                "ADD-COURSES": "Add Courses",
+                "EDIT-COURSES": "Edit Courses",
+                "ABOUT-COURSES": "About Courses"
+            }
+        },
+        "LESSONS": {
+            "TEXT": "Lessons",
+            "LIST": {
+                "ALL-LESSONS": "All-Lessons",
+                "ABOUT-LESSONS": "About-Lessons"
+
             }
         },
         "SCHOOLS": {

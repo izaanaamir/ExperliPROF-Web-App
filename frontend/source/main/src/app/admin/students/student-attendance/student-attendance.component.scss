@@ -1,14 +1,82 @@
-.tbl-search-box {
+.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.xlsx-icon {
+    width: 34px;
+    height: 44px;
+}
+
+.tbl-export-btn {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    label {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tbl-header-btn {
+    margin-left: 10px;
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.export-button {
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+    &:not(:last-child) {
         margin-right: 10px;
     }
-    input[type="date"] {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-    }
+}
+
+.export-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.mat-mini-fab {
+    width: 36px;
+    height: 36px;
+}
+
+.mat-mini-fab mat-icon {
+    font-size: 18px;
+}
+
+.mat-mini-fab.primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.mat-mini-fab.warn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.col-4 {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    padding: 0 10px;
+}
+
+.center-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.big-button {
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
 }

@@ -51,9 +51,9 @@ export class LecturesComponent
 
   breadscrums = [
     {
-      title: 'Lecture',
-      items: ['Teacher'],
-      active: 'Lecture',
+      title: '',
+      items: [],
+      active: 'Lectures',
     },
   ];
 

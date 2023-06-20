@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { Teachers } from '../../teachers.model';
 import { formatDate } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 export interface DialogData {
   id: number;
@@ -30,7 +31,8 @@ export class FormDialogComponent {
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public teachersService: TeachersService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private http: HttpClient
   ) {
     // Set the defaults
     this.action = data.action;
@@ -86,31 +88,38 @@ export class FormDialogComponent {
   public confirmAdd(): void {
     const cvFileInput = document.getElementById('cvFileInput') as HTMLInputElement;
     const imgFileInput = document.getElementById('imgFileInput') as HTMLInputElement;
-    console.log(cvFileInput.files)
-    console.log(imgFileInput.files)
-
-    // Check if files were selected
+    const formData = new FormData();
+    // Create a new FormData object to store the form data
+    this.teachers = this.proForm.getRawValue()
+    // Check if CV file was selected
     if (cvFileInput.files) {
       const cvFile = cvFileInput.files[0];
-      const cvReader = new FileReader();
-      cvReader.onload = () => {
-        const base64String = cvReader.result?.toString().split(',')[1];
-        this.teachers.cvData = base64String || '';
-      };
-      cvReader.readAsDataURL(cvFile);
+      console.log("cv:", cvFile);
+      this.teachers.cvData = cvFile
     }
+
+    // Check if image file was selected
     if (imgFileInput.files) {
       const imgFile = imgFileInput.files[0];
-      const imgReader = new FileReader();
-      imgReader.onload = () => {
-        const base64String = imgReader.result?.toString().split(',')[1];
-        this.teachers.img = base64String || '';
-      };
-      imgReader.readAsDataURL(imgFile);
+      console.log("image:", imgFile)
+      this.teachers.img = imgFile;
+      formData.append('file', imgFile);
     }
-    this.teachers = this.proForm.getRawValue()
+    formData.append('teachersData', JSON.stringify(this.teachers));
     console.log("Before sending request", this.teachers)
-    this.teachersService.addTeachers(this.teachers);
+    // this.teachersService.addTeachers(this.teachers);
+    this.http.post('http://localhost:8000/api/teacher/add_teacher/', formData).subscribe(
+    (response) => {
+    console.log('File uploaded successfully', response);
+    // Handle the server response here
+    // ...
+  },
+  (error) => {
+    console.error('Error uploading file', error);
+    // Handle any errors that occurred during the request
+    // ...
+  }
+);
 
   }
 

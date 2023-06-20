@@ -55,19 +55,22 @@ def remove_teacher(request: Request, teacher_id):
 def add_teacher(request: Request):
     if request.method == 'POST':
         try:
-            data = json.loads(request.body)
-            print(data)
+            teacher_data = json.loads(request.POST.get('teachersData'))
+            # data = json.loads(request.body)
+            print(teacher_data)
+            teacher_data['cvData'] = request.FILES.get('cvData')
+            teacher_data['img'] = request.FILES.get('img')
             new_teacher = Teacher(
-                    FirstName=data['FirstName'],
-                    LastName=data['LastName'],
-                    Email=data['Email'],
-                    Phone=data['Phone'],
-                    image_data=bytes(data['img'].encode('utf-8')),
-                    cv_file=bytes(data['cvData'].encode('utf-8')),
-                    joining_date=data['date'],
-                    about_me=data['aboutMe'],
-                    address=data['address'],
-                    title=data['title']
+                    FirstName=teacher_data['FirstName'],
+                    LastName=teacher_data['LastName'],
+                    Email=teacher_data['Email'],
+                    Phone=teacher_data['Phone'],
+                    image_data=teacher_data['img'],
+                    cv_file=teacher_data['cvData'],
+                    joining_date=teacher_data['date'],
+                    about_me=teacher_data['aboutMe'],
+                    address=teacher_data['address'],
+                    title=teacher_data['title']
                 )           
             new_teacher.save()
                 # Compare the password

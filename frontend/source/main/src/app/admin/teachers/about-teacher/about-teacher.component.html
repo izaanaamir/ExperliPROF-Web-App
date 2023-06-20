@@ -1,66 +1,68 @@
 <section class="content">
-    <div class="content-block">
-        <div class="block-header" *ngFor="let breadscrum of breadscrums">
-            <!-- breadcrumb -->
-            <app-breadcrumb [items]="breadscrum.items" [active_item]="breadscrum.active">
-            </app-breadcrumb>
-        </div>
-
-        <!-- Your content goes here  -->
-        <div class="row clearfix">
-            <div class="col-lg-4 col-md-12">
-                <div class="card">
-                    <div class="m-b-20">
-                        <div class="contact-grid">
-                            <div class="profile-header">
-                                <div class="title-name user-info">Mrs.</div>
-                                <div class="user-name user-info">Sarah Smith</div>
-                                <div class="name-center"></div>
-                            </div>
-
-                            <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
-                            <div class="email-section">
-                                <span class="email">
-                                  <i class="material-icons">email</i>sarah@example.com
-                              </span>
-                            </div>
-                            <div>
-                                <span class="phone">
-                  <i class="material-icons">phone</i>264-625-2583
-                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-8 col-md-12">
-                <div class="card">
-                    <div class="p-4">
-                        <h4>About Me</h4>
-                        <p class="text-default">Hello, I am John Deo, a Teacher at XYZ College in Surat. I love to work with all my college staff and senior teachers.</p>
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
-                                <b>School name:</b>
-                                <div class="profile-desc-item float-end">233</div>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Joining Date:</b>
-                                <div class="profile-desc-item float-end">11/02/23</div>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Address:</b>
-                                <div class="profile-desc-item float-end">Bawal chowk, Islamabad</div>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Download CV:</b>
-                                <div class="profile-desc-item float-end">
-                                    <a href="/path/to/your-cv.pdf" download>Download</a>
-                                </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="content-block">
+    <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <!-- breadcrumb -->
+      <app-breadcrumb [items]="breadscrum.items" [active_item]="breadscrum.active"></app-breadcrumb>
     </div>
+
+    <!-- Your content goes here  -->
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-12">
+        <div class="card">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header">
+                <div class="title-name user-info">{{ profile.title }}</div>
+                <div class="user-name user-info">{{ profile.name }}</div>
+                <div class="name-center"></div>
+              </div>
+
+              <img src={{profile.userImg}} class="user-img" alt="">
+              <div class="email-section">
+                <span class="email">
+                  <i class="material-icons">email</i>{{ profile.email }}
+                </span>
+              </div>
+              <div>
+                <span class="phone">
+                  <i class="material-icons">phone</i>{{ profile.phone }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 col-md-12">
+        <div class="card">
+          <div class="p-4">
+            <h4>About Me</h4>
+            <p class="text-default">
+              {{profile.aboutMe}}
+            </p>
+            <ul class="list-group list-group-unbordered">
+              <li class="list-group-item">
+                <b>School name:</b>
+                <div class="profile-desc-item float-end">{{ profile.schoolName }}</div>
+              </li>
+              <li class="list-group-item">
+                <b>Joining Date:</b>
+                <div class="profile-desc-item float-end">{{ profile.joiningDate }}</div>
+              </li>
+              <li class="list-group-item">
+                <b>Address:</b>
+                <div class="profile-desc-item float-end">{{ profile.address }}</div>
+              </li>
+              <li class="list-group-item">
+                <b>Download CV:</b>
+                <div class="profile-desc-item float-end">
+                  <a [href]="profile.cvPath" download>Download</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

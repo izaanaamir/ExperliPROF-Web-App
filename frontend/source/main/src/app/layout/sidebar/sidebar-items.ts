@@ -238,7 +238,7 @@ export const ROUTES: RouteInfo[] = [
   // },
   {
     path: '/admin/course/all-course',
-    title: 'MENUITEMS.COURSE.TEXT',
+    title: 'MENUITEMS.COURSES.TEXT',
     iconType: 'material-icons-two-tone',
     icon: 'menu_book',
     class: '',

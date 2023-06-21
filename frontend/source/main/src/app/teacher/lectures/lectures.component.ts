@@ -40,7 +40,7 @@ export class LecturesComponent
     'class',
     'date',
     'time',
-    'status',
+    // 'status',
     'actions',
   ];
   exampleDatabase?: LecturesService;

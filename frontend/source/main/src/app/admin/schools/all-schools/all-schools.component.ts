@@ -35,12 +35,12 @@ export class AllSchoolsComponent
 {
   displayedColumns = [
     'select',
-    'dName',
+    // 'dName',
     'hod',
     'phone',
     'email',
     'sYear',
-    'sCapacity',
+    // 'sCapacity',
     'actions',
   ];
   exampleDatabase?: SchoolsService;

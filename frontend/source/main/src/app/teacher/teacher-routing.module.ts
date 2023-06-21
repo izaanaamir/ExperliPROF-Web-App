@@ -28,14 +28,15 @@ const routes: Routes = [
     path: 'fees',
     loadChildren: () => import('./fees/fees.module').then((m) => m.FeesModule),
   },
+
+  {
+    path: 'settings',
+    component: SettingsComponent,
+  },
   {
     path: 'grades',
     loadChildren: () =>
       import('./grades/grades.module').then((m) => m.GradesModule),
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent,
   },
   {
     path: 'courses',

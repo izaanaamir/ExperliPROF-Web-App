@@ -851,18 +851,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
-  {
-    path: '/student/settings',
-    title: 'MENUITEMS.STUDENT.LIST.SETTINGS',
-    iconType: 'material-icons-two-tone',
-    icon: 'settings',
-    class: '',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Student'],
-    submenu: [],
-  },
+
   {
     path: '/student/feedback',
     title: 'MENUITEMS.STUDENT.LIST.FEEDBACK',

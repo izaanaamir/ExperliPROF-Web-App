@@ -2,7 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from requests import Request
 from sqlalchemy import JSON
-from .models import Teacher
+from .models import Teacher, School
+from authentication.models import *
 from django.core.exceptions import ObjectDoesNotExist
 import json
 import base64
@@ -95,28 +96,26 @@ def add_teacher(request: Request):
 def create_school(request):
     if request.method == 'POST':
         # Extract the data from the request
-        dName = request.POST.get('dName')
-        hod = request.POST.get('hod')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
-        sYear = request.POST.get('sYear')
-        sCapacity = request.POST.get('sCapacity')
-        teacher_id = request.POST.get('teacher_id')  # Assuming you are passing the teacher_id from the frontend
-
-        # Get the Teacher instance
-        teacher = Teacher.objects.get(id=teacher_id)
-
-        # Create a new School instance
+        data = json.loads(request.body)
+        print(data)
+        user = User.objects.get(uuid=data['user_uuid'])
+        print(user)
+        teacher = Teacher.objects.get(Email=user.email)
+        print(teacher)
         school = School.objects.create(
-            dName=dName,
-            hod=hod,
-            phone=phone,
-            email=email,
-            sYear=sYear,
-            sCapacity=sCapacity,
-            teacher=teacher
-        )
-
+            schoolName=data['schoolName'],
+            hod=data['hod'],
+            phone=data['phone'],
+            email=data['email'],
+            address=data['address'],
+            city=data['city'],
+            state=data['state'],
+            country=data['country'],
+            Teacher=teacher  # Set the teacher for the school
+        ) # Assuming you are passing the teacher_id from the frontend
+        school.save()
+        # Get the Teacher instance
+        # Create a new School instance
         return JsonResponse({'message': 'School created successfully'})
     else:
         return JsonResponse({'error': 'Invalid request method'})

@@ -37,8 +37,11 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
   }
   addSchools(schools: Schools): void {
     this.dialogData = schools;
-
-    this.httpClient.post('http://localhost:8000/api/teacher/add_teacher_school/', this.dialogData)
+    var data: any = {};
+    data = this.dialogData;
+    data["user_uuid"] = localStorage.getItem("user_uuid");
+    console.log(data)
+    this.httpClient.post('http://localhost:8000/api/teacher/add_teacher_school/', data)
       .subscribe(
         response => {
           // Handle the response from the backend

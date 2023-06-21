@@ -1,17 +1,4 @@
-from django.db import models
-class School(models.Model):
-    schoolName = models.CharField(max_length=255)
-    hod = models.CharField(max_length=255)
-    phone = models.CharField(max_length=255, blank=True)
-    email = models.EmailField()
-    address = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=255, blank=True)
-    state = models.CharField(max_length=255, blank=True)
-    country = models.CharField(max_length=255, blank=True)
-    #teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, related_name='schools')
-    class Meta:
-        db_table = 'schools'
-    
+from django.db import models    
 
 class Teacher(models.Model):
     TeacherID = models.AutoField(primary_key=True)
@@ -20,7 +7,6 @@ class Teacher(models.Model):
     Email = models.EmailField()
     Phone = models.CharField(max_length=255)
     about_me = models.TextField(db_column='aboutMe')
-    school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID', related_name='teachers')
     image_file = models.CharField(max_length=255, db_column='image_file')
     cv_file = models.CharField(max_length=255, db_column='cv_file')
     joining_date = models.DateField(db_column='joiningDate')
@@ -29,7 +15,20 @@ class Teacher(models.Model):
     class Meta:
         db_table = 'teachers'
     
-
+class School(models.Model):
+    SchoolID = models.AutoField(primary_key=True)
+    schoolName = models.CharField(max_length=255,db_column='Name' )
+    hod = models.CharField(max_length=255,db_column='ContactPerson')
+    phone = models.CharField(max_length=255, blank=True,db_column='ContactPhone')
+    email = models.EmailField(db_column='ContactEmail')
+    address = models.CharField(max_length=255, blank=True,db_column='Address')
+    city = models.CharField(max_length=255, blank=True,db_column='City')
+    state = models.CharField(max_length=255, blank=True,db_column='State')
+    country = models.CharField(max_length=255, blank=True,db_column='Country')
+    Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, db_column='teacher_id')
+    class Meta:
+        db_table = 'schools'
+        
 class Course(models.Model):
     CourseID = models.AutoField(primary_key=True)
     CourseName = models.CharField(max_length=255)

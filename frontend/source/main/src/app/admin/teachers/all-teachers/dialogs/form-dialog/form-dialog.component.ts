@@ -95,7 +95,9 @@ export class FormDialogComponent {
     if (cvFileInput.files) {
       const cvFile = cvFileInput.files[0];
       console.log("cv:", cvFile);
-      this.teachers.cvData = cvFile
+      this.teachers.cvData = cvFile;
+      formData.append('cvInfo', cvFile);
+
     }
 
     // Check if image file was selected
@@ -103,10 +105,13 @@ export class FormDialogComponent {
       const imgFile = imgFileInput.files[0];
       console.log("image:", imgFile)
       this.teachers.img = imgFile;
-      formData.append('file', imgFile);
+      formData.append('imgInfo', imgFile);
     }
     formData.append('teachersData', JSON.stringify(this.teachers));
-    console.log("Before sending request", this.teachers)
+    console.log("Before sending request", this.teachers);
+    for (var pair of formData.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+}
     // this.teachersService.addTeachers(this.teachers);
     this.http.post('http://localhost:8000/api/teacher/add_teacher/', formData).subscribe(
     (response) => {

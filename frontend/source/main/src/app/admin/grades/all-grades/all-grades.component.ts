@@ -39,8 +39,8 @@ export class AllGradesComponent
     'hod',
     'phone',
     'email',
-    'sYear',
-    'sCapacity',
+    // 'sYear',
+    // 'sCapacity',
     'actions',
   ];
   exampleDatabase?: GradesService;

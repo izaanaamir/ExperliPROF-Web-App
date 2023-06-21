@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Schools } from './schools.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
+
 @Injectable()
 export class SchoolsService extends UnsubscribeOnDestroyAdapter {
   private readonly API_URL = 'assets/data/schools.json';
@@ -37,15 +38,17 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
   addSchools(schools: Schools): void {
     this.dialogData = schools;
 
-    // this.httpClient.post(this.API_URL, schools)
-    //   .subscribe({
-    //     next: (data) => {
-    //       this.dialogData = schools;
-    //     },
-    //     error: (error: HttpErrorResponse) => {
-    //        // error code here
-    //     },
-    //   });
+    this.httpClient.post('http://localhost:8000/api/teacher/add_teacher_school/', this.dialogData)
+      .subscribe(
+        response => {
+          // Handle the response from the backend
+          console.log('Form data sent successfully');
+        },
+        error => {
+          // Handle any errors that occurred during the API call
+          console.error('Error occurred while sending form data:', error);
+        }
+      );
   }
   updateSchools(schools: Schools): void {
     this.dialogData = schools;

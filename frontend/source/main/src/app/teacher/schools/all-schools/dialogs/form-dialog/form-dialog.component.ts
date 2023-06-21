@@ -36,10 +36,10 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.schools.dName;
+      this.dialogTitle = data.schools.schoolName;
       this.schools = data.schools;
     } else {
-      this.dialogTitle = 'New Schools';
+      this.dialogTitle = 'New School';
       const blankObject = {} as Schools;
       this.schools = new Schools(blankObject);
     }
@@ -56,20 +56,19 @@ export class FormDialogComponent {
       ? 'Not a valid email'
       : '';
   }
-  createContactForm(): UntypedFormGroup {
-    return this.fb.group({
-      id: [this.schools.id],
-      dName: [this.schools.dName, [Validators.required]],
-      hod: [this.schools.hod, [Validators.required]],
-      phone: [this.schools.phone, [Validators.required]],
-      email: [
-        this.schools.email,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      sYear: [this.schools.sYear, [Validators.required]],
-      sCapacity: [this.schools.sCapacity, [Validators.required]],
-    });
-  }
+createContactForm(): UntypedFormGroup {
+  return this.fb.group({
+    schoolName: ['', Validators.required],
+    hod: ['', Validators.required],
+    phone: [''],
+    email: ['', [Validators.required, Validators.email]],
+    address: [''],
+    city: [''],
+    state: [''],
+    country: [''],
+  });
+}
+
   submit() {
     // emppty stuff
   }

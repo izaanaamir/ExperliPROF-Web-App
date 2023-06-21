@@ -1,24 +1,23 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { FeesService } from '../../fees.service';
+import { SchoolsService } from '../../schools.service';
 import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
   UntypedFormBuilder,
 } from '@angular/forms';
-import { Fees } from '../../fees.model';
+import { Schools } from '../../schools.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { formatDate } from '@angular/common';
 
 export interface DialogData {
   id: number;
   action: string;
-  fees: Fees;
+  schools: Schools;
 }
 
 @Component({
-  selector: 'app-form-dialog:not(b)',
+  selector: 'app-form-dialog:not(a)',
   templateUrl: './form-dialog.component.html',
   styleUrls: ['./form-dialog.component.scss'],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
@@ -26,26 +25,25 @@ export interface DialogData {
 export class FormDialogComponent {
   action: string;
   dialogTitle: string;
-  feesForm: UntypedFormGroup;
-  fees: Fees;
+  schoolsForm: UntypedFormGroup;
+  schools: Schools;
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public feesService: FeesService,
+    public schoolsService: SchoolsService,
     private fb: UntypedFormBuilder
   ) {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      console.log(data.fees.date);
-      this.dialogTitle = data.fees.sName;
-      this.fees = data.fees;
+      this.dialogTitle = data.schools.dName;
+      this.schools = data.schools;
     } else {
-      this.dialogTitle = 'New Fees';
-      const blankObject = {} as Fees;
-      this.fees = new Fees(blankObject);
+      this.dialogTitle = 'New Schools';
+      const blankObject = {} as Schools;
+      this.schools = new Schools(blankObject);
     }
-    this.feesForm = this.createContactForm();
+    this.schoolsForm = this.createContactForm();
   }
   formControl = new UntypedFormControl('', [
     Validators.required,
@@ -60,18 +58,16 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.fees.id],
-      rollNo: [this.fees.rollNo, [Validators.required]],
-      sName: [this.fees.sName, [Validators.required]],
-      fType: [this.fees.fType, [Validators.required]],
-      date: [
-        formatDate(this.fees.date, 'yyyy-MM-dd', 'en'),
-        [Validators.required],
+      id: [this.schools.id],
+      dName: [this.schools.dName, [Validators.required]],
+      hod: [this.schools.hod, [Validators.required]],
+      phone: [this.schools.phone, [Validators.required]],
+      email: [
+        this.schools.email,
+        [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      invoiceNo: [this.fees.invoiceNo, [Validators.required]],
-      pType: [this.fees.pType, [Validators.required]],
-      status: [this.fees.status, [Validators.required]],
-      amount: [this.fees.amount, [Validators.required]],
+      sYear: [this.schools.sYear, [Validators.required]],
+      sCapacity: [this.schools.sCapacity, [Validators.required]],
     });
   }
   submit() {
@@ -81,6 +77,6 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.feesService.addFees(this.feesForm.getRawValue());
+    this.schoolsService.addSchools(this.schoolsForm.getRawValue());
   }
 }

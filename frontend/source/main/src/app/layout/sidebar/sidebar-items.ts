@@ -275,6 +275,32 @@ export const ROUTES: RouteInfo[] = [
     ],
   },
   {
+    path: '/admin/grades/all-grades',
+    title: 'MENUITEMS.GRADES.TEXT',
+    iconType: 'material-icons-two-tone',
+    icon: 'business',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Admin'],
+    submenu: [
+      // {
+      //   path: '/admin/schools/all-schools',
+      //   title: 'MENUITEMS.SCHOOLS.LIST.ALL-SCHOOLS',
+      //   iconType: '',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   badge: '',
+      //   badgeClass: '',
+      //   role: [''],
+      //   submenu: [],
+      // },
+
+    ],
+  },
+  {
       path: '',
       title: 'MENUITEMS.SECTIONS.TEXT',
       iconType: 'material-icons-two-tone',
@@ -313,17 +339,17 @@ export const ROUTES: RouteInfo[] = [
         },
        ],
      },
-  {
-    path: '/admin/fees/all-fees',
-    title: 'MENUITEMS.FEES.TEXT',
-    iconType: 'material-icons-two-tone',
-    icon: 'monetization_on',
-    class: '',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Admin'],
-    submenu: [
+  // {
+  //   path: '/admin/fees/all-fees',
+  //   title: 'MENUITEMS.FEES.TEXT',
+  //   iconType: 'material-icons-two-tone',
+  //   icon: 'monetization_on',
+  //   class: '',
+  //   groupTitle: false,
+  //   badge: '',
+  //   badgeClass: '',
+  //   role: ['Admin'],
+  //   submenu: [
       // {
       //   path: '/admin/fees/all-fees',
       //   title: 'MENUITEMS.FEES.LIST.ALL-FEES',
@@ -372,8 +398,8 @@ export const ROUTES: RouteInfo[] = [
       //   role: [''],
       //   submenu: [],
       // },
-    ],
-  },
+  //   ],
+  // },
 
   // {
   //   path: '',

@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FeesService } from './fees.service';
+import { SchoolsService } from './schools.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Fees } from './fees.model';
+import { Schools } from './schools.model';
 import { DataSource } from '@angular/cdk/collections';
 import {
   MatSnackBar,
@@ -23,46 +23,41 @@ import {
   TableElement,
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
-import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-all-fees',
-  templateUrl: './all-fees.component.html',
-  styleUrls: ['./all-fees.component.scss'],
+  selector: 'app-all-schools',
+  templateUrl: './all-schools.component.html',
+  styleUrls: ['./all-schools.component.scss'],
 })
-export class AllFeesComponent
+export class AllSchoolsComponent
   extends UnsubscribeOnDestroyAdapter
   implements OnInit
 {
   displayedColumns = [
-    // 'select',
-    // 'rollNo',
-    'sName',
-    'fType',
-    'date',
-    // 'invoiceNo',
-    'pType',
-    'status',
-    'amount',
+    'select',
+    'dName',
+    'hod',
+    'phone',
+    'email',
+    'sYear',
+    'sCapacity',
     'actions',
   ];
-  exampleDatabase?: FeesService;
+  exampleDatabase?: SchoolsService;
   dataSource!: ExampleDataSource;
-  selection = new SelectionModel<Fees>(true, []);
+  selection = new SelectionModel<Schools>(true, []);
   id?: number;
-  fees?: Fees;
-
+  schools?: Schools;
   breadscrums = [
     {
-
       items: [],
-      active: 'Fees',
+      active: 'Schools',
     },
   ];
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
-    public feesService: FeesService,
+    public schoolsService: SchoolsService,
     private snackBar: MatSnackBar
   ) {
     super();
@@ -89,7 +84,7 @@ export class AllFeesComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        fees: this.fees,
+        schools: this.schools,
         action: 'add',
       },
       direction: tempDirection,
@@ -99,7 +94,7 @@ export class AllFeesComponent
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         this.exampleDatabase?.dataChange.value.unshift(
-          this.feesService.getDialogData()
+          this.schoolsService.getDialogData()
         );
         this.refreshTable();
         this.showNotification(
@@ -111,7 +106,7 @@ export class AllFeesComponent
       }
     });
   }
-  editCall(row: Fees) {
+  editCall(row: Schools) {
     this.id = row.id;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -121,7 +116,7 @@ export class AllFeesComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        fees: row,
+        schools: row,
         action: 'edit',
       },
       direction: tempDirection,
@@ -135,7 +130,7 @@ export class AllFeesComponent
         // Then you update that record using data from dialogData (values you enetered)
         if (foundIndex != null && this.exampleDatabase) {
           this.exampleDatabase.dataChange.value[foundIndex] =
-            this.feesService.getDialogData();
+            this.schoolsService.getDialogData();
           // And lastly refresh table
           this.refreshTable();
           this.showNotification(
@@ -148,7 +143,7 @@ export class AllFeesComponent
       }
     });
   }
-  deleteItem(row: Fees) {
+  deleteItem(row: Schools) {
     this.id = row.id;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -206,7 +201,7 @@ export class AllFeesComponent
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       this.exampleDatabase?.dataChange.value.splice(index, 1);
       this.refreshTable();
-      this.selection = new SelectionModel<Fees>(true, []);
+      this.selection = new SelectionModel<Schools>(true, []);
     });
     this.showNotification(
       'snackbar-danger',
@@ -216,7 +211,7 @@ export class AllFeesComponent
     );
   }
   public loadData() {
-    this.exampleDatabase = new FeesService(this.httpClient);
+    this.exampleDatabase = new SchoolsService(this.httpClient);
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
       this.paginator,
@@ -231,25 +226,21 @@ export class AllFeesComponent
       }
     );
   }
-
   // export table data in excel file
   exportExcel() {
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        'Roll No': x.rollNo,
-        'Student Name': x.sName,
-        'Fees Type': x.fType,
-        Date: formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
-        'Invoice No': x.invoiceNo,
-        'Payment Type': x.pType,
-        Status: x.status,
-        Amount: x.amount,
+        'Schools Name': x.dName,
+        'Head Of Schools': x.hod,
+        Phone: x.phone,
+        Email: x.email,
+        'Start Year': x.sYear,
+        'Students Capacity': x.sCapacity,
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');
   }
-
   showNotification(
     colorName: string,
     text: string,
@@ -264,7 +255,7 @@ export class AllFeesComponent
     });
   }
   // context menu
-  onContextMenu(event: MouseEvent, item: Fees) {
+  onContextMenu(event: MouseEvent, item: Schools) {
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
@@ -275,7 +266,7 @@ export class AllFeesComponent
     }
   }
 }
-export class ExampleDataSource extends DataSource<Fees> {
+export class ExampleDataSource extends DataSource<Schools> {
   filterChange = new BehaviorSubject('');
   get filter(): string {
     return this.filterChange.value;
@@ -283,10 +274,10 @@ export class ExampleDataSource extends DataSource<Fees> {
   set filter(filter: string) {
     this.filterChange.next(filter);
   }
-  filteredData: Fees[] = [];
-  renderedData: Fees[] = [];
+  filteredData: Schools[] = [];
+  renderedData: Schools[] = [];
   constructor(
-    public exampleDatabase: FeesService,
+    public exampleDatabase: SchoolsService,
     public paginator: MatPaginator,
     public _sort: MatSort
   ) {
@@ -295,7 +286,7 @@ export class ExampleDataSource extends DataSource<Fees> {
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Fees[]> {
+  connect(): Observable<Schools[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this.exampleDatabase.dataChange,
@@ -303,21 +294,18 @@ export class ExampleDataSource extends DataSource<Fees> {
       this.filterChange,
       this.paginator.page,
     ];
-    this.exampleDatabase.getAllFeess();
+    this.exampleDatabase.getAllSchools();
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data
         this.filteredData = this.exampleDatabase.data
           .slice()
-          .filter((fees: Fees) => {
+          .filter((schools: Schools) => {
             const searchStr = (
-              fees.rollNo +
-              fees.sName +
-              fees.fType +
-              fees.date +
-              fees.invoiceNo +
-              fees.pType +
-              fees.status
+              schools.dName +
+              schools.hod +
+              schools.phone +
+              schools.email
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -337,7 +325,7 @@ export class ExampleDataSource extends DataSource<Fees> {
     // disconnect
   }
   /** Returns a sorted copy of the database data. */
-  sortData(data: Fees[]): Fees[] {
+  sortData(data: Schools[]): Schools[] {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }
@@ -348,18 +336,18 @@ export class ExampleDataSource extends DataSource<Fees> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'rollNo':
-          [propertyA, propertyB] = [a.rollNo, b.rollNo];
+        case 'dName':
+          [propertyA, propertyB] = [a.dName, b.dName];
           break;
-        case 'sName':
-          [propertyA, propertyB] = [a.sName, b.sName];
+        case 'hod':
+          [propertyA, propertyB] = [a.hod, b.hod];
           break;
         // case 'date': [propertyA, propertyB] = [a.date, b.date]; break;
-        case 'fType':
-          [propertyA, propertyB] = [a.fType, b.fType];
+        case 'phone':
+          [propertyA, propertyB] = [a.phone, b.phone];
           break;
-        case 'invoiceNo':
-          [propertyA, propertyB] = [a.invoiceNo, b.invoiceNo];
+        case 'email':
+          [propertyA, propertyB] = [a.email, b.email];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

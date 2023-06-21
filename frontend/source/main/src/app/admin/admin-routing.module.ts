@@ -33,10 +33,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./schools/schools.module').then( (m) => m.SchoolsModule  ),
   },
+
   {
-    path: 'staff',
+    path: 'grades',
     loadChildren: () =>
-      import('./staff/staff.module').then((m) => m.StaffModule),
+      import('./grades/grades.module').then((m) => m.GradesModule),
   },
   {
     path: 'holidays',

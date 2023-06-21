@@ -182,6 +182,12 @@
             <button mat-raised-button color="primary" (click)="fileInput.click()">Choose File</button>
             <span>{{ selectedFileName }}</span>
           </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+            <label style="margin-bottom: 10px;">Upload Image</label>
+            <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" #fileInput style="display: none">
+            <button mat-raised-button color="primary" (click)="fileInput.click()">Choose File</button>
+            <span>{{ selectedFileName }}</span>
+          </div>
         </div>
         
         

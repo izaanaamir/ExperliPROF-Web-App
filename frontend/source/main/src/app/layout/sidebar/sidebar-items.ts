@@ -626,7 +626,7 @@ export const ROUTES: RouteInfo[] = [
   //   ],
   // },
   {
-    path: '/admin/grades/all-grades',
+    path: '/teacher/grades/all-grades',
     title: 'MENUITEMS.GRADES.TEXT',
     iconType: 'material-icons-two-tone',
     icon: 'grade',

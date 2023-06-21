@@ -14,10 +14,11 @@
               <div class="profile-header">
                 <div class="title-name user-info">{{ profile.title }}</div>
                 <div class="user-name user-info">{{ profile.name }}</div>
+                <img src="assets/images/banner/download.jpeg" alt="" class="user-img">
                 <div class="name-center"></div>
               </div>
 
-              <img src={{profile.userImg}} class="user-img" alt="">
+              <!-- <img src="assets/images/banner/img3.png" alt=""> -->
               <div class="email-section">
                 <span class="email">
                   <i class="material-icons">email</i>{{ profile.email }}
@@ -53,12 +54,12 @@
                 <b>Address:</b>
                 <div class="profile-desc-item float-end">{{ profile.address }}</div>
               </li>
-              <li class="list-group-item">
+              <!-- <li class="list-group-item">
                 <b>Download CV:</b>
                 <div class="profile-desc-item float-end">
                   <a [href]="profile.cvPath" download>Download</a>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>

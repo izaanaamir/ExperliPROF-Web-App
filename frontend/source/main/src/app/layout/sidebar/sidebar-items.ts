@@ -550,6 +550,32 @@ export const ROUTES: RouteInfo[] = [
       },
     ],
   },
+  {
+    path: '/teacher/schools/all-schools',
+    title: 'MENUITEMS.SCHOOLS.TEXT',
+    iconType: 'material-icons-two-tone',
+    icon: 'business',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Teacher'],
+    submenu: [
+      // {
+      //   path: '/admin/schools/all-schools',
+      //   title: 'MENUITEMS.SCHOOLS.LIST.ALL-SCHOOLS',
+      //   iconType: '',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   badge: '',
+      //   badgeClass: '',
+      //   role: [''],
+      //   submenu: [],
+      // },
+
+    ],
+  },
   // {
   //   path: '/teacher/leave-request',
   //   title: 'MENUITEMS.TEACHER.LIST.LEAVE-REQUEST',
@@ -825,18 +851,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
-  {
-    path: '/student/settings',
-    title: 'MENUITEMS.STUDENT.LIST.SETTINGS',
-    iconType: 'material-icons-two-tone',
-    icon: 'settings',
-    class: '',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Student'],
-    submenu: [],
-  },
+
   {
     path: '/student/feedback',
     title: 'MENUITEMS.STUDENT.LIST.FEEDBACK',

@@ -44,6 +44,11 @@ const routes: Routes = [
       import('./lessons/lessons.module').then((m) => m.LessonsModule),
   },
   {
+    path: 'schools',
+    loadChildren: () =>
+      import('./schools/schools.module').then( (m) => m.SchoolsModule  ),
+  },
+  {
     path: 'students',
     loadChildren: () =>
       import('./students/students.module').then((m) => m.StudentsModule),

@@ -118,9 +118,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Group Major</mat-label>
-            <input matInput formControlName="major" required>
+            <input matInput formControlName="groupmajor" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>people</i>
-            <mat-error *ngIf="stdForm.get('major')?.hasError('major')">
+            <mat-error *ngIf="stdForm.get('groupmajor')?.hasError('groupmajor')">
               Group major is required
             </mat-error>
           </mat-form-field>
@@ -128,7 +128,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>GSM (Optional)</mat-label>
-            <input matInput formControlName="gsm" >
+            <input matInput formControlName="GSM" >
             <i class="material-icons-two-tone color-icon p-3" matSuffix>signal_cellular_alt</i>
             <!-- <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
              Group major is required

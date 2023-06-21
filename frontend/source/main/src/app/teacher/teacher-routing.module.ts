@@ -39,9 +39,14 @@ const routes: Routes = [
       import('./grades/grades.module').then((m) => m.GradesModule),
   },
   {
-    path: 'courses',
+    path: 'lessons',
     loadChildren: () =>
-      import('./courses/courses.module').then((m) => m.CoursesModule),
+      import('./lessons/lessons.module').then((m) => m.LessonsModule),
+  },
+  {
+    path: 'course',
+    loadChildren: () =>
+      import('./course/course.module').then((m) => m.CourseModule),
   },
   { path: '**', component: Page404Component },
 ];

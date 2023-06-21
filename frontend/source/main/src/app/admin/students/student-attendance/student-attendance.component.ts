@@ -39,9 +39,11 @@ export class StudentAttendanceComponent
 {
   displayedColumns = [
     'select',
-    'rollNo',
+    // 'rollNo',
     'sName',
+    'school',
     'class',
+    'section',
     'date',
     'status',
     'note',

@@ -1,26 +1,24 @@
 .right {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.xlsx-icon {
-    width: 34px;
-    height: 44px;
+    position: relative;
 }
 
 .tbl-export-btn {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
+    list-style: none;
     padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .tbl-header-btn {
     margin-left: 10px;
-    &:first-child {
-        margin-left: 0;
-    }
+}
+
+.m-l-10 {
+    margin-left: 10px;
 }
 
 .export-button {
@@ -30,11 +28,6 @@
     &:not(:last-child) {
         margin-right: 10px;
     }
-}
-
-.export-button img {
-    width: 24px;
-    height: 24px;
 }
 
 .mat-mini-fab {

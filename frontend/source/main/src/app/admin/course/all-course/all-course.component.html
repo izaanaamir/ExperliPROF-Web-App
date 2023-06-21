@@ -90,19 +90,19 @@
                             <span class="mobile-label">School:</span>{{row.school}}</mat-cell>
                         </ng-container> -->
                                                 <ng-container matColumnDef="lastName">
-                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Course Name
                                                     </mat-header-cell>
-                                                    <!-- <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span
+                                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span
                             class="mobile-label">Name:</span> {{row.firstName}}
-                        </mat-cell> -->
+                        </mat-cell>
                                                     <mat-cell *matCellDef="let row">{{row.LastName}}</mat-cell>
                                                 </ng-container>
                                                 <ng-container matColumnDef="firstName">
-                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>First Name
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Course Details
                                                     </mat-header-cell>
-                                                    <!-- <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span
+                                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span
                             class="mobile-label">Name:</span> {{row.firstName}}
-                        </mat-cell> -->
+                        </mat-cell>
                                                     <mat-cell *matCellDef="let row">{{row.FirstName}}</mat-cell>
                                                 </ng-container>
                                                 <!-- <ng-container matColumnDef="gender">
@@ -125,13 +125,13 @@
                           </mat-cell>
                         </ng-container> -->
                                                 <ng-container matColumnDef="mobile">
-                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Professor
                                                     </mat-header-cell>
                                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> <span class="mobile-label">Mobile:</span>{{row.Phone}}
                                                     </mat-cell>
                                                 </ng-container>
                                                 <ng-container matColumnDef="email">
-                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Email
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Course Code
                                                     </mat-header-cell>
                                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> <span class="mobile-label">Email:</span>{{row.Email}}
                                                     </mat-cell>
@@ -147,10 +147,10 @@
                                                     <mat-header-cell class="pr-0" *matHeaderCellDef>Actions
                                                     </mat-header-cell>
                                                     <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
-                                                        <!-- <button mat-icon-button (click)="$event.stopPropagation()" (click)="editCall(row)"
+                                                        <button mat-icon-button (click)="$event.stopPropagation()" (click)="editCall(row)"
                               class="tbl-action-btn">
                               <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
-                            </button> -->
+                            </button>
                                                         <button mat-icon-button (click)="$event.stopPropagation()" (click)="deleteItem(row)" class="tbl-action-btn">
                               <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
                             </button>

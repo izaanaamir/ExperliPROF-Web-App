@@ -24,10 +24,12 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllSchools(): void {
-    this.subs.sink = this.httpClient.get<Schools[]>(this.API_URL).subscribe({
+    const url = "http://localhost:8000/api/teacher/get_all_schools/" + localStorage.getItem("user_uuid")
+    this.subs.sink = this.httpClient.get<Schools[]>(url).subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
+        console.log(data)
       },
       error: (error: HttpErrorResponse) => {
         this.isTblLoading = false;

@@ -119,3 +119,33 @@ def create_school(request):
         return JsonResponse({'message': 'School created successfully'})
     else:
         return JsonResponse({'error': 'Invalid request method'})
+    
+def get_all_schools(request, user_id):
+    #user_uuid = request.GET.get('user_uuid')  # Assuming the user_uuid is passed as a query parameter
+
+    # Retrieve the user based on user_uuid
+    user = User.objects.get(uuid=user_id)
+
+    # Retrieve the teacher based on the user's email
+    teacher = Teacher.objects.get(Email=user.email)
+
+    # Retrieve all schools associated with the teacher
+    schools = School.objects.filter(Teacher=teacher.TeacherID)
+
+    # Prepare the response data
+    response_data = []
+    for school in schools:
+        school_data = {
+            'SchoolID': school.SchoolID,
+            'schoolName': school.schoolName,
+            'hod': school.hod,
+            'phone': school.phone,
+            'email': school.email,
+            'address': school.address,
+            'city': school.city,
+            'state': school.state,
+            'country': school.country
+        }
+        response_data.append(school_data)
+
+    return JsonResponse(response_data, safe=False)

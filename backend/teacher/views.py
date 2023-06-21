@@ -6,6 +6,9 @@ from .models import Teacher
 from django.core.exceptions import ObjectDoesNotExist
 import json
 import base64
+from django.conf import settings
+
+default_location = settings.MEDIA_ROOT + '/uploads/'
 
 def get_all_teachers(request: Request):
     if request.method == 'GET':
@@ -55,29 +58,36 @@ def remove_teacher(request: Request, teacher_id):
 def add_teacher(request: Request):
     if request.method == 'POST':
         try:
+            cv_file = request.FILES.get('cvInfo')
+            image_file = request.FILES.get('imgInfo')
             teacher_data = json.loads(request.POST.get('teachersData'))
-            # data = json.loads(request.body)
-            print(teacher_data)
-            teacher_data['cvData'] = request.FILES.get('cvData')
-            teacher_data['img'] = request.FILES.get('img')
+            print(cv_file)
+            # Extract the file data from FormData
+
+            
+            # Save the files to the desired location
+            cv_file_path = default_location.save('uploads/cv/' + cv_file.name, cv_file)
+            image_file_path = default_location.save('uploads/images/' + image_file.name, image_file)
+            print(cv_file_path)
+            # Create a new teacher object
             new_teacher = Teacher(
-                    FirstName=teacher_data['FirstName'],
-                    LastName=teacher_data['LastName'],
-                    Email=teacher_data['Email'],
-                    Phone=teacher_data['Phone'],
-                    image_data=teacher_data['img'],
-                    cv_file=teacher_data['cvData'],
-                    joining_date=teacher_data['date'],
-                    about_me=teacher_data['aboutMe'],
-                    address=teacher_data['address'],
-                    title=teacher_data['title']
-                )           
+                FirstName=teacher_data['FirstName'],
+                LastName=teacher_data['LastName'],
+                Email=teacher_data['Email'],
+                Phone=teacher_data['Phone'],
+                image_file=image_file_path,
+                cv_file=cv_file_path,
+                joining_date=teacher_data['date'],
+                about_me=teacher_data['aboutMe'],
+                address=teacher_data['address'],
+                title=teacher_data['title']
+            )           
             new_teacher.save()
-                # Compare the password
+            
             return JsonResponse({'statusCode': 200})
-        except ObjectDoesNotExist:
-            # User not found
-            return JsonResponse({'success': False, 'error': 'Server Error'})
+        except Exception as e:
+            # Handle any errors
+            return JsonResponse({'success': False, 'error': str(e)})
     else:
         # Return an error response for unsupported HTTP methods
         return JsonResponse({'success': False, 'error': 'Server Error'})

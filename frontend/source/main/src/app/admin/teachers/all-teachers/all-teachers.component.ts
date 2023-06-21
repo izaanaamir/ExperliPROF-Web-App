@@ -120,7 +120,6 @@ export class AllTeachersComponent
     });
   }
   editCall(row: Teachers) {
-    console.log('hello')
     localStorage.setItem('rowData', JSON.stringify(row));
     this.router.navigate(['/admin/teachers/about-teacher']);
   }

@@ -1,11 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { StudentAttendanceService } from './attendance.service';
+import { StudentsService } from './students.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { StudentAttendance } from './student-attendance.model';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { Students } from './students.model';
 import { DataSource } from '@angular/cdk/collections';
 import {
   MatSnackBar,
@@ -17,7 +16,6 @@ import { map } from 'rxjs/operators';
 import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.component';
 import { MatMenuTrigger } from '@angular/material/menu';
-
 import { SelectionModel } from '@angular/cdk/collections';
 import { Direction } from '@angular/cdk/bidi';
 import {
@@ -28,54 +26,45 @@ import {
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-student-attendance',
-  templateUrl: './student-attendance.component.html',
-  styleUrls: ['./student-attendance.component.scss'],
+  selector: 'app-all-students',
+  templateUrl: './all-students.component.html',
+  styleUrls: ['./all-students.component.scss'],
 })
-export class StudentAttendanceComponent
-
+export class AllStudentsComponent
   extends UnsubscribeOnDestroyAdapter
   implements OnInit
 {
   displayedColumns = [
     'select',
-    'rollNo',
-    'sName',
-    'class',
-    'date',
-    'status',
-    'note',
+    // 'rollNo',
+    'lastname',
+    'firstname',
+    'school',
+    // 'gender',
+    'schoolemail',
+    // 'date',
     'actions',
   ];
-  exampleDatabase?: StudentAttendanceService;
+  exampleDatabase?: StudentsService;
   dataSource!: ExampleDataSource;
-  selection = new SelectionModel<StudentAttendance>(true, []);
+  selection = new SelectionModel<Students>(true, []);
   id?: number;
-  studentAttendance?: StudentAttendance;
-  startDate: Date | undefined;
-  endDate: Date | undefined;
-
-
+  students?: Students;
   breadscrums = [
     {
+      title: '',
       items: ['Students'],
-      active: 'Student Attendance',
+      active: 'All Students',
     },
   ];
-  attendanceForm: UntypedFormGroup;
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
-    public studentAttendanceService: StudentAttendanceService,
+    public studentsService: StudentsService,
     private snackBar: MatSnackBar
   ) {
     super();
-    this.attendanceForm = new UntypedFormGroup({
-      fromDate: new UntypedFormControl(),
-      toDate: new UntypedFormControl(),
-    });
   }
-
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild('filter', { static: true }) filter!: ElementRef;
@@ -98,7 +87,7 @@ export class StudentAttendanceComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        studentAttendance: this.studentAttendance,
+        students: this.students,
         action: 'add',
       },
       direction: tempDirection,
@@ -106,9 +95,9 @@ export class StudentAttendanceComponent
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataService
+        // For add we're just pushing a new row inside DataServicex
         this.exampleDatabase?.dataChange.value.unshift(
-          this.studentAttendanceService.getDialogData()
+          this.studentsService.getDialogData()
         );
         this.refreshTable();
         this.showNotification(
@@ -120,7 +109,7 @@ export class StudentAttendanceComponent
       }
     });
   }
-  editCall(row: StudentAttendance) {
+  editCall(row: Students) {
     this.id = row.id;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -130,7 +119,7 @@ export class StudentAttendanceComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        studentAttendance: row,
+        students: row,
         action: 'edit',
       },
       direction: tempDirection,
@@ -144,7 +133,7 @@ export class StudentAttendanceComponent
         // Then you update that record using data from dialogData (values you enetered)
         if (foundIndex != null && this.exampleDatabase) {
           this.exampleDatabase.dataChange.value[foundIndex] =
-            this.studentAttendanceService.getDialogData();
+            this.studentsService.getDialogData();
           // And lastly refresh table
           this.refreshTable();
           this.showNotification(
@@ -157,7 +146,7 @@ export class StudentAttendanceComponent
       }
     });
   }
-  deleteItem(row: StudentAttendance) {
+  deleteItem(row: Students) {
     this.id = row.id;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -215,7 +204,7 @@ export class StudentAttendanceComponent
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       this.exampleDatabase?.dataChange.value.splice(index, 1);
       this.refreshTable();
-      this.selection = new SelectionModel<StudentAttendance>(true, []);
+      this.selection = new SelectionModel<Students>(true, []);
     });
     this.showNotification(
       'snackbar-danger',
@@ -225,7 +214,7 @@ export class StudentAttendanceComponent
     );
   }
   public loadData() {
-    this.exampleDatabase = new StudentAttendanceService(this.httpClient);
+    this.exampleDatabase = new StudentsService(this.httpClient);
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
       this.paginator,
@@ -240,18 +229,20 @@ export class StudentAttendanceComponent
       }
     );
   }
-
   // export table data in excel file
   exportExcel() {
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        'Roll No': x.rollNo,
-        'Student Name': x.sName,
-        Class: x.class,
-        Date: formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
-        Status: x.status,
-        Mobile: x.note,
+        // 'Roll No': x.rollNo,
+        lastname: x.lastname,
+        first: x.firstname,
+        statusofstudent: x.statusofstudent,
+        // Gender: x.gender,
+        registrationnumber: x.registrationnumber,
+        schoolemail: x.schoolemail,
+        // 'Admission Date':
+          // formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');
@@ -271,7 +262,7 @@ export class StudentAttendanceComponent
     });
   }
   // context menu
-  onContextMenu(event: MouseEvent, item: StudentAttendance) {
+  onContextMenu(event: MouseEvent, item: Students) {
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
@@ -282,7 +273,7 @@ export class StudentAttendanceComponent
     }
   }
 }
-export class ExampleDataSource extends DataSource<StudentAttendance> {
+export class ExampleDataSource extends DataSource<Students> {
   filterChange = new BehaviorSubject('');
   get filter(): string {
     return this.filterChange.value;
@@ -290,10 +281,10 @@ export class ExampleDataSource extends DataSource<StudentAttendance> {
   set filter(filter: string) {
     this.filterChange.next(filter);
   }
-  filteredData: StudentAttendance[] = [];
-  renderedData: StudentAttendance[] = [];
+  filteredData: Students[] = [];
+  renderedData: Students[] = [];
   constructor(
-    public exampleDatabase: StudentAttendanceService,
+    public exampleDatabase: StudentsService,
     public paginator: MatPaginator,
     public _sort: MatSort
   ) {
@@ -302,7 +293,7 @@ export class ExampleDataSource extends DataSource<StudentAttendance> {
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<StudentAttendance[]> {
+  connect(): Observable<Students[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this.exampleDatabase.dataChange,
@@ -310,19 +301,19 @@ export class ExampleDataSource extends DataSource<StudentAttendance> {
       this.filterChange,
       this.paginator.page,
     ];
-    this.exampleDatabase.getAllStudentAttendances();
+    this.exampleDatabase.getAllStudentss();
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data
         this.filteredData = this.exampleDatabase.data
           .slice()
-          .filter((studentAttendance: StudentAttendance) => {
+          .filter((students: Students) => {
             const searchStr = (
-              studentAttendance.rollNo +
-              studentAttendance.sName +
-              studentAttendance.class +
-              studentAttendance.date +
-              studentAttendance.status
+              students.lastname +
+              students.firstname +
+              students.schoolemail +
+              students.school
+
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -342,7 +333,7 @@ export class ExampleDataSource extends DataSource<StudentAttendance> {
     // disconnect
   }
   /** Returns a sorted copy of the database data. */
-  sortData(data: StudentAttendance[]): StudentAttendance[] {
+  sortData(data: Students[]): Students[] {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }
@@ -353,15 +344,38 @@ export class ExampleDataSource extends DataSource<StudentAttendance> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'rollNo':
-          [propertyA, propertyB] = [a.rollNo, b.rollNo];
+        case 'lastname':
+          [propertyA, propertyB] = [a.lastname, b.lastname];
           break;
-        case 'sName':
-          [propertyA, propertyB] = [a.sName, b.sName];
+          case ' firstname':
+            [propertyA, propertyB] = [a. firstname, b. firstname];
+            break;
+        case 'schoolemail':
+          [propertyA, propertyB] = [a.schoolemail, b.schoolemail];
           break;
-        // case 'date': [propertyA, propertyB] = [a.date, b.date]; break;
-        case 'class':
-          [propertyA, propertyB] = [a.class, b.class];
+          case 'personalemailemail':
+            [propertyA, propertyB] = [a. personalemail, b. personalemail];
+            break;
+            case 'Title':
+              [propertyA, propertyB] = [a.Title, b.Title];
+              break;
+              case 'registrationnumber':
+                [propertyA, propertyB] = [a.registrationnumber, b.registrationnumber];
+                break;
+        case 'groupmajor':
+          [propertyA, propertyB] = [a.groupmajor, b.groupmajor];
+          break;
+        case 'GSM':
+          [propertyA, propertyB] = [a.GSM, b.GSM];
+          break;
+        case 'statusofstudent':
+          [propertyA, propertyB] = [a.statusofstudent, b.statusofstudent];
+          break;
+          case 'specialrequirements':
+          [propertyA, propertyB] = [a.specialrequirements, b.specialrequirements];
+          break;
+          case 'school':
+          [propertyA, propertyB] = [a.school, b.school];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

@@ -12,7 +12,7 @@ import { formatDate } from '@angular/common';
 
 export interface DialogData {
   id: number;
-  action: string
+  action: string;
   students: Students;
 }
 

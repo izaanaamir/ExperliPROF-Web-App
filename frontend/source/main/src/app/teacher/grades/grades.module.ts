@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SchoolsRoutingModule } from './schools-routing.module';
-import { AllSchoolsComponent } from './all-schools/all-schools.component';
-import { DeleteDialogComponent } from './all-schools/dialogs/delete/delete.component';
-import { FormDialogComponent } from './all-schools/dialogs/form-dialog/form-dialog.component';
-import { SchoolsService } from './all-schools/schools.service';
+import { GradesRoutingModule } from './grades-routing.module';
+import { AllGradesComponent } from './all-grades/all-grades.component';
+import { DeleteDialogComponent } from './all-grades/dialogs/delete/delete.component';
+import { FormDialogComponent } from './all-grades/dialogs/form-dialog/form-dialog.component';
+import { GradesService } from './all-grades/grades.service';
 import { SharedModule } from '@shared';
 import { ComponentsModule } from '@shared/components/components.module';
 
 @NgModule({
   declarations: [
-    AllSchoolsComponent,
+    AllGradesComponent,
     DeleteDialogComponent,
     FormDialogComponent,
   ],
@@ -19,10 +19,10 @@ import { ComponentsModule } from '@shared/components/components.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SchoolsRoutingModule,
+    GradesRoutingModule,
     ComponentsModule,
     SharedModule,
   ],
-  providers: [SchoolsService],
+  providers: [GradesService],
 })
-export class SchoolsModule {}
+export class GradesModule {}

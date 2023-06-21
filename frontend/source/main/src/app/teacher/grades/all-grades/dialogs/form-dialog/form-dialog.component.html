@@ -12,7 +12,7 @@
     </button>
     </div>
     <div mat-dialog-content>
-        <form class="register-form m-4" [formGroup]="schoolsForm" (ngSubmit)="submit">
+        <form class="register-form m-4" [formGroup]="gradesForm" (ngSubmit)="submit">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
@@ -40,7 +40,7 @@
                                 Management
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="schoolsForm.get('dName')?.hasError('required')">
+                        <mat-error *ngIf="gradesForm.get('dName')?.hasError('required')">
                             Select Any Schools
                         </mat-error>
                     </mat-form-field>
@@ -50,7 +50,7 @@
                         <mat-label>Head Of Schools</mat-label>
                         <input matInput formControlName="hod" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>person</mat-icon>
-                        <mat-error *ngIf="schoolsForm.get('hod')?.hasError('required')">
+                        <mat-error *ngIf="gradesForm.get('hod')?.hasError('required')">
                             HOS name required
                         </mat-error>
                     </mat-form-field>
@@ -62,7 +62,7 @@
                         <mat-label>Phone</mat-label>
                         <input matInput formControlName="phone">
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>phone</mat-icon>
-                        <mat-error *ngIf="schoolsForm.get('phone')?.hasError('required')">
+                        <mat-error *ngIf="gradesForm.get('phone')?.hasError('required')">
                             Phone is required
                         </mat-error>
                     </mat-form-field>
@@ -72,7 +72,7 @@
                         <mat-label>Email</mat-label>
                         <input matInput formControlName="email" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>email</mat-icon>
-                        <mat-error *ngIf="schoolsForm.get('email')?.hasError('required') || schoolsForm.get('email')?.touched">
+                        <mat-error *ngIf="gradesForm.get('email')?.hasError('required') || gradesForm.get('email')?.touched">
                             Please enter a valid email address
                         </mat-error>
                     </mat-form-field>
@@ -103,7 +103,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <div class="example-button-row">
-                        <button mat-raised-button color="primary" [disabled]="!schoolsForm.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+                        <button mat-raised-button color="primary" [disabled]="!gradesForm.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
                         <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
                     </div>
                 </div>

@@ -278,7 +278,7 @@ export const ROUTES: RouteInfo[] = [
     path: '/admin/grades/all-grades',
     title: 'MENUITEMS.GRADES.TEXT',
     iconType: 'material-icons-two-tone',
-    icon: 'business',
+    icon: 'grade',
     class: '',
     groupTitle: false,
     badge: '',
@@ -625,7 +625,32 @@ export const ROUTES: RouteInfo[] = [
       // },
   //   ],
   // },
+  {
+    path: '/admin/grades/all-grades',
+    title: 'MENUITEMS.GRADES.TEXT',
+    iconType: 'material-icons-two-tone',
+    icon: 'grade',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Teacher'],
+    submenu: [
+      // {
+      //   path: '/admin/schools/all-schools',
+      //   title: 'MENUITEMS.SCHOOLS.LIST.ALL-SCHOOLS',
+      //   iconType: '',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   badge: '',
+      //   badgeClass: '',
+      //   role: [''],
+      //   submenu: [],
+      // },
 
+    ],
+  },
   // Student Modules
 
   {

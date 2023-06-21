@@ -1,29 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Schools } from './schools.model';
+import { Grades } from './grades.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
 @Injectable()
-export class SchoolsService extends UnsubscribeOnDestroyAdapter {
-  private readonly API_URL = 'assets/data/schools.json';
+export class GradesService extends UnsubscribeOnDestroyAdapter {
+  private readonly API_URL = 'assets/data/grades.json';
   isTblLoading = true;
-  dataChange: BehaviorSubject<Schools[]> = new BehaviorSubject<Schools[]>(
+  dataChange: BehaviorSubject<Grades[]> = new BehaviorSubject<Grades[]>(
     []
   );
   // Temporarily stores data from dialogs
-  dialogData!: Schools;
+  dialogData!: Grades;
   constructor(private httpClient: HttpClient) {
     super();
   }
-  get data(): Schools[] {
+  get data(): Grades[] {
     return this.dataChange.value;
   }
   getDialogData() {
     return this.dialogData;
   }
   /** CRUD METHODS */
-  getAllSchools(): void {
-    this.subs.sink = this.httpClient.get<Schools[]>(this.API_URL).subscribe({
+  getAllGrades(): void {
+    this.subs.sink = this.httpClient.get<Grades[]>(this.API_URL).subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -34,8 +34,8 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
       },
     });
   }
-  addSchools(schools: Schools): void {
-    this.dialogData = schools;
+  addGrades(grades: Grades): void {
+    this.dialogData = grades;
 
     // this.httpClient.post(this.API_URL, schools)
     //   .subscribe({
@@ -47,8 +47,8 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
     //     },
     //   });
   }
-  updateSchools(schools: Schools): void {
-    this.dialogData = schools;
+  updateGrades(grades: Grades): void {
+    this.dialogData = grades;
 
     // this.httpClient.put(this.API_URL + schools.id, schools)
     //     .subscribe({
@@ -60,7 +60,7 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
     //       },
     //     });
   }
-  deleteSchools(id: number): void {
+  deleteGrades(id: number): void {
     console.log(id);
 
     // this.httpClient.delete(this.API_URL + id)

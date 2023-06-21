@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SchoolsService } from './schools.service';
+import { GradesService } from './grades.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Schools } from './schools.model';
+import { Grades } from './grades.model';
 import { DataSource } from '@angular/cdk/collections';
 import {
   MatSnackBar,
@@ -25,11 +25,11 @@ import {
 } from '@shared';
 
 @Component({
-  selector: 'app-all-schools',
-  templateUrl: './all-schools.component.html',
-  styleUrls: ['./all-schools.component.scss'],
+  selector: 'app-all-grades',
+  templateUrl: './all-grades.component.html',
+  styleUrls: ['./all-grades.component.scss'],
 })
-export class AllSchoolsComponent
+export class AllGradesComponent
   extends UnsubscribeOnDestroyAdapter
   implements OnInit
 {
@@ -43,21 +43,21 @@ export class AllSchoolsComponent
     'sCapacity',
     'actions',
   ];
-  exampleDatabase?: SchoolsService;
+  exampleDatabase?: GradesService;
   dataSource!: ExampleDataSource;
-  selection = new SelectionModel<Schools>(true, []);
+  selection = new SelectionModel<Grades>(true, []);
   id?: number;
-  schools?: Schools;
+  grades?: Grades;
   breadscrums = [
     {
       items: [],
-      active: 'Schools',
+      active: 'Grades',
     },
   ];
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
-    public schoolsService: SchoolsService,
+    public gradesService: GradesService,
     private snackBar: MatSnackBar
   ) {
     super();
@@ -84,7 +84,7 @@ export class AllSchoolsComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        schools: this.schools,
+        grades: this.grades,
         action: 'add',
       },
       direction: tempDirection,
@@ -94,7 +94,7 @@ export class AllSchoolsComponent
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         this.exampleDatabase?.dataChange.value.unshift(
-          this.schoolsService.getDialogData()
+          this.gradesService.getDialogData()
         );
         this.refreshTable();
         this.showNotification(
@@ -106,7 +106,7 @@ export class AllSchoolsComponent
       }
     });
   }
-  editCall(row: Schools) {
+  editCall(row: Grades) {
     this.id = row.id;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -116,7 +116,7 @@ export class AllSchoolsComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        schools: row,
+        grades: row,
         action: 'edit',
       },
       direction: tempDirection,
@@ -130,7 +130,7 @@ export class AllSchoolsComponent
         // Then you update that record using data from dialogData (values you enetered)
         if (foundIndex != null && this.exampleDatabase) {
           this.exampleDatabase.dataChange.value[foundIndex] =
-            this.schoolsService.getDialogData();
+            this.gradesService.getDialogData();
           // And lastly refresh table
           this.refreshTable();
           this.showNotification(
@@ -143,7 +143,7 @@ export class AllSchoolsComponent
       }
     });
   }
-  deleteItem(row: Schools) {
+  deleteItem(row: Grades) {
     this.id = row.id;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -201,7 +201,7 @@ export class AllSchoolsComponent
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       this.exampleDatabase?.dataChange.value.splice(index, 1);
       this.refreshTable();
-      this.selection = new SelectionModel<Schools>(true, []);
+      this.selection = new SelectionModel<Grades>(true, []);
     });
     this.showNotification(
       'snackbar-danger',
@@ -211,7 +211,7 @@ export class AllSchoolsComponent
     );
   }
   public loadData() {
-    this.exampleDatabase = new SchoolsService(this.httpClient);
+    this.exampleDatabase = new GradesService(this.httpClient);
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
       this.paginator,
@@ -255,7 +255,7 @@ export class AllSchoolsComponent
     });
   }
   // context menu
-  onContextMenu(event: MouseEvent, item: Schools) {
+  onContextMenu(event: MouseEvent, item: Grades) {
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
@@ -266,7 +266,7 @@ export class AllSchoolsComponent
     }
   }
 }
-export class ExampleDataSource extends DataSource<Schools> {
+export class ExampleDataSource extends DataSource<Grades> {
   filterChange = new BehaviorSubject('');
   get filter(): string {
     return this.filterChange.value;
@@ -274,10 +274,10 @@ export class ExampleDataSource extends DataSource<Schools> {
   set filter(filter: string) {
     this.filterChange.next(filter);
   }
-  filteredData: Schools[] = [];
-  renderedData: Schools[] = [];
+  filteredData: Grades[] = [];
+  renderedData: Grades[] = [];
   constructor(
-    public exampleDatabase: SchoolsService,
+    public exampleDatabase: GradesService,
     public paginator: MatPaginator,
     public _sort: MatSort
   ) {
@@ -286,7 +286,7 @@ export class ExampleDataSource extends DataSource<Schools> {
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Schools[]> {
+  connect(): Observable<Grades[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this.exampleDatabase.dataChange,
@@ -294,18 +294,18 @@ export class ExampleDataSource extends DataSource<Schools> {
       this.filterChange,
       this.paginator.page,
     ];
-    this.exampleDatabase.getAllSchools();
+    this.exampleDatabase.getAllGrades();
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data
         this.filteredData = this.exampleDatabase.data
           .slice()
-          .filter((schools: Schools) => {
+          .filter((grades: Grades) => {
             const searchStr = (
-              schools.dName +
-              schools.hod +
-              schools.phone +
-              schools.email
+              grades.dName +
+              grades.hod +
+              grades.phone +
+              grades.email
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -325,7 +325,7 @@ export class ExampleDataSource extends DataSource<Schools> {
     // disconnect
   }
   /** Returns a sorted copy of the database data. */
-  sortData(data: Schools[]): Schools[] {
+  sortData(data: Grades[]): Grades[] {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }

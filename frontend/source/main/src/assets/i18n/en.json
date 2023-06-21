@@ -56,6 +56,12 @@
                 "ALL-SCHOOLS": "All Schools"
             }
         },
+        "GRADES": {
+            "TEXT": "Grades",
+            "LIST": {
+                "ALL-GRADES": "All Grades"
+            }
+        },
         "FEES": {
             "TEXT": "Fees",
             "LIST": {

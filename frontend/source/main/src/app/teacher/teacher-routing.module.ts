@@ -29,6 +29,11 @@ const routes: Routes = [
     loadChildren: () => import('./fees/fees.module').then((m) => m.FeesModule),
   },
   {
+    path: 'grades',
+    loadChildren: () =>
+      import('./grades/grades.module').then((m) => m.GradesModule),
+  },
+  {
     path: 'settings',
     component: SettingsComponent,
   },

@@ -4,7 +4,7 @@ import { AllGradesComponent } from './all-grades/all-grades.component';
 
 const routes: Routes = [
   {
-    path: 'all-Grades',
+    path: 'all-grades',
     component: AllGradesComponent
   },
 ];

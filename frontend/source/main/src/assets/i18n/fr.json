@@ -57,6 +57,12 @@
                 "ALL-SCHOOLS": "Toutes les écoles"
             }
         },
+        "GRADES": {
+            "TEXT": "Notes",
+            "LIST": {
+                "ALL-GRADES": "Toutes les notes"
+            }
+        },
         "LIBRARY": {
             "TEXT": "Bibliothèque",
             "LIST": {

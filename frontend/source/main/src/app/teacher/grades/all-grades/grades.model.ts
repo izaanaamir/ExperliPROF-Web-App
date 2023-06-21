@@ -1,4 +1,4 @@
-export class Schools {
+export class Grades {
   id: number;
   dName: string;
   hod: string;
@@ -6,15 +6,15 @@ export class Schools {
   email: string;
   sYear: string;
   sCapacity: string;
-  constructor(schools: Schools) {
+  constructor(grades: Grades) {
     {
-      this.id = schools.id || this.getRandomID();
-      this.dName = schools.dName || '';
-      this.hod = schools.hod || '';
-      this.phone = schools.phone || '';
-      this.email = schools.email || '';
-      this.sYear = schools.sYear || '';
-      this.sCapacity = schools.sCapacity || '';
+      this.id = grades.id || this.getRandomID();
+      this.dName = grades.dName || '';
+      this.hod = grades.hod || '';
+      this.phone = grades.phone || '';
+      this.email = grades.email || '';
+      this.sYear = grades.sYear || '';
+      this.sCapacity = grades.sCapacity || '';
     }
   }
   public getRandomID(): number {

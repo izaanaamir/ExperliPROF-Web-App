@@ -8,59 +8,82 @@
             </div>
         </div>
         <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
-      <mat-icon>close</mat-icon>
-    </button>
+            <mat-icon>close</mat-icon>
+        </button>
     </div>
     <div mat-dialog-content>
         <form class="register-form m-4" [formGroup]="schoolsForm" (ngSubmit)="submit">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Schools</mat-label>
-                        <mat-select formControlName="dName" required>
-                            <mat-option [value]="'mechanical'">
-                                Mechanical
-                            </mat-option>
-                            <mat-option [value]="'science'">
-                                Science
-                            </mat-option>
-                            <mat-option [value]="'mathematics'">
-                                Mathematics
-                            </mat-option>
-                            <mat-option [value]="'computer'">
-                                Computer
-                            </mat-option>
-                            <mat-option [value]="'civil'">
-                                Civil
-                            </mat-option>
-                            <mat-option [value]="'automobile'">
-                                Automobile
-                            </mat-option>
-                            <mat-option [value]="'management'">
-                                Management
-                            </mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="schoolsForm.get('dName')?.hasError('required')">
-                            Select Any Schools
+                        <mat-label>School Name</mat-label>
+                        <input matInput formControlName="schoolName" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>school</mat-icon>
+                        <mat-error *ngIf="schoolsForm.get('schoolName')?.hasError('required')">
+                            School name is required
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Head Of Schools</mat-label>
+                        <mat-label>Head Of School</mat-label>
                         <input matInput formControlName="hod" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>person</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('hod')?.hasError('required')">
-                            HOS name required
+                            HOS name is required
                         </mat-error>
                     </mat-form-field>
                 </div>
             </div>
             <div class="row">
-                <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <input matInput formControlName="address" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_on</mat-icon>
+                        <mat-error *ngIf="schoolsForm.get('address')?.hasError('required')">
+                            Address is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>City</mat-label>
+                        <input matInput formControlName="city" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_city</mat-icon>
+                        <mat-error *ngIf="schoolsForm.get('city')?.hasError('required')">
+                            City is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>State</mat-label>
+                        <input matInput formControlName="state" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_searching</mat-icon>
+                        <mat-error *ngIf="schoolsForm.get('state')?.hasError('required')">
+                            State is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Country</mat-label>
+                        <input matInput formControlName="country" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>public</mat-icon>
+                        <mat-error *ngIf="schoolsForm.get('country')?.hasError('required')">
+                            Country is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Phone</mat-label>
-                        <input matInput formControlName="phone">
+                        <input matInput formControlName="phone" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>phone</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('phone')?.hasError('required')">
                             Phone is required
@@ -78,28 +101,6 @@
                     </mat-form-field>
                 </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Department Start Year</mat-label>
-                        <input matInput formControlName="sYear" required>
-                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>query_builder</mat-icon>
-                        <mat-error *ngIf="schoolsForm.get('sYear')?.hasError('required')">
-                            Department Start Year is required
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Student Capacity</mat-label>
-                        <input matInput formControlName="sCapacity" required>
-                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>group</mat-icon>
-                        <mat-error *ngIf="schoolsForm.get('sCapacity')?.hasError('required')">
-                            Student Capacity is required
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div> -->
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <div class="example-button-row">

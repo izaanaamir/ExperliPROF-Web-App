@@ -1,14 +1,17 @@
 from django.db import models
 class School(models.Model):
-    SchoolID = models.AutoField(primary_key=True)
-    Name = models.CharField(max_length=255)
-    Address = models.CharField(max_length=255)
-    City = models.CharField(max_length=255)
-    State = models.CharField(max_length=255)
-    Country = models.CharField(max_length=255)
-    ContactPerson = models.CharField(max_length=255)
-    ContactEmail = models.EmailField()
-    ContactPhone = models.CharField(max_length=255)
+    schoolName = models.CharField(max_length=255)
+    hod = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255, blank=True)
+    email = models.EmailField()
+    address = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    state = models.CharField(max_length=255, blank=True)
+    country = models.CharField(max_length=255, blank=True)
+    #teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, related_name='schools')
+    class Meta:
+        db_table = 'schools'
+    
 
 class Teacher(models.Model):
     TeacherID = models.AutoField(primary_key=True)
@@ -17,7 +20,7 @@ class Teacher(models.Model):
     Email = models.EmailField()
     Phone = models.CharField(max_length=255)
     about_me = models.TextField(db_column='aboutMe')
-    school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
+    school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID', related_name='teachers')
     image_file = models.CharField(max_length=255, db_column='image_file')
     cv_file = models.CharField(max_length=255, db_column='cv_file')
     joining_date = models.DateField(db_column='joiningDate')

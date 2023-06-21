@@ -231,12 +231,10 @@ export class AllSchoolsComponent
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        'Schools Name': x.dName,
+        'Schools Name': x.schoolName,
         'Head Of Schools': x.hod,
         Phone: x.phone,
         Email: x.email,
-        'Start Year': x.sYear,
-        'Students Capacity': x.sCapacity,
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');
@@ -302,7 +300,7 @@ export class ExampleDataSource extends DataSource<Schools> {
           .slice()
           .filter((schools: Schools) => {
             const searchStr = (
-              schools.dName +
+              schools.schoolName +
               schools.hod +
               schools.phone +
               schools.email
@@ -337,7 +335,7 @@ export class ExampleDataSource extends DataSource<Schools> {
           [propertyA, propertyB] = [a.id, b.id];
           break;
         case 'dName':
-          [propertyA, propertyB] = [a.dName, b.dName];
+          [propertyA, propertyB] = [a.schoolName, b.schoolName];
           break;
         case 'hod':
           [propertyA, propertyB] = [a.hod, b.hod];

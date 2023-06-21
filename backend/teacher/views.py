@@ -91,3 +91,32 @@ def add_teacher(request: Request):
     else:
         # Return an error response for unsupported HTTP methods
         return JsonResponse({'success': False, 'error': 'Server Error'})
+    
+def create_school(request):
+    if request.method == 'POST':
+        # Extract the data from the request
+        dName = request.POST.get('dName')
+        hod = request.POST.get('hod')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        sYear = request.POST.get('sYear')
+        sCapacity = request.POST.get('sCapacity')
+        teacher_id = request.POST.get('teacher_id')  # Assuming you are passing the teacher_id from the frontend
+
+        # Get the Teacher instance
+        teacher = Teacher.objects.get(id=teacher_id)
+
+        # Create a new School instance
+        school = School.objects.create(
+            dName=dName,
+            hod=hod,
+            phone=phone,
+            email=email,
+            sYear=sYear,
+            sCapacity=sCapacity,
+            teacher=teacher
+        )
+
+        return JsonResponse({'message': 'School created successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})

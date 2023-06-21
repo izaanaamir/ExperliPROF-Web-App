@@ -12,7 +12,7 @@
     </button>
   </div>
   <div mat-dialog-content>
-    <form class="register-form m-4" [formGroup]="lecturesForm" (ngSubmit)="submit">
+    <form class="register-form m-4" [formGroup]="lecturesForm" (ngSubmit)="submit()">
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
@@ -38,11 +38,11 @@
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Lecture Name</mat-label>
-            <input matInput formControlName="class" required>
+            <mat-label>Section Name</mat-label>
+            <input matInput formControlName="section" required>
             <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>record_voice_over</mat-icon>
             <mat-error *ngIf="lecturesForm.get('class')?.hasError('required')">
-              Lecture name required
+              Section name required
             </mat-error>
           </mat-form-field>
         </div>
@@ -58,6 +58,17 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Joining date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="lecturesForm.get('date')?.hasError('required')">
+              Please select date
+            </mat-error>
+          </mat-form-field>
+        </div>
         <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Status</mat-label>

@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class AboutCourseComponent {
   breadscrums = [
     {
-      title: 'About Course',
-      items: ['Course'],
-      active: 'About Course',
+      title:"",
+      items: [],
+      active: 'Profile',
     },
   ];
   constructor() {

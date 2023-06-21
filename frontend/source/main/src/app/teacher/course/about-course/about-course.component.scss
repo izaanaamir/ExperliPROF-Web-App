@@ -1,0 +1,26 @@
+.profile-header {
+    background-color: #164987; // Add this line to change the background color of the image
+    // Other styling for the profile header
+}
+
+.card {
+    .p-4 {
+        h4 {
+            text-align: center; // Add this line to center the heading
+            // Other styling for the heading
+        }
+        p {
+            // Styling for the text
+            text-align: center; // Add this line to center the text
+        }
+        .list-group-item {
+            // Styling for the list items
+            b {
+                // Styling for the label
+            }
+            .profile-desc-item {
+                // Styling for the value
+            }
+        }
+    }
+}

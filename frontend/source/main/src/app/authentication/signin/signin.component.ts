@@ -38,10 +38,10 @@
 //       password: ['', Validators.required],
 //     });
 
-//     // Hide the welcome message after 3 seconds
+//     // Hide the welcome message after 1 seconds
 //     setTimeout(() => {
 //       this.showWelcomeMessage = false;
-//     }, 2000);
+//     }, 1000);
 //     this.languageService.setLanguage('fr');
 //   }
 
@@ -134,7 +134,7 @@
       // Hide the welcome message after 3 seconds
       setTimeout(() => {
         this.showWelcomeMessage = false;
-      }, 3000);
+      }, 1000);
       this.languageService.setLanguage('fr');
     }
 

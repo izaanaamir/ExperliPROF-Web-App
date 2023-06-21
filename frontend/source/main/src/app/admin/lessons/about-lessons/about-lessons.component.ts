@@ -10,7 +10,7 @@ export class AboutLessonsComponent {
     {
       title:"",
       items: [],
-      active: 'Profile',
+      active: 'Sections',
     },
   ];
   constructor() {

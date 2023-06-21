@@ -25,6 +25,10 @@ const routes: Routes = [
     component: ExamScheduleComponent,
   },
   {
+    path: 'fees',
+    loadChildren: () => import('./fees/fees.module').then((m) => m.FeesModule),
+  },
+  {
     path: 'settings',
     component: SettingsComponent,
   },

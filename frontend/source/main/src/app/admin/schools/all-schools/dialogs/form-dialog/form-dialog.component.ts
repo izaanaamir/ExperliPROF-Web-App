@@ -79,4 +79,11 @@ export class FormDialogComponent {
   public confirmAdd(): void {
     this.schoolsService.addSchools(this.schoolsForm.getRawValue());
   }
+  school = [
+    { label: 'Esiee', value: 'Esiee' },
+    { label: 'Bilkent', value: 'Bilkent' },
+    { label: 'Chandigarh University', value: 'Chandigarh University' },
+    { label: 'Limerick', value: 'Limerick' },
+    { label: 'Kyoto', value: 'Kyoto' }
+  ];
 }

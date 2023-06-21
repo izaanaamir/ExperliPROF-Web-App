@@ -44,7 +44,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./holidays/holidays.module').then((m) => m.HolidaysModule),
   },
-
   {
     path: 'attendance',
     loadChildren: () =>

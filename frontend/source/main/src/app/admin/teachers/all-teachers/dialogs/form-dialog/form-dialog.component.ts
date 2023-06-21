@@ -1,5 +1,5 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
 import { TeachersService } from '../../teachers.service';
 import {
   UntypedFormControl,
@@ -23,10 +23,15 @@ export interface DialogData {
   styleUrls: ['./form-dialog.component.scss'],
 })
 export class FormDialogComponent {
+  @ViewChild('cvFileInput', { static: false }) cvFileInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('imgFileInput', { static: false }) imgFileInput!: ElementRef<HTMLInputElement>;
+
   action: string;
   dialogTitle: string;
   proForm: UntypedFormGroup;
   teachers: Teachers;
+  selectedFileName = '';
+
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -46,10 +51,12 @@ export class FormDialogComponent {
     }
     this.proForm = this.createContactForm();
   }
+
   formControl = new UntypedFormControl('', [
     Validators.required,
     // Validators.email,
   ]);
+
   getErrorMessage() {
     return this.formControl.hasError('required')
       ? 'Required field'
@@ -57,6 +64,7 @@ export class FormDialogComponent {
       ? 'Not a valid email'
       : '';
   }
+
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       id: [this.teachers.TeacherID],
@@ -79,65 +87,68 @@ export class FormDialogComponent {
       img: [this.teachers.img],
     });
   }
+
   submit() {
-    // emppty stuff
+    // empty stuff
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  onFileSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.selectedFileName = fileInput.files[0].name;
+    }
+  }
+
   public confirmAdd(): void {
-    const cvFileInput = document.getElementById('cvFileInput') as HTMLInputElement;
-    const imgFileInput = document.getElementById('imgFileInput') as HTMLInputElement;
     const formData = new FormData();
-    // Create a new FormData object to store the form data
-    this.teachers = this.proForm.getRawValue()
+    this.teachers = this.proForm.getRawValue();
+
     // Check if CV file was selected
-    if (cvFileInput.files) {
-      const cvFile = cvFileInput.files[0];
+    if (this.cvFileInput.nativeElement.files && this.cvFileInput.nativeElement.files.length > 0) {
+      const cvFile = this.cvFileInput.nativeElement.files[0];
       console.log("cv:", cvFile);
       this.teachers.cvData = cvFile;
       formData.append('cvInfo', cvFile);
-
     }
 
     // Check if image file was selected
-    if (imgFileInput.files) {
-      const imgFile = imgFileInput.files[0];
-      console.log("image:", imgFile)
+    if (this.imgFileInput.nativeElement.files && this.imgFileInput.nativeElement.files.length > 0) {
+      const imgFile = this.imgFileInput.nativeElement.files[0];
+      console.log("image:", imgFile);
       this.teachers.img = imgFile;
       formData.append('imgInfo', imgFile);
     }
+
     formData.append('teachersData', JSON.stringify(this.teachers));
     console.log("Before sending request", this.teachers);
-    for (var pair of formData.entries()) {
-      console.log(pair[0]+ ', ' + pair[1]); 
-}
-    // this.teachersService.addTeachers(this.teachers);
+    for (const pair of formData.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
+
+    // Upload the form data
     this.http.post('http://localhost:8000/api/teacher/add_teacher/', formData).subscribe(
-    (response) => {
-    console.log('File uploaded successfully', response);
-    // Handle the server response here
-    // ...
-  },
-  (error) => {
-    console.error('Error uploading file', error);
-    // Handle any errors that occurred during the request
-    // ...
+      (response) => {
+        console.log('File uploaded successfully', response);
+        // Handle the server response here
+        // ...
+      },
+      (error) => {
+        console.error('Error uploading file', error);
+        // Handle any errors that occurred during the request
+        // ...
+      }
+    );
   }
-);
 
-  }
-
-  // Inside your component class
-
-
-  // Inside your component class
   schools = [
     { label: 'Esiee', value: 'Esiee' },
     { label: 'Bilkent', value: 'Bilkent' },
     { label: 'Chandigarh University', value: 'Chandigarh University' },
     { label: 'Limerick', value: 'Limerick' },
     { label: 'Kyoto', value: 'Kyoto' }
-    ];
-
+  ];
 }

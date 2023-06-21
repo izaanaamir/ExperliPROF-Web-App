@@ -130,7 +130,7 @@ export class MainComponent implements OnInit {
     this.barChartOptions = {
       series: [
         {
-          name: 'percent',
+          name: 'Percent',
           data: [5, 8, 10, 14, 9, 7, 11, 5, 9, 16, 7, 5],
         },
       ],

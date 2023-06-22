@@ -9,5 +9,7 @@ urlpatterns = [
     path('get_all_schools/<str:user_id>', get_all_schools, name='get_all_schools'),
     path('add_course/', add_course, name='add_course'),
     path('get_courses/<str:user_id>', get_courses, name='get_courses'),
+    path('add_section/', add_section, name='add_section'),
+    path('get_all_sections/<int:courseID>', get_sections, name='get_sections'),
 ]
 

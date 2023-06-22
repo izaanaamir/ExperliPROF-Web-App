@@ -111,5 +111,12 @@ class PriorToTrainingInfo(models.Model):
     
     class Meta:
         db_table = 'priortotraininginfo'
-
+        
+class Section(models.Model):
+    id = models.AutoField(primary_key=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE,  db_column='courseID')
+    num_of_students = models.IntegerField( db_column='numOfStudents')
+    
+    class Meta:
+        db_table = 'sections'
 

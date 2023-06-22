@@ -35,7 +35,7 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.lessons.FirstName;
+      this.dialogTitle = ""+ data.lessons.sectionID;
       this.lessons = data.lessons;
     } else {
       this.dialogTitle = 'New Lessons';
@@ -57,24 +57,10 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.lessons.LessonsID],
-      img: [this.lessons.img],
-      FirstName: [this.lessons.FirstName],
-      LastName: [this.lessons.LastName],
-      Email: [
-        this.lessons.Email,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      date: [
-        formatDate(this.lessons.date, 'yyyy-MM-dd', 'en'),
-        [Validators.required],
-      ],
-      Phone: [this.lessons.Phone],
-      school: [this.lessons.school],
-      cvData: [this.lessons.cvData],
-      aboutMe: [this.lessons.aboutMe],
-      address: [this.lessons.address],
-      title: [this.lessons.title]
+      sectionID: [this.lessons.sectionID],
+      courseName: [this.lessons.courseName],
+      numOfStudents: [this.lessons.numOfStudents]
+
     });
   }
   submit() {
@@ -88,12 +74,9 @@ export class FormDialogComponent {
     this.lessonsService.addLessons(this.proForm.getRawValue());
   }
   // Inside your component class
-  schools = [
-    { label: 'Esiee', value: 'Esiee' },
-    { label: 'Bilkent', value: 'Bilkent' },
-    { label: 'Chandigarh University', value: 'Chandigarh University' },
-    { label: 'Limerick', value: 'Limerick' },
-    { label: 'Kyoto', value: 'Kyoto' }
+  courseNames = [
+    { label: 'Intro To Programming', value: 'Intro To Programming' },
+    { label: 'Data Structures', value: 'Data Structures' },
     ];
 
 }

@@ -1,8 +1,8 @@
 from django.contrib.auth import authenticate, login
-from django.http import JsonResponse
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from requests import Request
 from sqlalchemy import JSON
-from .models import Teacher, School, Course
+from .models import *
 from authentication.models import *
 from django.core.exceptions import ObjectDoesNotExist
 import json
@@ -213,5 +213,51 @@ def get_courses(request, user_id):
             # Include other course details as needed
         }
         response_data.append(course_data)
+
+    return JsonResponse(response_data, safe=False)
+
+def add_section(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        course_name = data['courseName']
+        section_name = data['sectionID']
+        section_details = data['numOfStudents']
+        print(course_name)
+        # Retrieve the course based on courseName
+        course = Course.objects.get(CourseName=course_name)
+
+        # Create and save the section in the Section table
+        section = Section(
+            id=section_name,
+            course=course,
+            num_of_students=section_details
+        )
+        section.save()
+
+        # Return a success response or redirect to another page
+        return JsonResponse(data={"courseID":course.CourseID}, safe=False)
+    else:
+        # Handle GET request case
+        # Return an error response or redirect to another page
+        return HttpResponseBadRequest('Invalid request method')
+    
+    
+def get_sections(request, courseID):
+    # Extract user_uuid from the GET request
+    # Retrieve user from the User table
+    # Retrieve teacher from the Teacher table using the email
+    # # Retrieve courses from the Course table with the teacher_id
+    sections = Section.objects.filter(course=courseID)
+
+    # Prepare response data (e.g., course details)
+    response_data = []
+    for section in sections:
+        section_data = {
+            'sectionID': section.id,
+            'courseName': section.course.CourseName,
+            'numOfStudents': section.num_of_students
+            # Include other course details as needed
+        }
+        response_data.append(section_data)
 
     return JsonResponse(response_data, safe=False)

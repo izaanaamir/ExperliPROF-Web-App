@@ -21,7 +21,9 @@ export class lessonsService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllLessons(): void {
-    this.subs.sink = this.httpClient.get<Lessons[]>("http://localhost:8000/api/lessons/get_lessons/").subscribe({
+    console.log(localStorage.getItem("courseID"))
+    const url = "http://localhost:8000/api/teacher/get_all_sections/" + localStorage.getItem("courseID")
+    this.subs.sink = this.httpClient.get<Lessons[]>(url).subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -33,12 +35,19 @@ export class lessonsService extends UnsubscribeOnDestroyAdapter {
     });
   }
   addLessons(lessons: Lessons): void {
+    var data: any = {};
     this.dialogData = lessons;
-    console.log(this.dialogData)
-    this.httpClient.post("http://localhost:8000/api/lessons/add_lessons/", lessons)
+    data = this.dialogData
+    data["user_uuid"] = localStorage.getItem("user_uuid")
+    console.log(data)
+    this.httpClient.post("http://localhost:8000/api/teacher/add_section/", data)
       .subscribe({
-        next: (data) => {
+        next: (response) => {
           this.dialogData = lessons;
+          console.log("response:", response)
+          var courseID = (response as any)["courseID"]
+          localStorage.setItem("courseID", courseID);
+
         },
         error: (error: HttpErrorResponse) => {
            // error code here

@@ -67,36 +67,36 @@
                                     </mat-cell>
                                 </ng-container>
                                 <!-- ID Column -->
-                                <ng-container matColumnDef="id">
+                                <!-- <ng-container matColumnDef="id">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Id
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row">{{row.CourseID}}</mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="name">
+                                </ng-container> -->
+                                <!-- <ng-container matColumnDef="name">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Name
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span class="mobile-label">Name:</span> {{row.FirstName}}
                                     </mat-cell>
-                                </ng-container>
+                                </ng-container> -->
                                 <!-- <ng-container matColumnDef="school">
                           <mat-header-cell *matHeaderCellDef mat-sort-header>Schools
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">School:</span>{{row.school}}</mat-cell>
                         </ng-container> -->
-                                <ng-container matColumnDef="lastName">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Course Name
+                                <ng-container matColumnDef="courseID">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Course ID
                                     </mat-header-cell>
-                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span class="mobile-label">Name:</span> {{row.firstName}}
+                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span class="mobile-label">CourseID:</span> {{row.courseID}}
                                     </mat-cell>
-                                    <mat-cell *matCellDef="let row">{{row.LastName}}</mat-cell>
+                                    <mat-cell *matCellDef="let row">{{row.courseID}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="firstName">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Course Details
+                                <ng-container matColumnDef="courseName">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Course Title
                                     </mat-header-cell>
-                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span class="mobile-label">Name:</span> {{row.firstName}}
+                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"><span class="mobile-label">courseName:</span> {{row.courseName}}
                                     </mat-cell>
-                                    <mat-cell *matCellDef="let row">{{row.FirstName}}</mat-cell>
+                                    <mat-cell *matCellDef="let row">{{row.courseName}}</mat-cell>
                                 </ng-container>
                                 <!-- <ng-container matColumnDef="gender">
                           <mat-header-cell *matHeaderCellDef mat-sort-header> Gender
@@ -117,18 +117,18 @@
                             </div>
                           </mat-cell>
                         </ng-container> -->
-                                <ng-container matColumnDef="mobile">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Professor
+                                <ng-container matColumnDef="schoolName">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Institution
                                     </mat-header-cell>
-                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> <span class="mobile-label">Mobile:</span>{{row.Phone}}
+                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> <span class="mobile-label">schoolName:</span>{{row.schoolName}}
                                     </mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="email">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Course Code
+                                <!-- <ng-container matColumnDef="email">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Instructor 
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> <span class="mobile-label">Email:</span>{{row.Email}}
                                     </mat-cell>
-                                </ng-container>
+                                </ng-container> -->
                                 <!-- <ng-container matColumnDef="date">
                           <mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date
                           </mat-header-cell>

@@ -21,7 +21,8 @@ export class CourseService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllCourse(): void {
-    this.subs.sink = this.httpClient.get<Course[]>("http://localhost:8000/api/course/get_course/").subscribe({
+    const url = "http://localhost:8000/api/teacher/get_courses/" + localStorage.getItem("user_uuid")
+    this.subs.sink = this.httpClient.get<Course[]>(url).subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -34,8 +35,11 @@ export class CourseService extends UnsubscribeOnDestroyAdapter {
   }
   addCourse(course: Course): void {
     this.dialogData = course;
-    console.log(this.dialogData)
-    this.httpClient.post("http://localhost:8000/api/course/add_course/", course)
+    var data: any = {};
+    data = this.dialogData;
+    data["user_uuid"] = localStorage.getItem("user_uuid");
+    console.log(data)
+    this.httpClient.post("http://localhost:8000/api/teacher/add_course/", data)
       .subscribe({
         next: (data) => {
           this.dialogData = course;

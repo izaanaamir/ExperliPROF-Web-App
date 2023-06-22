@@ -35,7 +35,7 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.course.FirstName;
+      this.dialogTitle = data.course.courseName;
       this.course = data.course;
     } else {
       this.dialogTitle = 'New Course';
@@ -57,24 +57,10 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.course.CourseID],
-      img: [this.course.img],
-      FirstName: [this.course.FirstName],
-      LastName: [this.course.LastName],
-      Email: [
-        this.course.Email,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      date: [
-        formatDate(this.course.date, 'yyyy-MM-dd', 'en'),
-        [Validators.required],
-      ],
-      Phone: [this.course.Phone],
-      school: [this.course.school],
-      cvData: [this.course.cvData],
-      aboutMe: [this.course.aboutMe],
-      address: [this.course.address],
-      title: [this.course.title]
+      courseID: [this.course.CourseID],
+      courseName: [this.course.courseName],
+      schoolName: [this.course.schoolName],
+      courseDetails: [this.course.courseDetails],
     });
   }
   submit() {
@@ -89,7 +75,7 @@ export class FormDialogComponent {
   }
   // Inside your component class
   schools = [
-    { label: 'Esiee', value: 'Esiee' },
+    { label: 'ESIEE', value: 'ESIEE' },
     { label: 'Bilkent', value: 'Bilkent' },
     { label: 'Chandigarh University', value: 'Chandigarh University' },
     { label: 'Limerick', value: 'Limerick' },

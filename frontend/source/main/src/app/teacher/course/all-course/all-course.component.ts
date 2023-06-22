@@ -41,10 +41,9 @@ export class AllCourseComponent
 {
   displayedColumns = [
     'select',
-    'lastName',
-    'firstName',
-    'mobile',
-    'email',
+    'courseID',
+    'courseName',
+    'schoolName',
     'actions',
   ];
   exampleDatabase?: CourseService;
@@ -82,69 +81,8 @@ export class AllCourseComponent
 
   ngOnInit() {
     this.loadData();
-    this.dataSource.connect().subscribe(data => {
-  // Here, you can access the populated `renderedData` array
-      if (data.length > 0 && this.dynamicCode.length == 0) {
-        console.log(this.dataSource.renderedData);
-    // Perform the desired action when the data is present
-        for (const user of this.dataSource.renderedData) {
-      this.dataRendered += `
-    <div class="col-md-4">
-      <div class="card border-apply">
-        <div class="m-b-20">
-          <div class="contact-grid">
-            <div class="profile-header bg-dark">
-              <div class="user-name">${user.FirstName} ${user.LastName}</div>
-            </div>
-            <img src="${'data:image/png;base64,' + user.img}" class="user-img" alt="">
-            <p>${user.Email}</p>
-            <div>
-              <span class="phone">
-                <i class="material-icons">phone</i>${user.Phone}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  `;
-       }
-      this.dynamicCode = this.dataRendered;  }
-});
  }
   refresh() {
-        this.dataSource.connect().subscribe(data => {
-  // Here, you can access the populated `renderedData` array
-     if (data.length > 0 && this.dynamicCode.length == 0 ) {
-    // Perform the desired action when the data is present
-        for (const user of this.dataSource.renderedData) {
-          this.dataRendered += `
-    <div class="col-md-4">
-      <div class="card border-apply">
-        <div class="m-b-20">
-          <div class="contact-grid">
-            <div class="profile-header bg-dark">
-              <div class="user-name">${user.FirstName}</div>
-            </div>
-            <img src="${user.img}" class="user-img" alt="">
-            <p>${user.Email}</p>
-            <div>
-              <span class="phone">
-                <i class="material-icons">phone</i>${user.Phone}</span>
-            </div>
-            <div class="profile-userbuttons">
-              <button mat-flat-button color="primary" class="mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-base" ng-reflect-color="primary">Read More</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  `;
-    }
-      this.dynamicCode = this.dataRendered;
-  }
-});
     this.loadData();
 
   }
@@ -275,10 +213,10 @@ export class AllCourseComponent
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        FirstName: x.FirstName,
-        LastName: x.LastName,
-        Phone: x.Phone,
-        Email: x.Email,
+        courseId: x.CourseID,
+        courseName: x.courseName,
+        schoolName: x.schoolName,
+        courseDetails: x.courseDetails,
         // 'Joining Date': formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
       }));
 
@@ -350,10 +288,9 @@ connect(): Observable<Course[]> {
         .slice()
         .filter((course: Course) => {
           const searchStr = (
-            course.FirstName +
-            course.LastName +
-            course.Email +
-            course.Phone
+            course.CourseID +
+            course.courseName +
+            course.schoolName
           ).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
@@ -389,16 +326,10 @@ connect(): Observable<Course[]> {
           [propertyA, propertyB] = [a.CourseID, b.CourseID];
           break;
         case 'name':
-          [propertyA, propertyB] = [a.FirstName, b.FirstName];
+          [propertyA, propertyB] = [a.courseName, b.courseName];
           break;
         case 'email':
-          [propertyA, propertyB] = [a.Email, b.Email];
-          break;
-        case 'date':
-          [propertyA, propertyB] = [a.date, b.date];
-          break;
-        case 'time':
-          [propertyA, propertyB] = [a.school, b.school];
+          [propertyA, propertyB] = [a.schoolName, b.schoolName];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

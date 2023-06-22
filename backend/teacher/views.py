@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from requests import Request
 from sqlalchemy import JSON
-from .models import Teacher, School
+from .models import Teacher, School, Course
 from authentication.models import *
 from django.core.exceptions import ObjectDoesNotExist
 import json
@@ -147,5 +147,71 @@ def get_all_schools(request, user_id):
             'country': school.country
         }
         response_data.append(school_data)
+
+    return JsonResponse(response_data, safe=False)
+
+def add_course(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+        user_uuid = data.get('user_uuid')
+        school_name = data.get('schoolName')
+        print(user_uuid)
+        try:
+            # Retrieve user email from User table
+            user = User.objects.get(uuid=user_uuid)
+            email = user.email
+            
+            # Retrieve teacher ID from Teacher table
+            teacher = Teacher.objects.get(Email=email)
+            
+            # Retrieve school ID from School table
+            school = School.objects.get(schoolName=school_name)
+            # Create and save course in Course table
+            course = Course(
+                # CourseID=data['courseID'],
+                CourseName=data['courseName'],
+                Teacher=teacher, 
+                School=school)
+            course.save()
+            
+            return JsonResponse({'status': 'success'})
+        
+        except User.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'User does not exist'})
+        
+        except Teacher.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Teacher does not exist'})
+        
+        except School.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'School does not exist'})
+        
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+def get_courses(request, user_id):
+    # Extract user_uuid from the GET request
+    # Retrieve user from the User table
+    user = User.objects.get(uuid=user_id)
+
+    # Retrieve user email
+    email = user.email
+
+    # Retrieve teacher from the Teacher table using the email
+    teacher = Teacher.objects.get(Email=email)
+
+    # Retrieve courses from the Course table with the teacher_id
+    courses = Course.objects.filter(Teacher=teacher.TeacherID)
+
+    # Prepare response data (e.g., course details)
+    response_data = []
+    for course in courses:
+        course_data = {
+            'courseID': course.CourseID,
+            'courseName': course.CourseName,
+            'schoolName': course.School.schoolName
+            # Include other course details as needed
+        }
+        response_data.append(course_data)
 
     return JsonResponse(response_data, safe=False)

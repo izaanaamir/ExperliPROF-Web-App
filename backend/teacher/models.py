@@ -30,11 +30,11 @@ class School(models.Model):
         db_table = 'schools'
         
 class Course(models.Model):
-    CourseID = models.AutoField(primary_key=True)
+    CourseID = models.AutoField(primary_key=True ,)
     CourseName = models.CharField(max_length=255)
     Subject = models.CharField(max_length=255)
     Duration = models.IntegerField()
-    School = models.ForeignKey(School, on_delete=models.CASCADE)
+    School = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
     ListUpdatedDate = models.DateField()
     Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, db_column='TeacherID')
     SchoolYear = models.IntegerField()
@@ -44,7 +44,7 @@ class Course(models.Model):
         ('Value2', 'Value2'),
         ('Value3', 'Value3'),
     )
-    Level = models.CharField(max_length=255, choices=LEVEL_CHOICES)
+    #Level = models.CharField(max_length=255, choices=LEVEL_CHOICES)
     InternalCourseCode = models.CharField(max_length=255)
     
     class Meta:

@@ -7,5 +7,7 @@ urlpatterns = [
     path('add_teacher_school/', create_school, name='create_school'),
     path('add_teacher/', add_teacher, name='add_teacher'),
     path('get_all_schools/<str:user_id>', get_all_schools, name='get_all_schools'),
+    path('add_course/', add_course, name='add_course'),
+    path('get_courses/<str:user_id>', get_courses, name='get_courses'),
 ]
 

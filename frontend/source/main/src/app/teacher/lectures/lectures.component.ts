@@ -36,8 +36,9 @@ export class LecturesComponent
 {
   displayedColumns = [
     'select',
-    'sName',
-    'class',
+    'schoolName',
+    'courseName',
+    'sectionID',
     'date',
     'time',
     // 'status',
@@ -235,11 +236,10 @@ export class LecturesComponent
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        'Subject Name': x.sName,
-        Class: x.class,
+        'School Name': x.schoolName,
+        Class: x.courseName,
         Date: formatDate(new Date(x.date), 'yyyy-MM-dd', 'en') || '',
         Time: x.time,
-        Status: x.status,
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');
@@ -306,8 +306,8 @@ export class ExampleDataSource extends DataSource<Lectures> {
           .slice()
           .filter((lectures: Lectures) => {
             const searchStr = (
-              lectures.sName +
-              lectures.class +
+              lectures.schoolName +
+              lectures.courseName +
               lectures.date +
               lectures.time
             ).toLowerCase();
@@ -341,10 +341,10 @@ export class ExampleDataSource extends DataSource<Lectures> {
           [propertyA, propertyB] = [a.id, b.id];
           break;
         case 'sName':
-          [propertyA, propertyB] = [a.sName, b.sName];
+          [propertyA, propertyB] = [a.schoolName, b.schoolName];
           break;
         case 'class':
-          [propertyA, propertyB] = [a.class, b.class];
+          [propertyA, propertyB] = [a.courseName, b.courseName];
           break;
         case 'date':
           [propertyA, propertyB] = [a.date, b.date];

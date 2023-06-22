@@ -1,18 +1,18 @@
 export class Lectures {
   id: number;
-  sName: string;
-  class: string;
+  schoolName: string;
+  courseName: string;
+  sectionID: string;
   date: string;
   time: string;
-  status: string;
   constructor(lectures: Lectures) {
     {
       this.id = lectures.id || this.getRandomID();
-      this.sName = lectures.sName || '';
-      this.class = lectures.class || '';
+      this.schoolName = lectures.schoolName || '';
+      this.courseName = lectures.courseName || '';
       this.date = lectures.date || '';
       this.time = lectures.time || '';
-      this.status = lectures.status || '';
+      this.sectionID = lectures.sectionID || '';
     }
   }
   public getRandomID(): number {

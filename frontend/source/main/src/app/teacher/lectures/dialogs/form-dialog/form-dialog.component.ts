@@ -9,7 +9,6 @@ import {
 } from "@angular/forms";
 import { Lectures } from "../../lectures.model";
 import { MAT_DATE_LOCALE } from "@angular/material/core";
-
 export interface DialogData {
   id: number;
   action: string;
@@ -36,10 +35,10 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === "edit") {
-      this.dialogTitle = data.lectures.sName;
+      this.dialogTitle = data.lectures.schoolName;
       this.lectures = data.lectures;
     } else {
-      this.dialogTitle = "New Lectures";
+      this.dialogTitle = "New Lecture";
       const blankObject = {} as Lectures;
       this.lectures = new Lectures(blankObject);
     }
@@ -59,11 +58,11 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       id: [this.lectures.id],
-      sName: [this.lectures.sName, [Validators.required]],
-      class: [this.lectures.class, [Validators.required]],
+      schoolName: [this.lectures.schoolName, [Validators.required]],
+      courseName: [this.lectures.courseName, [Validators.required]],
       date: [this.lectures.date, [Validators.required]],
       time: [this.lectures.time, [Validators.required]],
-      status: [this.lectures.status, [Validators.required]],
+      sectionID: [this.lectures.sectionID, [Validators.required]],
     });
   }
   submit() {
@@ -75,4 +74,18 @@ export class FormDialogComponent {
   public confirmAdd(): void {
     this.lecturesService.addLectures(this.lecturesForm.getRawValue());
   }
+
+  schools = [
+  { label: 'ESIEE', value: 'ESIEE' },
+];
+  
+  courses = [
+  { label: 'Intro To Programming', value: 'Intro To Programming' },
+  { label: 'Data Structures', value: 'Data Structures' },
+  ];
+
+  sections = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+  ];
 }

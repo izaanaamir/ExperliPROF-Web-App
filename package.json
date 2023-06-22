@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ngx-timepicker": "^0.0.5"
+  }
+}

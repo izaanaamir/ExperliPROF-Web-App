@@ -76,7 +76,8 @@ export class FormDialogComponent {
   }
 
   schools = [
-  { label: 'ESIEE', value: 'ESIEE' },
+    { label: 'ESIEE', value: 'ESIEE' },
+    { label: 'Bilkent', value: 'Bilkent'}
 ];
   
   courses = [

@@ -76,10 +76,7 @@ export class FormDialogComponent {
   // Inside your component class
   schools = [
     { label: 'ESIEE', value: 'ESIEE' },
-    { label: 'Bilkent', value: 'Bilkent' },
-    { label: 'Chandigarh University', value: 'Chandigarh University' },
-    { label: 'Limerick', value: 'Limerick' },
-    { label: 'Kyoto', value: 'Kyoto' }
+    { label: 'Bilkent', value: 'Bilkent' }
     ];
 
 }

@@ -21,13 +21,13 @@ def get_all_teachers(request: Request):
             for teacher in list_of_teachers: 
                 data.append({
                         "TeacherID": str(teacher["TeacherID"]),
-                        'img': base64.b64encode(teacher['image_data']).decode('utf-8'),
+                        # 'img': base64.b64encode(teacher['image_data']).decode('utf-8'),
                         'FirstName': teacher['FirstName'],
                         'LastName': teacher['LastName'],
                         'Email': teacher['Email'],
                         'Phone': teacher['Phone'],
                         'date': teacher['joining_date'],
-                        'cvData': base64.b64encode(teacher['cv_file']).decode('utf-8'),
+                        # 'cvData': base64.b64encode(teacher['cv_file']).decode('utf-8'),
                         'aboutMe': teacher['about_me'],
                         'address': teacher['address'],
                         'title': teacher['title']

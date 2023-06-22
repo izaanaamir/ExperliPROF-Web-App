@@ -83,8 +83,8 @@ export class FormDialogComponent {
       aboutMe: [this.teachers.aboutMe],
       address: [this.teachers.address],
       title: [this.teachers.title],
-      cvData: [this.teachers.cvData],
-      img: [this.teachers.img],
+      // cvData: [this.teachers.cvData],
+      // img: [this.teachers.img],
     });
   }
 
@@ -108,20 +108,20 @@ export class FormDialogComponent {
     this.teachers = this.proForm.getRawValue();
 
     // Check if CV file was selected
-    if (this.cvFileInput.nativeElement.files && this.cvFileInput.nativeElement.files.length > 0) {
-      const cvFile = this.cvFileInput.nativeElement.files[0];
-      console.log("cv:", cvFile);
-      this.teachers.cvData = cvFile;
-      formData.append('cvInfo', cvFile);
-    }
+    // if (this.cvFileInput.nativeElement.files && this.cvFileInput.nativeElement.files.length > 0) {
+    //   const cvFile = this.cvFileInput.nativeElement.files[0];
+    //   console.log("cv:", cvFile);
+    //   this.teachers.cvData = cvFile;
+    //   formData.append('cvInfo', cvFile);
+    // }
 
-    // Check if image file was selected
-    if (this.imgFileInput.nativeElement.files && this.imgFileInput.nativeElement.files.length > 0) {
-      const imgFile = this.imgFileInput.nativeElement.files[0];
-      console.log("image:", imgFile);
-      this.teachers.img = imgFile;
-      formData.append('imgInfo', imgFile);
-    }
+    // // Check if image file was selected
+    // if (this.imgFileInput.nativeElement.files && this.imgFileInput.nativeElement.files.length > 0) {
+    //   const imgFile = this.imgFileInput.nativeElement.files[0];
+    //   console.log("image:", imgFile);
+    //   this.teachers.img = imgFile;
+    //   formData.append('imgInfo', imgFile);
+    // }
 
     formData.append('teachersData', JSON.stringify(this.teachers));
     console.log("Before sending request", this.teachers);

@@ -35,13 +35,10 @@ export class AllGradesComponent
 {
   displayedColumns = [
     'select',
+    'id',
     'dName',
     'hod',
     'phone',
-    'email',
-    'sYear',
-    'sCapacity',
-    'actions',
   ];
   exampleDatabase?: GradesService;
   dataSource!: ExampleDataSource;

@@ -133,9 +133,11 @@ export class AllTeachersComponent
     } else {
       tempDirection = 'ltr';
     }
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: row,
-      direction: tempDirection,
+    const dialogRef = this.dialog.open(FormDialogComponent, {
+      data: {
+        teachers: row,
+        action: 'edit',
+      },
     });
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
@@ -192,7 +194,7 @@ showCredentials(row: any) {
     });
   });
 }
-    
+
   removeSelectedRows() {
     const totalSelect = this.selection.selected.length;
     this.selection.selected.forEach((item) => {

@@ -65,57 +65,7 @@ export class HeaderComponent
     { text: 'French', flag: 'assets/images/flags/french.png', lang: 'fr' },
 
   ];
-  notifications: Notifications[] = [
-    {
-      message: 'Please check your mail',
-      time: '14 mins ago',
-      icon: 'mail',
-      color: 'nfc-green',
-      status: 'msg-unread',
-    },
-    {
-      message: 'New Patient Added..',
-      time: '22 mins ago',
-      icon: 'person_add',
-      color: 'nfc-blue',
-      status: 'msg-read',
-    },
-    {
-      message: 'Your leave is approved!! ',
-      time: '3 hours ago',
-      icon: 'event_available',
-      color: 'nfc-orange',
-      status: 'msg-read',
-    },
-    {
-      message: 'Lets break for lunch...',
-      time: '5 hours ago',
-      icon: 'lunch_dining',
-      color: 'nfc-blue',
-      status: 'msg-read',
-    },
-    {
-      message: 'student report generated',
-      time: '14 mins ago',
-      icon: 'description',
-      color: 'nfc-green',
-      status: 'msg-read',
-    },
-    {
-      message: 'Please check your mail',
-      time: '22 mins ago',
-      icon: 'mail',
-      color: 'nfc-red',
-      status: 'msg-read',
-    },
-    {
-      message: 'Salary credited...',
-      time: '3 hours ago',
-      icon: 'paid',
-      color: 'nfc-purple',
-      status: 'msg-read',
-    },
-  ];
+
   ngOnInit() {
     this.config = this.configService.configData;
 

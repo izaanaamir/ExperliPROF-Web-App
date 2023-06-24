@@ -2,5 +2,8 @@
   "dependencies": {
     "ngx-timepicker": "^0.0.5",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.2"
   }
 }

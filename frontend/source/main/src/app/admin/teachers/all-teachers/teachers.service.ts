@@ -75,7 +75,7 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
   }
   deleteTeachers(teacherID: number): void {
     console.log(teacherID)
-    this.httpClient.delete("http://localhost:8000/api/teacher/remove_teacher/" + teacherID)
+    this.httpClient.delete("http://localhost:8000/api/teacher/remove_user/" + teacherID)
       .subscribe(
         () => {
           console.log('Teacher deleted successfully.');

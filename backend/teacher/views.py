@@ -41,12 +41,13 @@ def get_all_teachers(request: Request):
         # Return an error response for unsupported HTTP methods
         return JsonResponse({'success': False, 'error': 'Server Error'})
 
-def remove_teacher(request: Request, teacher_id):
+def remove_user(request: Request, teacher_id):
     if request.method == 'DELETE':
         try:
             print(teacher_id)
-            teacher = Teacher.objects.filter(TeacherID=teacher_id)
-            teacher.delete()
+            teacher = Teacher.objects.get(TeacherID=teacher_id)
+            user = teacher.user_uuid
+            user.delete()
                 # Compare the password
             return JsonResponse({'statusCode': 200})
         except ObjectDoesNotExist:

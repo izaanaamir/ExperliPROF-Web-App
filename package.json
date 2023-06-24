@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "ngx-timepicker": "^0.0.5"
+    "ngx-timepicker": "^0.0.5",
+    "uuid": "^9.0.0"
   }
 }

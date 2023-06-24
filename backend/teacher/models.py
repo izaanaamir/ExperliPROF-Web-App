@@ -1,5 +1,6 @@
 from django.db import models    
 
+from authentication.models import User
 class Teacher(models.Model):
     TeacherID = models.AutoField(primary_key=True)
     FirstName = models.CharField(max_length=255)
@@ -12,6 +13,7 @@ class Teacher(models.Model):
     joining_date = models.DateField(db_column='joiningDate')
     address = models.TextField()
     title=models.CharField(max_length=255,db_column='title' )
+    user_uuid= models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_uuid')
     class Meta:
         db_table = 'teachers'
     

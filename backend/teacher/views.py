@@ -58,30 +58,21 @@ def remove_teacher(request: Request, teacher_id):
     
 def add_teacher(request: Request):
     if request.method == 'POST':
-        try:
-            cv_file = request.FILES.get('cvInfo')
-            image_file = request.FILES.get('imgInfo')
-            teacher_data = json.loads(request.POST.get('teachersData'))
-            print(cv_file)
-            # Extract the file data from FormData
-
-            
-            # Save the files to the desired location
-            cv_file_path = default_location.save('uploads/cv/' + cv_file.name, cv_file)
-            image_file_path = default_location.save('uploads/images/' + image_file.name, image_file)
-            print(cv_file_path)
-            # Create a new teacher object
+        try:         
+            teacher_data = json.loads(request.body)
+            user = User.objects.get(uuid=teacher_data['user_uuid'])
             new_teacher = Teacher(
                 FirstName=teacher_data['FirstName'],
                 LastName=teacher_data['LastName'],
                 Email=teacher_data['Email'],
                 Phone=teacher_data['Phone'],
-                image_file=image_file_path,
-                cv_file=cv_file_path,
+                # image_file=image_file_path,
+                # cv_file=cv_file_path,
                 joining_date=teacher_data['date'],
-                about_me=teacher_data['aboutMe'],
+                # about_me=teacher_data['aboutMe'],
                 address=teacher_data['address'],
-                title=teacher_data['title']
+                title=teacher_data['title'],
+                user_uuid=user
             )           
             new_teacher.save()
             
@@ -295,4 +286,13 @@ def get_sections(request, courseID):
         }
         response_data.append(section_data)
 
+    return JsonResponse(response_data, safe=False)
+
+
+def get_teacher_creds(request, user_id):
+    user = User.objects.get(uuid=user_id)
+    response_data = {
+        'email': user.email,
+        'password': user.password
+    }
     return JsonResponse(response_data, safe=False)

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, map } from 'rxjs';
 import { Teachers } from './teachers.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
@@ -36,14 +36,18 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
   addTeachers(teachers: Teachers): void {
     this.dialogData = teachers;
     this.httpClient.post("http://localhost:8000/api/teacher/add_teacher/", teachers)
-      .subscribe({
-        next: (data) => {
-          this.dialogData = teachers;
+      .subscribe(
+        response => {
+          // Handle the response from the backend
+          console.log('Form data sent successfully');
         },
-        error: (error: HttpErrorResponse) => {
-           // error code here
-        },
-      });
+        error => {
+          // Handle any errors that occurred during the API call
+          console.error('Error occurred while sending form data:', error);
+        }
+      );
+    console.log("Sending User Request")
+  
   }
   updateTeachers(teachers: Teachers): void {
     this.dialogData = teachers;
@@ -57,6 +61,17 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
     //          // error code here
     //       },
     //     });
+  }
+
+  getUserCredentials(userID: any) {
+    return this.httpClient.get("http://localhost:8000/api/teacher/get_teacher_creds/" + userID).pipe(
+    map((response: any) => response),
+    catchError((error: any) => {
+      console.error(error.name + ' ' + error.message);
+      // Handle the error appropriately
+      throw error; // Rethrow the error to propagate it to the subscriber
+    })
+  );
   }
   deleteTeachers(teacherID: number): void {
     console.log(teacherID)

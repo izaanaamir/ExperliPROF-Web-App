@@ -22,6 +22,11 @@ const routes: Routes = [
     component: LeaveRequestComponent,
   },
   {
+    path: 'grades',
+    loadChildren: () =>
+      import('./grades/grades.module').then((m) => m.GradesModule),
+  },
+  {
     path: 'timetable',
     component: TimetableComponent,
   },

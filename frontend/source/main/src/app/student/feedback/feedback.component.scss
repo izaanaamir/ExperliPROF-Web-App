@@ -3,10 +3,11 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('../../../assets/images/pages/bg-01.png');
+    background-image: url('../../../assets/images/logo.png');
     background-size: 30% auto;
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: calc(100% - 20px) center;
+    /* Adjust the position of the logo */
 }
 
 .feedback-form {
@@ -17,6 +18,11 @@
     text-align: center;
     font-weight: bold;
     width: 400px;
+    margin-left: 20px;
+    /* Add margin left to move the form to the right */
+    margin-top: 70px;
+    font-family: Arial, sans-serif;
+    /* Change the font family as desired */
 }
 
 .rating-stars {
@@ -29,4 +35,44 @@
 
 .rating-stars .filled {
     color: #ffc107;
+}
+
+.feedback-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    /* Change the font family as desired */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0069d9;
 }

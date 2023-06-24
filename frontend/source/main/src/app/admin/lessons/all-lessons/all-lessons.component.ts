@@ -180,7 +180,6 @@ export class AllLessonsComponent
     });
   }
   editCall(row: Lessons) {
-    console.log('hello')
     localStorage.setItem('rowData', JSON.stringify(row));
     this.router.navigate(['/admin/lessons/about-lessons']);
   }

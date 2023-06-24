@@ -8,7 +8,7 @@
     <!-- Widgets -->
     <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-        <div class="card">
+        <div class="card">  
           <div class="body">
             <div class="row align-items-center">
               <div class="col-md-4 mb-0">
@@ -59,7 +59,7 @@
     </div>
     <!-- #END# Widgets -->
     <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+      <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
             <h2>Your Progress</h2>
@@ -135,7 +135,19 @@
               [legend]="barChartOptions.legend!" [fill]="barChartOptions.fill!"></apx-chart>
           </div>
         </div>
-      </div>
+      </div> -->
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+          <div class="header">
+            <h2>Test Results</h2>
+          </div>
+          <div class="body">
+            <apx-chart [series]="areaChartOptions.series!" [chart]="areaChartOptions.chart!"
+              [xaxis]="areaChartOptions.xaxis!" [yaxis]="areaChartOptions.yaxis!" [colors]="areaChartOptions.colors!"
+              [stroke]="areaChartOptions.stroke!" [legend]="areaChartOptions.legend!" [grid]="areaChartOptions.grid!"
+              [tooltip]="areaChartOptions.tooltip!" [dataLabels]="areaChartOptions.dataLabels!"></apx-chart>
+          </div>
+        </div>
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
@@ -218,21 +230,10 @@
         </div>
       </div>
     </div>
-    <div class="row clearfix">
-      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-        <div class="card">
-          <div class="header">
-            <h2>Test Results</h2>
-          </div>
-          <div class="body">
-            <apx-chart [series]="areaChartOptions.series!" [chart]="areaChartOptions.chart!"
-              [xaxis]="areaChartOptions.xaxis!" [yaxis]="areaChartOptions.yaxis!" [colors]="areaChartOptions.colors!"
-              [stroke]="areaChartOptions.stroke!" [legend]="areaChartOptions.legend!" [grid]="areaChartOptions.grid!"
-              [tooltip]="areaChartOptions.tooltip!" [dataLabels]="areaChartOptions.dataLabels!"></apx-chart>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    <!-- <div class="row clearfix"> -->
+
+      <!-- </div> -->
+      <!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="card">
           <div class="header">
             <h2>Assignments</h2>
@@ -319,9 +320,9 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row clearfix">
+      </div> -->
+    <!-- </div> -->
+    <!-- <div class="row clearfix">
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="card">
           <div class="header">
@@ -499,6 +500,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </div> -->
+  <!-- </div> -->
+<!-- </section> -->

@@ -14,6 +14,6 @@ urlpatterns = [
     path('remove_school/<int:school_id>', delete_school, name='delete_school'),
     path('update_school/<int:school_id>', update_school, name='update_school'),
     path('get_teacher_creds/<int:user_id>', get_teacher_creds, name='get_teacher_creds'),
-
+    path('update_teacher/', update_teacher, name='update_teacher'),
 ]
 

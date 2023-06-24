@@ -174,3 +174,11 @@ def _generate_user_password(length):
     # Generate a random password by selecting characters from the set
     password = ''.join(random.choice(characters) for _ in range(length))
     return password
+
+def update_user(request):
+    data = json.loads(request.body)
+    print(data)
+    user = User.objects.get(data["user_uuid"])
+    user.email = data["Email"]
+    user.first_name = data["FirstName"]
+    user.last_name = data["LastName"]

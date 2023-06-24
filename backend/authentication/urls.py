@@ -8,5 +8,6 @@ urlpatterns = [
     path("delete_user_task/", delete_user_task, name='delete_user_task'),
     path("get_user_info/<str:user_id>", get_user_data, name='get_user_data'),
     path("create_user/", create_user, name='create_user'),
+    # path("update_user/", update_user, name='update_user'),
 ]
 

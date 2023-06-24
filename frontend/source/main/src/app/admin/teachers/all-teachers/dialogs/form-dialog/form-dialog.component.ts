@@ -109,38 +109,33 @@ export class FormDialogComponent {
 
   public confirmAdd(): void {
     // const formData = new FormData();
+    if (this.action === 'edit') {
+      this.teachers = this.proForm.getRawValue();
+    this.http.put("http://localhost:8000/api/teacher/update_teacher/", this.teachers)
+  .subscribe(
+    (response) => {
+      console.log('Teacher added successfully', response);
+      // Handle the server response here
+      // ...
+    },
+    (error) => {
+      console.error('Error adding teacher', error);
+      // Handle any errors that occurred during the request
+      // ...
+    }
+  );
+    } else {
     this.teachers = this.proForm.getRawValue();
     console.log("teachers info in confirmAdd", this.teachers)
-    // Check if CV file was selected
-    // if (this.cvFileInput.nativeElement.files && this.cvFileInput.nativeElement.files.length > 0) {
-    //   const cvFile = this.cvFileInput.nativeElement.files[0];
-    //   console.log("cv:", cvFile);
-    //   this.teachers.cvData = cvFile;
-    //   formData.append('cvInfo', cvFile);
-    // }
 
-    // // Check if image file was selected
-    // if (this.imgFileInput.nativeElement.files && this.imgFileInput.nativeElement.files.length > 0) {
-    //   const imgFile = this.imgFileInput.nativeElement.files[0];
-    //   console.log("image:", imgFile);
-    //   this.teachers.img = imgFile;
-    //   formData.append('imgInfo', imgFile);
-    // }
-
-    // formData.append('teachersData', JSON.stringify(this.teachers));
-    // console.log("Before sending request", this.teachers);
-    // for (const pair of formData.entries()) {
-    //   console.log(pair[0] + ', ' + pair[1]);
-    // }
-
-  var apiData = {
+  var apiDataNew = {
       'user_uuid' : this.teachers.user_uuid,
       'firstName': this.teachers.FirstName,
       'lastName': this.teachers.LastName,
       'Role': 'Teacher',
       'email': this.teachers.Email
     }
-    this.http.post("http://localhost:8000/api/user/create_user/", apiData)
+    this.http.post("http://localhost:8000/api/user/create_user/", apiDataNew)
   .pipe(
     mergeMap(() => {
       // Second API call to add the teacher
@@ -159,6 +154,9 @@ export class FormDialogComponent {
       // ...
     }
   );
+  }
+      this.dialogRef.close(1);
+    
 
   }
 

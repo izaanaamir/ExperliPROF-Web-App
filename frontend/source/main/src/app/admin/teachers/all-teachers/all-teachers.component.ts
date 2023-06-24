@@ -121,12 +121,7 @@ export class AllTeachersComponent
     });
   }
   editCall(row: Teachers) {
-    localStorage.setItem('rowData', JSON.stringify(row));
-    this.router.navigate(['/admin/teachers/about-teacher']);
-  }
-  deleteItem(row: Teachers) {
     this.id = row.TeacherID;
-    console.log("In teacher component", this.id)
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -138,6 +133,44 @@ export class AllTeachersComponent
         teachers: row,
         action: 'edit',
       },
+      direction: tempDirection,
+    });
+    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+      if (result === 1) {
+        // When using an edit things are little different, firstly we find record inside DataService by id
+        const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
+          (x) => x.TeacherID === this.id
+        );
+        // Then you update that record using data from dialogData (values you enetered)
+        // if (foundIndex != null && this.exampleDatabase) {
+        //   this.exampleDatabase.dataChange.value[foundIndex] =
+        //     this.teachersService.getDialogData();
+          // And lastly refresh table
+          this.refresh()
+          this.refreshTable();
+          this.showNotification(
+            'black',
+            'Edit Record Successfully...!!!',
+            'bottom',
+            'center'
+          );
+        }
+      }
+    
+    );
+  }
+deleteItem(row: Teachers) {
+    this.id = row.TeacherID;
+    console.log("In teacher component", this.id)
+    let tempDirection: Direction;
+    if (localStorage.getItem('isRtl') === 'true') {
+      tempDirection = 'rtl';
+    } else {
+      tempDirection = 'ltr';
+    }
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: row,
+      direction: tempDirection,
     });
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {

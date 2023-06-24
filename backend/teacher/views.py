@@ -298,3 +298,30 @@ def get_teacher_creds(request, user_id):
         'password': user.password
     }
     return JsonResponse(response_data, safe=False)
+
+def update_teacher(request):
+    if request.method == 'PUT':
+        data = json.loads(request.body)
+        print(data)
+        teacher = Teacher.objects.get(TeacherID=data['id'])
+        teacher.FirstName=data['FirstName']
+        teacher.LastName=data['LastName']
+        teacher.Email=data['Email']
+        teacher.Phone=data['Phone']
+        teacher.address=data['address']
+        teacher.title=data['title']
+        # Extract the data from the request
+        teacher.save()
+        # Get the Teacher instance
+        # Create a new School instance
+        
+        user = User.objects.get(uuid=teacher.user_uuid.uuid)
+        user.email = data["Email"]
+        user.first_name = data["FirstName"]
+        user.last_name = data["LastName"]
+        
+        user.save()
+        return JsonResponse({'message': 'Teacher updated successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
+    

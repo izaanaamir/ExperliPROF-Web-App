@@ -156,7 +156,7 @@ export class AllTeachersComponent
           );
         }
       }
-    
+
     );
   }
 deleteItem(row: Teachers) {
@@ -227,7 +227,10 @@ showCredentials(row: any) {
     });
   });
 }
-
+showAboutTeacher(row: any) {
+  // Redirect to the About Teacher page
+  this.router.navigateByUrl('admin/teachers/about-teacher');
+}
   removeSelectedRows() {
     const totalSelect = this.selection.selected.length;
     this.selection.selected.forEach((item) => {

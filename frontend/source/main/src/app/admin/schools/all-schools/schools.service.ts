@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Schools } from './schools.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
+
 @Injectable()
 export class SchoolsService extends UnsubscribeOnDestroyAdapter {
   private readonly API_URL = 'assets/data/schools.json';
@@ -23,7 +24,8 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllSchools(): void {
-    this.subs.sink = this.httpClient.get<Schools[]>(this.API_URL).subscribe({
+    const url = "http://localhost:8000/api/admn/get_all_schools/"
+    this.subs.sink = this.httpClient.get<Schools[]>(url).subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -36,41 +38,42 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
   }
   addSchools(schools: Schools): void {
     this.dialogData = schools;
-
-    // this.httpClient.post(this.API_URL, schools)
-    //   .subscribe({
-    //     next: (data) => {
-    //       this.dialogData = schools;
-    //     },
-    //     error: (error: HttpErrorResponse) => {
-    //        // error code here
-    //     },
-    //   });
+    var data: any = {};
+    data = this.dialogData;
+    data["user_uuid"] = localStorage.getItem("user_uuid");
+    console.log(data)
+    this.httpClient.post('http://localhost:8000/api/admn/create_school/', data)
+      .subscribe(
+        response => {
+          // Handle the response from the backend
+          console.log('Form data sent successfully');
+        },
+        error => {
+          // Handle any errors that occurred during the API call
+          console.error('Error occurred while sending form data:', error);
+        }
+      );
   }
   updateSchools(schools: Schools): void {
     this.dialogData = schools;
-
-    // this.httpClient.put(this.API_URL + schools.id, schools)
-    //     .subscribe({
-    //       next: (data) => {
-    //         this.dialogData = schools;
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
+    this.httpClient.put("http://localhost:8000/api/admn/update_school/" + schools.id, schools)
+        .subscribe({
+          next: (data) => {
+            this.dialogData = schools;
+          },
+          error: (error: HttpErrorResponse) => {
+             // error code here
+          },
+        });
   }
   deleteSchools(id: number): void {
-    console.log(id);
-
-    // this.httpClient.delete(this.API_URL + id)
-    //     .subscribe({
-    //       next: (data) => {
-    //         console.log(id);
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
+    this.httpClient.delete("http://localhost:8000/api/admn/delete_school/" + id)
+        .subscribe({
+          next: (data) => {
+          },
+          error: (error: HttpErrorResponse) => {
+             // error code here
+          },
+        });
   }
 }

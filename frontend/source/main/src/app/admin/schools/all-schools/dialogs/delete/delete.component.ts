@@ -4,9 +4,9 @@ import { SchoolsService } from '../../schools.service';
 
 export interface DialogData {
   id: number;
-  dName: string;
+  schoolName: string;
   hod: string;
-  phone: string;
+  email: string;
 }
 
 @Component({

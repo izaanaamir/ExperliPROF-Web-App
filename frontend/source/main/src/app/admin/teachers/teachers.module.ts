@@ -11,12 +11,14 @@ import { AboutTeacherComponent } from './about-teacher/about-teacher.component';
 import { TeachersService } from './all-teachers/teachers.service';
 import { SharedModule } from '@shared';
 import { ComponentsModule } from '@shared/components/components.module';
+import { CredentialsComponent } from './all-teachers/dialogs/credentials/credentials.component';
 @NgModule({
   declarations: [
     AllTeachersComponent,
     DeleteDialogComponent,
     FormDialogComponent,
     AboutTeacherComponent,
+    CredentialsComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { ComponentsModule } from '@shared/components/components.module';
     TeachersRoutingModule,
     ComponentsModule,
     SharedModule,
+
   ],
   providers: [TeachersService],
 })

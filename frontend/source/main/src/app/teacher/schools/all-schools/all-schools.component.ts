@@ -134,6 +134,7 @@ export class AllSchoolsComponent
           this.exampleDatabase.dataChange.value[foundIndex] =
             this.schoolsService.getDialogData();
           // And lastly refresh table
+          this.refresh()
           this.refreshTable();
           this.showNotification(
             'black',

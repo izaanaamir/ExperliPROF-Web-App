@@ -89,7 +89,7 @@ class Grades(models.Model):
 class CoursesList(models.Model):
     courseName = models.CharField(max_length=255)
     courseDetails = models.TextField()
-    nameofProf = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    nameofProf = models.ForeignKey(Teacher, on_delete=models.CASCADE,db_column='nameofProf' )
     courseCode = models.CharField(max_length=50)
     courseFile = models.BinaryField()
     school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='nameOfSchool')

@@ -1,3 +1,5 @@
+import random
+import string
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from itsdangerous import Serializer
@@ -145,3 +147,30 @@ def get_user_data(request: Request, user_id):
         except ObjectDoesNotExist:
             # User not found
             return JsonResponse({'success': False, 'error': 'Server Error'})
+                
+def create_user(request: Request):
+    try:
+        data = json.loads(request.body)
+        user_uuid = data['user_uuid']
+        new_user = User(
+            uuid=user_uuid,
+            first_name=data['firstName'],
+            last_name=data['lastName'],
+            role=data['Role'],
+            email=data['email'],
+            password=_generate_user_password(8)
+        )
+        new_user.save()
+        
+        return JsonResponse({'success': True})
+    except ObjectDoesNotExist:
+            # User not found
+            return JsonResponse({'success': False, 'error': 'Server Error'})
+    
+    
+def _generate_user_password(length):
+    characters = string.ascii_letters
+
+    # Generate a random password by selecting characters from the set
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password

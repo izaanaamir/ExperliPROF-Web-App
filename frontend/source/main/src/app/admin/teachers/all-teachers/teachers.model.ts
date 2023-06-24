@@ -1,4 +1,5 @@
 import { formatDate } from '@angular/common';
+import { v4 as uuidv4 } from 'uuid';
 export class Teachers {
   TeacherID: number;
   // img: File;
@@ -12,7 +13,7 @@ export class Teachers {
   aboutMe: string;
   address: string;
   title: string;
-
+  user_uuid: string;
 
   constructor(teachers: Teachers) {
     this.TeacherID = teachers.TeacherID || this.getRandomID();
@@ -27,6 +28,9 @@ export class Teachers {
     this.aboutMe = teachers.aboutMe || '';
     this.address = teachers.address || '';
     this.title = teachers.title || '';
+    this.user_uuid = uuidv4();
+    // this.email = this.FirstName + '.' + this.LastName + '@experligence.com';
+    // this.password = 
   }
   public getRandomID(): number {
   const S4 = () => {

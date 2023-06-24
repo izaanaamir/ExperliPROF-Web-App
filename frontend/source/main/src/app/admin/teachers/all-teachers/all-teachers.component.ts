@@ -28,6 +28,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@core/service/auth.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SafeCall } from '@angular/compiler';
+import { CredentialsComponent } from './dialogs/credentials/credentials.component';
 
 
 @Component({
@@ -94,7 +95,6 @@ export class AllTeachersComponent
     } else {
       tempDirection = 'ltr';
     }
-    console.log("in addNEw", this.teachers)
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
         teachers: this.teachers,
@@ -106,9 +106,10 @@ export class AllTeachersComponent
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataServicex
-        this.exampleDatabase?.dataChange.value.unshift(
-          this.teachersService.getDialogData()
-        );
+        // this.exampleDatabase?.dataChange.value.unshift(
+        //   this.teachersService.getDialogData()
+        // );
+        this.refresh()
         this.refreshTable();
         this.showNotification(
           'snackbar-success',
@@ -144,6 +145,7 @@ export class AllTeachersComponent
         // for delete we use splice in order to remove single object from DataService
         if (foundIndex != null && this.exampleDatabase) {
           this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+          this.refresh()
           this.refreshTable();
           this.showNotification(
             'snackbar-danger',
@@ -173,6 +175,24 @@ export class AllTeachersComponent
           this.selection.select(row)
         );
   }
+
+showCredentials(row: any) {
+  const userId = row.user_uuid; // Replace 'id' with the actual property that holds the user's ID in your data model
+  console.log(row)
+  // Make an API call to fetch the email and password based on the user's ID
+  this.teachersService.getUserCredentials(userId).subscribe((response: { email: any; password: any; }) => {
+    const { email, password } = response; // Adjust the property names as per your API response
+
+    // Open the dialog and pass the user's email and password as data
+    this.dialog.open(CredentialsComponent, {
+      data: {
+        email,
+        password
+      }
+    });
+  });
+}
+    
   removeSelectedRows() {
     const totalSelect = this.selection.selected.length;
     this.selection.selected.forEach((item) => {
@@ -283,6 +303,7 @@ connect(): Observable<Teachers[]> {
   this.exampleDatabase.getAllTeacherss();
   // console.log(this.exampleDatabase.data)
   // Create a new Observable to return
+  console.log(this.exampleDatabase.data)
   return merge(...displayDataChanges).pipe(
     map(() => {
       // Filter data

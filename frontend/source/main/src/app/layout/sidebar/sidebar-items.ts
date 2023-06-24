@@ -824,7 +824,32 @@ export const ROUTES: RouteInfo[] = [
     role: ['Student'],
     submenu: [],
   },
+  {
+    path: '/student/grades/all-grades',
+    title: 'MENUITEMS.GRADES.TEXT',
+    iconType: 'material-icons-two-tone',
+    icon: 'grade',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Student'],
+    submenu: [
+      // {
+      //   path: '/admin/schools/all-schools',
+      //   title: 'MENUITEMS.SCHOOLS.LIST.ALL-SCHOOLS',
+      //   iconType: '',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   badge: '',
+      //   badgeClass: '',
+      //   role: [''],
+      //   submenu: [],
+      // },
 
+    ],
+  },
 
   {
     path: '/student/feedback',

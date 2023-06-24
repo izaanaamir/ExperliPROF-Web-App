@@ -177,12 +177,12 @@ export class AllTeachersComponent
   }
 
 showCredentials(row: any) {
-  const userId = row.user_uuid; // Replace 'id' with the actual property that holds the user's ID in your data model
+  const userId = row.TeacherID; // Replace 'id' with the actual property that holds the user's ID in your data model
   console.log(row)
   // Make an API call to fetch the email and password based on the user's ID
   this.teachersService.getUserCredentials(userId).subscribe((response: { email: any; password: any; }) => {
     const { email, password } = response; // Adjust the property names as per your API response
-
+    console.log(email, password)
     // Open the dialog and pass the user's email and password as data
     this.dialog.open(CredentialsComponent, {
       data: {

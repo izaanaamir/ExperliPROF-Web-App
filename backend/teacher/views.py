@@ -290,7 +290,8 @@ def get_sections(request, courseID):
 
 
 def get_teacher_creds(request, user_id):
-    user = User.objects.get(uuid=user_id)
+    teacher = Teacher.objects.get(TeacherID=user_id)
+    user = User.objects.get(uuid=teacher.user_uuid.uuid)
     response_data = {
         'email': user.email,
         'password': user.password

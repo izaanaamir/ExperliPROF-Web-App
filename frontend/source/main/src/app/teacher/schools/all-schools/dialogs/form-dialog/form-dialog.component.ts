@@ -58,14 +58,15 @@ export class FormDialogComponent {
   }
 createContactForm(): UntypedFormGroup {
   return this.fb.group({
-    schoolName: ['', Validators.required],
-    hod: ['', Validators.required],
-    phone: [''],
-    email: ['', [Validators.required, Validators.email]],
-    address: [''],
-    city: [''],
-    state: [''],
-    country: [''],
+    id: [this.schools.id],
+    schoolName: [this.schools.schoolName, Validators.required],
+    hod: [this.schools.hod, Validators.required],
+    phone: [this.schools.phone],
+    email: [this.schools.email, [Validators.required, Validators.email]],
+    address: [this.schools.address],
+    city: [this.schools.city],
+    state: [this.schools.state],
+    country: [this.schools.country],
   });
 }
 
@@ -76,6 +77,11 @@ createContactForm(): UntypedFormGroup {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.schoolsService.addSchools(this.schoolsForm.getRawValue());
+      if (this.action === 'edit') {
+    this.schoolsService.updateSchools(this.schoolsForm.getRawValue());
+      } else {
+        this.schoolsService.addSchools(this.schoolsForm.getRawValue());
+      }
+      this.dialogRef.close(1);
   }
 }

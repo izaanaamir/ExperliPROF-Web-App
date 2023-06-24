@@ -92,7 +92,7 @@ class CoursesList(models.Model):
     nameofProf = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     courseCode = models.CharField(max_length=50)
     courseFile = models.BinaryField()
-    school = models.ForeignKey(School, on_delete=models.CASCADE)
+    school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='nameOfSchool')
     
     class Meta:
         db_table = 'courses_list'

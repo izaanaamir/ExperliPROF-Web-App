@@ -11,5 +11,7 @@ urlpatterns = [
     path('get_courses/<str:user_id>', get_courses, name='get_courses'),
     path('add_section/', add_section, name='add_section'),
     path('get_all_sections/<int:courseID>', get_sections, name='get_sections'),
+    path('remove_school/<int:school_id>', delete_school, name='delete_school'),
+    path('update_school/<int:school_id>', update_school, name='update_school'),
 ]
 

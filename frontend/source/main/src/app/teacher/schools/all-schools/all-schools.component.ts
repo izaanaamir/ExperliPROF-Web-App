@@ -93,9 +93,10 @@ export class AllSchoolsComponent
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
-        this.exampleDatabase?.dataChange.value.unshift(
-          this.schoolsService.getDialogData()
-        );
+        // this.exampleDatabase?.dataChange.value.unshift(
+        //   this.schoolsService.getDialogData()
+        // );
+        this.refresh()
         this.refreshTable();
         this.showNotification(
           'snackbar-success',
@@ -108,6 +109,7 @@ export class AllSchoolsComponent
   }
   editCall(row: Schools) {
     this.id = row.id;
+    console.log("In Edit Call", this.id)
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -145,6 +147,7 @@ export class AllSchoolsComponent
   }
   deleteItem(row: Schools) {
     this.id = row.id;
+    console.log(this.id)
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -199,6 +202,7 @@ export class AllSchoolsComponent
         (d) => d === item
       );
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+      this.exampleDatabase?.deleteSchools(item.id);
       this.exampleDatabase?.dataChange.value.splice(index, 1);
       this.refreshTable();
       this.selection = new SelectionModel<Schools>(true, []);
@@ -225,6 +229,7 @@ export class AllSchoolsComponent
         this.dataSource.filter = this.filter.nativeElement.value;
       }
     );
+    this.schoolsService.getAllSchools();
   }
   // export table data in excel file
   exportExcel() {

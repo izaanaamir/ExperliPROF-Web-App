@@ -29,7 +29,6 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
-        console.log(data)
       },
       error: (error: HttpErrorResponse) => {
         this.isTblLoading = false;
@@ -57,28 +56,24 @@ export class SchoolsService extends UnsubscribeOnDestroyAdapter {
   }
   updateSchools(schools: Schools): void {
     this.dialogData = schools;
-
-    // this.httpClient.put(this.API_URL + schools.id, schools)
-    //     .subscribe({
-    //       next: (data) => {
-    //         this.dialogData = schools;
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
+    this.httpClient.put("http://localhost:8000/api/teacher/update_school/" + schools.id, schools)
+        .subscribe({
+          next: (data) => {
+            this.dialogData = schools;
+          },
+          error: (error: HttpErrorResponse) => {
+             // error code here
+          },
+        });
   }
   deleteSchools(id: number): void {
-    console.log(id);
-
-    // this.httpClient.delete(this.API_URL + id)
-    //     .subscribe({
-    //       next: (data) => {
-    //         console.log(id);
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
+    this.httpClient.delete("http://localhost:8000/api/teacher/remove_school/" + id)
+        .subscribe({
+          next: (data) => {
+          },
+          error: (error: HttpErrorResponse) => {
+             // error code here
+          },
+        });
   }
 }

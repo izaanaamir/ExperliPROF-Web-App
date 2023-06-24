@@ -136,7 +136,7 @@ def get_all_schools(request, user_id):
     response_data = []
     for school in schools:
         school_data = {
-            'SchoolID': school.SchoolID,
+            'id': school.SchoolID,
             'schoolName': school.schoolName,
             'hod': school.hod,
             'phone': school.phone,
@@ -150,6 +150,41 @@ def get_all_schools(request, user_id):
 
     return JsonResponse(response_data, safe=False)
 
+
+def delete_school(request, school_id):
+    if request.method == 'DELETE':
+        school = School.objects.filter(SchoolID=school_id)
+        # Extract the data from the request
+        school.delete()
+        # Get the Teacher instance
+        # Create a new School instance
+        return JsonResponse({'message': 'School deleted successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
+
+def update_school(request, school_id):
+    if request.method == 'PUT':
+        data = json.loads(request.body)
+        print(data)
+        school= School.objects.get(SchoolID=school_id)
+        print(data["schoolName"])
+        school.schoolName=data['schoolName']
+        school.hod=data['hod']
+        school.phone=data['phone']
+        school.email=data['email']
+        school.address=data['address']
+        school.city=data['city']
+        school.state=data['state']
+        school.country=data['country']
+        # Extract the data from the request
+        school.save()
+        # Get the Teacher instance
+        # Create a new School instance
+        return JsonResponse({'message': 'School updated successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
+    
+    
 def add_course(request):
     if request.method == 'POST':
         data = json.loads(request.body)

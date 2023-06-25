@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, map } from 'rxjs';
 import { Students } from './students.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
@@ -33,10 +33,21 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
       },
     });
   }
+
+    getUserCredentials(userID: any) {
+    return this.httpClient.get("http://localhost:8000/api/student/get_student_creds/" + userID).pipe(
+    map((response: any) => response),
+    catchError((error: any) => {
+      console.error(error.name + ' ' + error.message);
+      // Handle the error appropriately
+      throw error; // Rethrow the error to propagate it to the subscriber
+    })
+  );
+  }
   addStudents(students: Students): void {
     this.dialogData = students;
 
-    this.httpClient.post("http://localhost:8000/api/teacher/add_student/", students)
+    this.httpClient.post("http://localhost:8000/api/student/add_student/", students)
       .subscribe({
         next: (data) => {
           this.dialogData = students;

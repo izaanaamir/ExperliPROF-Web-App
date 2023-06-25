@@ -10,7 +10,7 @@ import {
 import { Students } from '../../students.model';
 import { formatDate } from '@angular/common';
 import { Schools } from 'app/admin/schools/all-schools/schools.model';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, mergeMap, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 
@@ -42,7 +42,7 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.students.lastname;
+      this.dialogTitle = data.students.lastName;
       this.students = data.students;
     } else {
       this.dialogTitle = 'New Students';
@@ -66,8 +66,8 @@ export class FormDialogComponent {
     return this.fb.group({
       id: [this.students.id],
       // img: [this.students.img],
-      lastname: [this.students.lastname],
-      firstname: [this.students.firstname],
+      lastName: [this.students.lastName],
+      firstName: [this.students.firstName],
       schoolemail: [
         this.students.schoolemail,
         [Validators.required, Validators.email, Validators.minLength(5)],
@@ -84,6 +84,7 @@ export class FormDialogComponent {
       statusofstudent: [this.students.statusofstudent],
       specialrequirements: [this.students.specialrequirements],
       school: [this.getFormattedSchools()],
+      user_uuid: [this.students.user_uuid]
     });
   }
   submit() {
@@ -93,7 +94,55 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.studentsService.addStudents(this.stdForm.getRawValue());
+    // const formData = new FormData();
+    if (this.action === 'edit') {
+      this.students = this.stdForm.getRawValue();
+      console.log(this.students)
+    this.httpClient.put("http://localhost:8000/api/student/update_student/", this.students)
+  .subscribe(
+    (response) => {
+      console.log('student added successfully', response);
+      // Handle the server response here
+      // ...
+    },
+    (error) => {
+      console.error('Error adding student', error);
+      // Handle any errors that occurred during the request
+      // ...
+    }
+  );
+    } else {
+    this.students = this.stdForm.getRawValue();
+    console.log("teachers info in confirmAdd", this.students)
+
+      var apiDataNew = {
+        ...this.students,
+        Role: "Student",
+        email: this.students.schoolemail,
+      };
+    this.httpClient.post("http://localhost:8000/api/user/create_user/", apiDataNew)
+  .pipe(
+    mergeMap(() => {
+      // Second API call to add the teacher
+      return this.httpClient.post('http://localhost:8000/api/student/add_student/', this.students);
+    })
+  )
+  .subscribe(
+    (response) => {
+      console.log('Student added successfully', response);
+      // Handle the server response here
+      // ...
+    },
+    (error) => {
+      console.error('Error adding student', error);
+      // Handle any errors that occurred during the request
+      // ...
+    }
+  );
+  }
+      this.dialogRef.close(1);
+    
+
   }
 
   // Inside your component class
@@ -118,7 +167,7 @@ getFormattedSchools() {
     (schools: Schools[]) => {
       this.schools = schools.map((school: Schools) => ({
         label: school.schoolName,
-        value: school.schoolName
+        value: school.id
       }));
     },
     (error: HttpErrorResponse) => {

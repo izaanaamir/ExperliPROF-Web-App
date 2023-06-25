@@ -24,6 +24,7 @@ import {
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
 import { formatDate } from '@angular/common';
+import { CredentialsComponent } from './dialogs/credentials/credentials.component';
 
 @Component({
   selector: 'app-all-students',
@@ -37,8 +38,8 @@ export class AllStudentsComponent
   displayedColumns = [
     'select',
     // 'rollNo',
-    'lastname',
-    'firstname',
+    'lastName',
+    'firstName',
     'school',
     // 'gender',
     'schoolemail',
@@ -96,9 +97,10 @@ export class AllStudentsComponent
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataServicex
-        this.exampleDatabase?.dataChange.value.unshift(
-          this.studentsService.getDialogData()
-        );
+        // this.exampleDatabase?.dataChange.value.unshift(
+        //   this.studentsService.getDialogData()
+        // );
+        this.refresh()
         this.refreshTable();
         this.showNotification(
           'snackbar-success',
@@ -111,6 +113,7 @@ export class AllStudentsComponent
   }
   editCall(row: Students) {
     this.id = row.id;
+    console.log(row)
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -131,10 +134,11 @@ export class AllStudentsComponent
           (x) => x.id === this.id
         );
         // Then you update that record using data from dialogData (values you enetered)
-        if (foundIndex != null && this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value[foundIndex] =
-            this.studentsService.getDialogData();
+        // if (foundIndex != null && this.exampleDatabase) {
+        //   this.exampleDatabase.dataChange.value[foundIndex] =
+        //     this.studentsService.getDialogData();
           // And lastly refresh table
+          this.refresh()
           this.refreshTable();
           this.showNotification(
             'black',
@@ -144,8 +148,25 @@ export class AllStudentsComponent
           );
         }
       }
-    });
+    );
   }
+
+  showCredentials(row: any) {
+  const userId = row.studentId; // Replace 'id' with the actual property that holds the user's ID in your data model
+  console.log(row)
+  // Make an API call to fetch the email and password based on the user's ID
+  this.studentsService.getUserCredentials(userId).subscribe((response: { email: any; password: any; }) => {
+    const { email, password } = response; // Adjust the property names as per your API response
+    console.log(email, password)
+    // Open the dialog and pass the user's email and password as data
+    this.dialog.open(CredentialsComponent, {
+      data: {
+        email,
+        password
+      }
+    });
+  });
+}
   deleteItem(row: Students) {
     this.id = row.id;
     let tempDirection: Direction;
@@ -166,6 +187,7 @@ export class AllStudentsComponent
         // for delete we use splice in order to remove single object from DataService
         if (foundIndex != null && this.exampleDatabase) {
           this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+          this.refresh()
           this.refreshTable();
           this.showNotification(
             'snackbar-danger',
@@ -235,8 +257,8 @@ export class AllStudentsComponent
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         // 'Roll No': x.rollNo,
-        lastname: x.lastname,
-        first: x.firstname,
+        lastName: x.lastName,
+        firstName: x.firstName,
         statusofstudent: x.statusofstudent,
         // Gender: x.gender,
         registrationnumber: x.registrationnumber,
@@ -309,8 +331,8 @@ export class ExampleDataSource extends DataSource<Students> {
           .slice()
           .filter((students: Students) => {
             const searchStr = (
-              students.lastname +
-              students.firstname +
+              students.lastName +
+              students.firstName +
               students.schoolemail +
               students.school
 
@@ -344,11 +366,11 @@ export class ExampleDataSource extends DataSource<Students> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'lastname':
-          [propertyA, propertyB] = [a.lastname, b.lastname];
+        case 'lastName':
+          [propertyA, propertyB] = [a.lastName, b.lastName];
           break;
-          case ' firstname':
-            [propertyA, propertyB] = [a. firstname, b. firstname];
+          case ' firstName':
+            [propertyA, propertyB] = [a. firstName, b. firstName];
             break;
         case 'schoolemail':
           [propertyA, propertyB] = [a.schoolemail, b.schoolemail];

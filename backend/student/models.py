@@ -1,4 +1,5 @@
 from django.db import models
+from authentication.models import User
 #from ..teacher.models import Teacher
 from teacher.models import School, Teacher, Course
 class Student(models.Model):
@@ -16,9 +17,10 @@ class Student(models.Model):
     SpecialArrangement = models.CharField(max_length=255, null=True, db_column='specialRequirements')
     PersonalEmail = models.CharField(max_length=255, null=True, db_column='personalEmail')
     SchoolEmail = models.CharField(max_length=255, null=True, db_column='schoolEmail')
-    School = models.IntegerField(null=True, db_column='schoolId')
+    School = models.ForeignKey(School, on_delete=models.CASCADE, db_column='schoolId')
     registrationNumber = models.CharField(max_length=255, null=True, db_column='registrationNumber')
-
+    user_uuid= models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_uuid')    
+    
     def __str__(self):
         return f"{self.FirstName} {self.LastName}"
 

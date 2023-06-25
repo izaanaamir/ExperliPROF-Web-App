@@ -15,6 +15,7 @@ import { FormDialogComponent as StdFormDialogComponent } from './student-attenda
 import { StudentAttendanceService } from './student-attendance/attendance.service';
 import { SharedModule } from '@shared';
 import { ComponentsModule } from '@shared/components/components.module';
+import { CredentialsComponent } from './all-students/dialogs/credentials/credentials.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ComponentsModule } from '@shared/components/components.module';
     StudentAttendanceComponent,
     StdDeleteDialogComponent,
     StdFormDialogComponent,
+    CredentialsComponent
   ],
   imports: [
     CommonModule,

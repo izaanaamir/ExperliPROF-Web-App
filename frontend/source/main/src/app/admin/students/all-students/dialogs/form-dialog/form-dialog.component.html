@@ -18,9 +18,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>First Name</mat-label>
-            <input matInput formControlName="firstname" required>
+            <input matInput formControlName="firstName" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
-            <mat-error *ngIf="stdForm.get('firstname')?.hasError('required')">
+            <mat-error *ngIf="stdForm.get('firstName')?.hasError('required')">
              First Name is required
             </mat-error>
           </mat-form-field>
@@ -28,9 +28,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lastname" required>
+            <input matInput formControlName="lastName" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
-            <mat-error *ngIf="stdForm.get('lastname')?.hasError('required')">
+            <mat-error *ngIf="stdForm.get('lastName')?.hasError('required')">
              Last Name is required
             </mat-error>
           </mat-form-field>

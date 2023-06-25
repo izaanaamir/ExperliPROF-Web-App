@@ -151,6 +151,7 @@ def get_user_data(request: Request, user_id):
 def create_user(request: Request):
     try:
         data = json.loads(request.body)
+        print(data)
         user_uuid = data['user_uuid']
         new_user = User(
             uuid=user_uuid,

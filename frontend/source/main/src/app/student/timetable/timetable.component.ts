@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class TimetableComponent {
   breadscrums = [
     {
-      title: 'Timetable',
-      items: ['Student'],
+      title: '',
+      items: [],
       active: 'Timetable',
     },
   ];

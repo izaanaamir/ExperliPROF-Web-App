@@ -33,12 +33,16 @@
     "Add": "Add",
     "Delete": "Delete",
     "Student Name": "Student Name",
-    "Phone": "Phone",
-    "School": "School",
+
     "Branch": "Branch",
     "Date Of Admission": "Date Of Admission",
-    "Email": "Email",
 
+    "Feedback": "Feedback",
+    "Name": "Name",
+
+    "Rating": "Rating",
+    "Comment": "Comment",
+    "Submit": "Submit",
 
 
     "Id": "Id",
@@ -82,8 +86,13 @@
     "Phone": "Phone",
     "Email": "Email",
     "Start Year": "Start Year",
-    "Actions": "Actions",
+
     "Add Record": "Add Record",
+
+    "Courses": "Courses",
+    "Class": "Class",
+    "Module Name": "Module Name",
+    "Actions": "Actions",
     "Edit Record": "Edit Record",
     "Delete Record": "Delete Record",
     "Refresh Record": "Refresh Record",
@@ -93,8 +102,17 @@
     "Item 2": "Item 2",
     "Item 3": "Item 3",
 
-    "No results": "No results",
 
+    "No results": "No results",
+    "Security Settings": "Security Settings",
+    "Username": "Username",
+    "Current Password": "Current Password",
+    "New Password": "New Password",
+    "Save": "Save",
+    "Account Settings": "Account Settings",
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Save Changes": "Save Changes",
 
     "tasks": {
         "tasks": "Tasks",

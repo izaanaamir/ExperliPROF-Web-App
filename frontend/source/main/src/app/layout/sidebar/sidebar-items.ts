@@ -852,7 +852,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/student/students/student-attendance',
-    title: 'MENUITEMS.STUDENT.LIST.STUDENT-ATTENDANCE',
+    title: 'MENUITEMS.STUDENTS.LIST.STUDENT ATTENDANCE',
     iconType: 'material-icons-two-tone',
     icon: 'people_alt',
     class: '',
@@ -862,7 +862,6 @@ export const ROUTES: RouteInfo[] = [
     role: ['Student'],
     submenu: [],
   },
-
   {
     path: '/student/feedback',
     title: 'MENUITEMS.STUDENT.LIST.FEEDBACK',

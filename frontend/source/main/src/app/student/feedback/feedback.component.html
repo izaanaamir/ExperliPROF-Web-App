@@ -1,26 +1,26 @@
 <div class="feedback-container">
     <div class="feedback-form">
-        <h2>Feedback</h2>
+        <h2>{{ 'Feedback' | translate }}</h2>
         <form (ngSubmit)="submitFeedback()">
             <div class="form-group">
-                <label for="name">Name<span>*</span></label>
+                <label for="name">{{ 'Name' | translate }}<span>*</span></label>
                 <input type="text" id="name" name="name" [(ngModel)]="feedback.name" required>
             </div>
             <div class="form-group">
-                <label for="email">Email<span>*</span></label>
+                <label for="email">{{ 'Email' | translate }}<span>*</span></label>
                 <input type="email" id="email" name="email" [(ngModel)]="feedback.email" required>
             </div>
             <div class="form-group">
-                <label for="rating">Rating<span>*</span></label>
+                <label for="rating">{{ 'Rating' | translate }}<span>*</span></label>
                 <div class="rating-stars">
                     <span class="star" *ngFor="let star of feedback.ratingStars" [class.filled]="star <= selectedStar" (click)="selectStar(star)">&#9733;</span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="comment">Comment</label>
+                <label for="comment">{{ 'Comment' | translate }}</label>
                 <textarea id="comment" name="comment" [(ngModel)]="feedback.comment"></textarea>
             </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">{{ 'Submit' | translate }}</button>
         </form>
     </div>
 </div>

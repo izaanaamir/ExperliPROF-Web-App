@@ -328,7 +328,7 @@ def get_all_teacher_courses(request, user_id):
     response_data = []
     for course in courses:
         course_data = {
-            'sectionID': course.courseID,
+            'id': course.id,
             'courseName': course.courseName,
             # Include other course details as needed
         }

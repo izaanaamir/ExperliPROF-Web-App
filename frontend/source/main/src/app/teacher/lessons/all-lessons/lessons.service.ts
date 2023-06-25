@@ -21,8 +21,7 @@ export class lessonsService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllLessons(): void {
-    console.log(localStorage.getItem("courseID"))
-    const url = "http://localhost:8000/api/teacher/get_all_sections/" + localStorage.getItem("courseID")
+    const url = "http://localhost:8000/api/teacher/get_all_sections/" + localStorage.getItem("user_uuid")
     this.subs.sink = this.httpClient.get<Lessons[]>(url).subscribe({
       next: (data) => {
         this.isTblLoading = false;
@@ -68,7 +67,7 @@ export class lessonsService extends UnsubscribeOnDestroyAdapter {
     //     });
   }
   // deleteCourse(course: number): void {
-  //   this.httpClient.delete("http://localhost:8000/api/course/remove_course/" + courseID)
+  //   this.httpClient.delete("http://localhost:8000/api/teacher/remove_section/" + )
   //     .subscribe(
   //       () => {
   //         console.log('Course deleted successfully.');

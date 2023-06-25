@@ -105,9 +105,10 @@ export class AllLessonsComponent
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataServicex
-        this.exampleDatabase?.dataChange.value.unshift(
-          this.lessonsService.getDialogData()
-        );
+        // this.exampleDatabase?.dataChange.value.unshift(
+        //   this.lessonsService.getDialogData()
+        // );
+        this.refresh()
         this.refreshTable();
         this.showNotification(
           'snackbar-success',
@@ -124,6 +125,7 @@ export class AllLessonsComponent
     this.router.navigate(['/teacher/lessons/about-lessons']);
   }
   deleteItem(row: Lessons) {
+    console.log(row)
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -140,8 +142,9 @@ export class AllLessonsComponent
           (x) => x.sectionID === this.id
         );
         // for delete we use splice in order to remove single object from DataService
-        if (foundIndex != null && this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        // if (foundIndex != null && this.exampleDatabase) {
+        //   this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        this.refresh();
           this.refreshTable();
           this.showNotification(
             'snackbar-danger',
@@ -151,7 +154,7 @@ export class AllLessonsComponent
           );
         }
       }
-    });
+    );
   }
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
@@ -180,6 +183,7 @@ export class AllLessonsComponent
       //console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       // this.exampleDatabase?.deleteCourse(item.CourseID);
       this.exampleDatabase?.dataChange.value.splice(index, 1);
+      this.refresh();
       this.refreshTable();
       this.selection = new SelectionModel<Lessons>(true, []);
     });

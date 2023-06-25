@@ -145,6 +145,16 @@ def delete_school(request, school_id):
         return JsonResponse({'error': 'Invalid request method'})
 
 
+def delete_section(request, section_id):
+    if request.method == 'DELETE':
+        school = Section.objects.get(id=section_id)
+        # Extract the data from the request
+        school.delete()
+        # Get the Teacher instance
+        # Create a new School instance
+        return JsonResponse({'message': 'School deleted successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
 
 def delete_course(request, course_id):
     if request.method == 'DELETE':
@@ -239,23 +249,18 @@ def get_courses(request, user_id):
 def add_section(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        course_name = data['courseName']
-        section_name = data['sectionID']
-        section_details = data['numOfStudents']
-        print(course_name)
         # Retrieve the course based on courseName
-        course = CoursesList.objects.get(CourseName=course_name)
-
         # Create and save the section in the Section table
+        course = TeacherCourses.objects.get(id=data['courseName'])
         section = Section(
-            id=section_name,
             course=course,
-            num_of_students=section_details
+            sectionID=data['sectionID'],
+            num_of_students=data['numOfStudents']
         )
         section.save()
 
         # Return a success response or redirect to another page
-        return JsonResponse(data={"courseID":course.CourseID}, safe=False)
+        return JsonResponse({'message': 'Teacher updated successfully'})
     else:
         # Handle GET request case
         # Return an error response or redirect to another page
@@ -335,3 +340,27 @@ def get_all_teacher_courses(request, user_id):
         response_data.append(course_data)
 
     return JsonResponse(response_data, safe=False)
+
+def get_all_sections(request, user_id):
+
+    teacher = Teacher.objects.get(user_uuid=user_id)
+    # Retrieve all schools associated with the teacher
+    courses = TeacherCourses.objects.filter(teacher=teacher.TeacherID)
+    # Prepare the response data
+    if courses.exists():
+        response_data = []
+        for course in courses:
+            sections = Section.objects.filter(course=course.id)
+            if sections.exists():
+                for section in sections:
+                    section_data = {
+                        'id': section.id,
+                        'sectionID': section.sectionID,
+                        'courseName': course.courseName,
+                        'numOfStudents': section.num_of_students,
+                    }
+                    response_data.append(section_data)
+
+        return JsonResponse(response_data, safe=False)
+    else:
+      return JsonResponse({'error': 'Invalid request method'})  

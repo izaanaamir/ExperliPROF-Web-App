@@ -159,4 +159,4 @@ class Section(models.Model):
     num_of_students = models.IntegerField( db_column='numOfStudents')
     
     class Meta:
-        db_table = 'sections'
+        db_table = 'teachersections'

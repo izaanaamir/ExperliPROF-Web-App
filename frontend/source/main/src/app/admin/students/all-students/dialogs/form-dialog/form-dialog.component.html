@@ -18,9 +18,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>First Name</mat-label>
-            <input matInput formControlName="FirstName" required>
+            <input matInput formControlName="firstname" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
-            <mat-error *ngIf="stdForm.get('FirstName')?.hasError('required')">
+            <mat-error *ngIf="stdForm.get('firstname')?.hasError('required')">
              First Name is required
             </mat-error>
           </mat-form-field>
@@ -28,9 +28,9 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Last Name</mat-label>
-            <input matInput formControlName="LastName" required>
+            <input matInput formControlName="lastname" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
-            <mat-error *ngIf="stdForm.get('LastName')?.hasError('required')">
+            <mat-error *ngIf="stdForm.get('lastname')?.hasError('required')">
              Last Name is required
             </mat-error>
           </mat-form-field>
@@ -51,33 +51,19 @@
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Select School</mat-label>
             <mat-select formControlName="school" required>
-              <mat-option [value]="'ESIEE'">
-                ESIEE
-              </mat-option>
-              <mat-option [value]="'Bilkent'">
-                Bilkent
-              </mat-option>
-              <mat-option [value]="'Chandigarh University'">
-                Chandigarh University
-              </mat-option>
-              <mat-option [value]="'Kyoto'">
-                Kyoto
-              </mat-option>
-              <mat-option [value]="'Limerick'">
-                Limerick
+              <mat-option *ngFor="let school of schools" [value]="school.value">
+                {{ school.label }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="stdForm.get('school')?.hasError('required')">
-              Select Any School
-            </mat-error>
+            <!-- error handling -->
           </mat-form-field>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>School Email</mat-label>
-            <input matInput formControlName="Email" required>
+            <input matInput formControlName="schoolemail" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>email</i>
-            <mat-error *ngIf="stdForm.get('Email')?.hasError('required') || stdForm.get('Email')?.touched">
+            <mat-error *ngIf="stdForm.get('Email')?.hasError('required') || stdForm.get('schoolemail')?.touched">
               Please enter a valid email address
             </mat-error>
           </mat-form-field>
@@ -106,7 +92,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Registraion number</mat-label>
-            <input matInput formControlName="Registraion number">
+            <input matInput formControlName="registrationnumber">
             <i class="material-icons-two-tone color-icon p-3" matSuffix>assignment</i>
             <!-- <mat-error *ngIf="stdForm.get('mobile')?.hasError('required')">
               Registration number is required
@@ -140,7 +126,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Status of Student</mat-label>
-            <mat-select formControlName="status" required>
+            <mat-select formControlName="statusofstudent" required>
               <mat-option [value]="'Initial'">
                 Initial
               </mat-option>
@@ -157,7 +143,7 @@
                 Limerick
               </mat-option> -->
             </mat-select>
-            <mat-error *ngIf="stdForm.get('status')?.hasError('required')">
+            <mat-error *ngIf="stdForm.get('statusofstudent')?.hasError('required')">
               Select Any Status
             </mat-error>
           </mat-form-field>
@@ -165,7 +151,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Special Requirements</mat-label>
-            <input matInput formControlName="Special" >
+            <input matInput formControlName="specialrequirements" >
             <i class="material-icons-two-tone color-icon p-3" matSuffix>info</i>
             <!-- <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
              First Name is required
@@ -177,7 +163,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Personal Email</mat-label>
-            <input matInput formControlName="PEmail">
+            <input matInput formControlName="personalemail">
             <i class="material-icons-two-tone color-icon p-3" matSuffix>email</i>
             <!-- <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
               First Name is required

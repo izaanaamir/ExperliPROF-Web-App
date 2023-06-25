@@ -50,7 +50,6 @@ def get_all_students(request: Request):
             data = []
             all_students = Student.objects.values()
             list_of_students = list(all_students)
-            print(list_of_students)
             if list_of_students:
                 for student in list_of_students:
                     data.append({

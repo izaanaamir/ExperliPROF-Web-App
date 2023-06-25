@@ -60,7 +60,8 @@ def create_school(request):
     
 def delete_school(request, school_id):
     if request.method == 'DELETE':
-        school = School.objects.filter(SchoolID=school_id)
+        print(school_id)
+        school = School.objects.get(SchoolID=school_id)
         # Extract the data from the request
         school.delete()
         # Get the Teacher instance

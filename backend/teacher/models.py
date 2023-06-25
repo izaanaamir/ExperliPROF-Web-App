@@ -30,66 +30,66 @@ class School(models.Model):
     class Meta:
         db_table = 'schools'
         
-class Course(models.Model):
-    CourseID = models.AutoField(primary_key=True ,)
-    CourseName = models.CharField(max_length=255)
-    Subject = models.CharField(max_length=255)
-    Duration = models.IntegerField()
-    School = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
-    ListUpdatedDate = models.DateField()
-    Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, db_column='TeacherID')
-    SchoolYear = models.IntegerField()
-    Class = models.CharField(max_length=255)
-    LEVEL_CHOICES = (
-        ('Value1', 'Value1'),
-        ('Value2', 'Value2'),
-        ('Value3', 'Value3'),
-    )
-    #Level = models.CharField(max_length=255, choices=LEVEL_CHOICES)
-    InternalCourseCode = models.CharField(max_length=255)
+# class Course(models.Model):
+#     CourseID = models.AutoField(primary_key=True ,)
+#     CourseName = models.CharField(max_length=255)
+#     Subject = models.CharField(max_length=255)
+#     Duration = models.IntegerField()
+#     School = models.ForeignKey(School, on_delete=models.CASCADE, db_column='SchoolID')
+#     ListUpdatedDate = models.DateField()
+#     Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, db_column='TeacherID')
+#     SchoolYear = models.IntegerField()
+#     Class = models.CharField(max_length=255)
+#     LEVEL_CHOICES = (
+#         ('Value1', 'Value1'),
+#         ('Value2', 'Value2'),
+#         ('Value3', 'Value3'),
+#     )
+#     #Level = models.CharField(max_length=255, choices=LEVEL_CHOICES)
+#     InternalCourseCode = models.CharField(max_length=255)
     
-    class Meta:
-        db_table = 'courses'
+#     class Meta:
+#         db_table = 'courses'
 
 
-class ContactInfo(models.Model):
-    ContactInfoID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
-    Trainer = models.CharField(max_length=255)
-    PedagogicalSupervisorName = models.CharField(max_length=255)
-    PedagogicalSupervisorContact = models.CharField(max_length=255)
-    ClassInChargeName = models.CharField(max_length=255)
-    ClassInChargeContact = models.CharField(max_length=255)
-    PlanningCoordinatorName = models.CharField(max_length=255)
-    PlanningCoordinatorContact = models.CharField(max_length=255)
+# class ContactInfo(models.Model):
+#     ContactInfoID = models.AutoField(primary_key=True)
+#     Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
+#     Trainer = models.CharField(max_length=255)
+#     PedagogicalSupervisorName = models.CharField(max_length=255)
+#     PedagogicalSupervisorContact = models.CharField(max_length=255)
+#     ClassInChargeName = models.CharField(max_length=255)
+#     ClassInChargeContact = models.CharField(max_length=255)
+#     PlanningCoordinatorName = models.CharField(max_length=255)
+#     PlanningCoordinatorContact = models.CharField(max_length=255)
     
-    class Meta:
-        db_table = 'contactinfo'
+#     class Meta:
+#         db_table = 'contactinfo'
     
-class Checklist(models.Model):
-    ChecklistID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
-    ListOfStudents = models.BooleanField()
-    SyllabusContent = models.BooleanField()
-    CoursePreparation = models.BooleanField()
-    ExercisesPracticalWorkCaseStudies = models.BooleanField()
-    QuestionnaireForAssessment = models.BooleanField()
-    EndOfModule = models.BooleanField()
-    FinalAssignmentSubject = models.BooleanField()
-    CatchUpTopic = models.BooleanField()
-    Notes = models.BooleanField()
+# class Checklist(models.Model):
+#     ChecklistID = models.AutoField(primary_key=True)
+#     Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
+#     ListOfStudents = models.BooleanField()
+#     SyllabusContent = models.BooleanField()
+#     CoursePreparation = models.BooleanField()
+#     ExercisesPracticalWorkCaseStudies = models.BooleanField()
+#     QuestionnaireForAssessment = models.BooleanField()
+#     EndOfModule = models.BooleanField()
+#     FinalAssignmentSubject = models.BooleanField()
+#     CatchUpTopic = models.BooleanField()
+#     Notes = models.BooleanField()
     
-    class Meta:
-        db_table = 'checklist'
+#     class Meta:
+#         db_table = 'checklist'
     
-class TrainingAssessment(models.Model):
-    TrainingAssessmentID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
-    LearnerFeedback = models.CharField(max_length=255)
-    SchoolFeedback = models.CharField(max_length=255)
+# class TrainingAssessment(models.Model):
+#     TrainingAssessmentID = models.AutoField(primary_key=True)
+#     Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
+#     LearnerFeedback = models.CharField(max_length=255)
+#     SchoolFeedback = models.CharField(max_length=255)
     
-    class Meta:
-        db_table = 'trainingassessment'
+#     class Meta:
+#         db_table = 'trainingassessment'
 
 class PedagogicalSynopsis(models.Model):
     PedagogicalSynopsisID = models.AutoField(primary_key=True)
@@ -98,24 +98,36 @@ class PedagogicalSynopsis(models.Model):
     ObjectiveOfTraining = models.CharField(max_length=255)
     NumberOfSegments = models.CharField(max_length=255)
 
-class PriorToTrainingInfo(models.Model):
-    PriorToTrainingInfoID = models.AutoField(primary_key=True)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
-    Duration = models.CharField(max_length=255)
-    SegmentNumber = models.IntegerField()
-    SequenceEvaluationMethod = models.CharField(max_length=255)
-    ChangeInEvaluationMethod = models.CharField(max_length=255)
-    ObjectiveOfCourse = models.CharField(max_length=255)
-    ContentOfCourse = models.CharField(max_length=255)
-    TeachingMethodUsed = models.CharField(max_length=255)
-    TeachingMaterial = models.CharField(max_length=255)
+# class PriorToTrainingInfo(models.Model):
+#     PriorToTrainingInfoID = models.AutoField(primary_key=True)
+#     Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')
+#     Duration = models.CharField(max_length=255)
+#     SegmentNumber = models.IntegerField()
+#     SequenceEvaluationMethod = models.CharField(max_length=255)
+#     ChangeInEvaluationMethod = models.CharField(max_length=255)
+#     ObjectiveOfCourse = models.CharField(max_length=255)
+#     ContentOfCourse = models.CharField(max_length=255)
+#     TeachingMethodUsed = models.CharField(max_length=255)
+#     TeachingMaterial = models.CharField(max_length=255)
+    
+    # class Meta:
+    #     db_table = 'priortotraininginfo'
+        
+        
+class CoursesList(models.Model):
+    courseName = models.CharField(max_length=255)
+    courseDetails = models.TextField()
+    nameofProf = models.ForeignKey(Teacher, on_delete=models.CASCADE,db_column='nameofProf' )
+    courseCode = models.CharField(max_length=50)
+    courseFile = models.BinaryField()
+    school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='nameOfSchool')
     
     class Meta:
-        db_table = 'priortotraininginfo'
+        db_table = 'courses_list'
         
 class Section(models.Model):
     id = models.AutoField(primary_key=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE,  db_column='courseID')
+    course = models.ForeignKey(CoursesList, on_delete=models.CASCADE,  db_column='courseID')
     num_of_students = models.IntegerField( db_column='numOfStudents')
     
     class Meta:

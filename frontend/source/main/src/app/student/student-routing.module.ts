@@ -27,9 +27,15 @@ const routes: Routes = [
       import('./grades/grades.module').then((m) => m.GradesModule),
   },
   {
+    path: 'students',
+    loadChildren: () =>
+      import('./students/students.module').then((m) => m.StudentsModule),
+  },
+  {
     path: 'timetable',
     component: TimetableComponent,
   },
+
   {
     path: 'settings',
     component: SettingsComponent,

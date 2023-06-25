@@ -34,6 +34,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     TimetableComponent,
     SettingsComponent,
     FeedbackComponent,
+
   ],
   imports: [
     CommonModule,

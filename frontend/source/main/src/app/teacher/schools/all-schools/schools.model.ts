@@ -8,6 +8,7 @@ export class Schools {
   city: string;
   state: string;
   country: string;
+  additionDate: string;
 
   constructor(schools: Schools) {
     this.id = schools.id || this.getRandomID();
@@ -19,6 +20,7 @@ export class Schools {
     this.city = schools.city || '';
     this.state = schools.state || '';
     this.country = schools.country || '';
+    this.additionDate = schools.additionDate || '';
   }
 
   private getRandomID(): number {

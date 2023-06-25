@@ -9,11 +9,15 @@ import {
 } from '@angular/forms';
 import { Schools } from '../../schools.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, map, mergeMap, throwError } from 'rxjs';
+
+
 
 export interface DialogData {
   id: number;
   action: string;
-  schools: Schools;
+  school: Schools;
 }
 
 @Component({
@@ -26,18 +30,20 @@ export class FormDialogComponent {
   action: string;
   dialogTitle: string;
   schoolsForm: UntypedFormGroup;
-  schools: Schools;
+  schools: any;
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public schoolsService: SchoolsService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private httpClient: HttpClient
+
   ) {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.schools.schoolName;
-      this.schools = data.schools;
+      this.dialogTitle = data.school.schoolName;
+      this.schools = data.school;
     } else {
       this.dialogTitle = 'New School';
       const blankObject = {} as Schools;
@@ -58,15 +64,8 @@ export class FormDialogComponent {
   }
 createContactForm(): UntypedFormGroup {
   return this.fb.group({
-    id: [this.schools.id],
-    schoolName: [this.schools.schoolName, Validators.required],
-    hod: [this.schools.hod, Validators.required],
-    phone: [this.schools.phone],
-    email: [this.schools.email, [Validators.required, Validators.email]],
-    address: [this.schools.address],
-    city: [this.schools.city],
-    state: [this.schools.state],
-    country: [this.schools.country],
+    school: [this.getFormattedSchools()],
+    date: [this.schools.additionDate]
   });
 }
 
@@ -84,4 +83,23 @@ createContactForm(): UntypedFormGroup {
       }
       this.dialogRef.close(1);
   }
+
+     getSchools(): Observable<Schools[]> {
+  const url = 'http://localhost:8000/api/admn/get_all_schools/';
+  return this.httpClient.get<Schools[]>(url);
+  }
+
+getFormattedSchools() {
+  this.getSchools().subscribe(
+    (schools: Schools[]) => {
+      this.schools = schools.map((school: Schools) => ({
+        label: school.schoolName,
+        value: school.id
+      }));
+    },
+    (error: HttpErrorResponse) => {
+      console.error(error);
+    }
+  );
+}
 }

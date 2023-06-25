@@ -132,4 +132,14 @@ class Section(models.Model):
     
     class Meta:
         db_table = 'sections'
+        
+        
+class TeacherSchool(models.Model):
+    id = models.AutoField(primary_key=True)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, db_column='teacher_id')
+    school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='school_id')
+    joining_date = models.DateField()    
+    class Meta:
+        db_table = 'teacher_school'
+        unique_together = ('teacher', 'school')
 

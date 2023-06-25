@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from requests import Request
@@ -89,23 +90,16 @@ def create_school(request):
     if request.method == 'POST':
         # Extract the data from the request
         data = json.loads(request.body)
-        print(data)
-        user = User.objects.get(uuid=data['user_uuid'])
-        print(user)
-        teacher = Teacher.objects.get(Email=user.email)
-        print(teacher)
-        school = School.objects.create(
-            schoolName=data['schoolName'],
-            hod=data['hod'],
-            phone=data['phone'],
-            email=data['email'],
-            address=data['address'],
-            city=data['city'],
-            state=data['state'],
-            country=data['country'],
-            Teacher=teacher  # Set the teacher for the school
+        teacher = Teacher.objects.get(user_uuid=data['user_uuid'])
+        school = School.objects.get(SchoolID=data['school'])
+        raw_date = data['date']
+        formatted_date = datetime.strptime(raw_date, "%Y-%m-%dT%H:%M:%S.%fZ").strftime("%Y-%m-%d")
+        teacher_school = TeacherSchool.objects.create(
+            teacher=teacher,
+            school=school,
+            joining_date=formatted_date
         ) # Assuming you are passing the teacher_id from the frontend
-        school.save()
+        teacher_school.save()
         # Get the Teacher instance
         # Create a new School instance
         return JsonResponse({'message': 'School created successfully'})
@@ -113,34 +107,30 @@ def create_school(request):
         return JsonResponse({'error': 'Invalid request method'})
     
 def get_all_schools(request, user_id):
-    #user_uuid = request.GET.get('user_uuid')  # Assuming the user_uuid is passed as a query parameter
 
-    # Retrieve the user based on user_uuid
-    user = User.objects.get(uuid=user_id)
-
-    # Retrieve the teacher based on the user's email
-    teacher = Teacher.objects.get(Email=user.email)
-
+    teacher = Teacher.objects.get(user_uuid=user_id)
     # Retrieve all schools associated with the teacher
-    schools = School.objects.filter(Teacher=teacher.TeacherID)
-
+    schools = TeacherSchool.objects.filter(teacher_id=teacher.TeacherID)
     # Prepare the response data
-    response_data = []
-    for school in schools:
-        school_data = {
-            'id': school.SchoolID,
-            'schoolName': school.schoolName,
-            'hod': school.hod,
-            'phone': school.phone,
-            'email': school.email,
-            'address': school.address,
-            'city': school.city,
-            'state': school.state,
-            'country': school.country
-        }
-        response_data.append(school_data)
+    if schools.exists():
+        response_data = []
+        for school in schools:
+            school_data = {
+                'id': school.school.SchoolID,
+                'schoolName': school.school.schoolName,
+                'hod': school.school.hod,
+                'phone': school.school.phone,
+                'email': school.school.email,
+                'address': school.school.address,
+                'city': school.school.city,
+                'state': school.school.state,
+                'country': school.school.country
+            }
+            response_data.append(school_data)
 
-    return JsonResponse(response_data, safe=False)
+        return JsonResponse(response_data, safe=False)
+    else:
+      return JsonResponse({'error': 'Invalid request method'})  
 
 
 def delete_school(request, school_id):
@@ -195,7 +185,7 @@ def add_course(request):
             # Retrieve school ID from School table
             school = School.objects.get(schoolName=school_name)
             # Create and save course in Course table
-            course = Course(
+            course = CoursesList(
                 # CourseID=data['courseID'],
                 CourseName=data['courseName'],
                 Teacher=teacher, 
@@ -325,3 +315,4 @@ def update_teacher(request):
     else:
         return JsonResponse({'error': 'Invalid request method'})
     
+

@@ -3,7 +3,7 @@
         <div class="editRowModal">
             <div class="modalHeader clearfix">
                 <div class="modal-about">
-                    {{dialogTitle}}
+                    Add schools to list
                 </div>
             </div>
         </div>
@@ -100,6 +100,17 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Joining date</mat-label>
+                      <input matInput [matDatepicker]="picker" formControlName="date" required>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-error *ngIf="schoolsForm.get('date')?.hasError('required')">Please select date</mat-error>
+                    </mat-form-field>
+                  </div>
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">

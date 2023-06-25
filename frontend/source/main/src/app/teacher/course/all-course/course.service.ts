@@ -62,17 +62,7 @@ export class CourseService extends UnsubscribeOnDestroyAdapter {
     //       },
     //     });
   }
-  // deleteCourse(course: number): void {
-  //   this.httpClient.delete("http://localhost:8000/api/course/remove_course/" + courseID)
-  //     .subscribe(
-  //       () => {
-  //         console.log('Course deleted successfully.');
-  //         // Perform any necessary actions after successful deletion
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         console.error(error.name + ' ' + error.message);
-  //         // Handle the error appropriately
-  //       }
-  //     );
-  // }
+  deleteCourse(course: number): void {
+   
+  }
 }

@@ -1,6 +1,8 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { lessonsService } from '../../lessons.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AuthService, Role } from '@core';
 import {
   UntypedFormControl,
   Validators,
@@ -9,6 +11,8 @@ import {
 } from '@angular/forms';
 import { Lessons } from '../../lessons.model';
 import { formatDate } from '@angular/common';
+import { Course } from 'app/teacher/course/all-course/course.model';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 export interface DialogData {
   id: number;
@@ -22,15 +26,20 @@ export interface DialogData {
   styleUrls: ['./form-dialog.component.scss'],
 })
 export class FormDialogComponent {
+
   action: string;
   dialogTitle: string;
   proForm: UntypedFormGroup;
   lessons: Lessons;
+  courses: any;
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public lessonsService: lessonsService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private httpClient: HttpClient,
+    private authService: AuthService,
+
   ) {
     // Set the defaults
     this.action = data.action;
@@ -42,6 +51,8 @@ export class FormDialogComponent {
       const blankObject = {} as Lessons;
       this.lessons = new Lessons(blankObject);
     }
+    this.courses = this.getFormattedCourses()
+    console.log(this.courses)
     this.proForm = this.createContactForm();
   }
   formControl = new UntypedFormControl('', [
@@ -67,6 +78,7 @@ export class FormDialogComponent {
     this.confirmAdd();
     // emppty stuff
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -74,9 +86,24 @@ export class FormDialogComponent {
     this.lessonsService.addLessons(this.proForm.getRawValue());
   }
   // Inside your component class
-  courseNames = [
-    { label: 'Intro To Programming', value: 'Intro To Programming' },
-    { label: 'Data Structures', value: 'Data Structures' },
-    ];
+  getCourses(): Observable<Course[]> {
+  const url = 'http://localhost:8000/api/teacher/get_all_teacher_courses/'+localStorage.getItem("user_uuid");
+  return this.httpClient.get<Course[]>(url);
+  }
+
+getFormattedCourses() {
+  this.getCourses().subscribe(
+    (courses: Course[]) => {
+      this.courses = courses.map((course: Course) => ({
+        label: course.courseName,
+        value: course.id
+      }));
+      console.log('Formatted courses:', this.courses);
+    },
+    (error: HttpErrorResponse) => {
+      console.error(error);
+    }
+  );
+}
 
 }

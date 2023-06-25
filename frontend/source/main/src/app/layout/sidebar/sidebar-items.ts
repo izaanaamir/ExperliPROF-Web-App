@@ -687,16 +687,18 @@ export const ROUTES: RouteInfo[] = [
         // },
        ],
      },
-  // {
-  //   path: '/teacher/fees/all-fees',
-  //   title: 'MENUITEMS.FEES.TEXT',
-  //   iconType: 'material-icons-two-tone',
-  //   icon: 'monetization_on',
-  //   class: '',
-  //   groupTitle: false,
-  //   badge: '',
-  //   badgeClass: '',
-  //   role: ['Teacher'],
+  {
+    path: '/teacher/fees/all-fees',
+    title: 'MENUITEMS.FEES.TEXT',
+    iconType: 'material-icons-two-tone',
+    icon: 'monetization_on',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Teacher'],
+    submenu:[],
+  },
   //   submenu: [
       // {
       //   path: '/admin/fees/all-fees',

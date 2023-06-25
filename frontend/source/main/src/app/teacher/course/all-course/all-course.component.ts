@@ -104,9 +104,10 @@ export class AllCourseComponent
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataServicex
-        this.exampleDatabase?.dataChange.value.unshift(
-          this.courseService.getDialogData()
-        );
+        // this.exampleDatabase?.dataChange.value.unshift(
+        //   this.courseService.getDialogData()
+        // );
+        this.refresh()
         this.refreshTable();
         this.showNotification(
           'snackbar-success',
@@ -123,7 +124,8 @@ export class AllCourseComponent
     this.router.navigate(['/admin/course/about-course']);
   }
   deleteItem(row: Course) {
-    this.id = row.CourseID;
+    console.log(row)
+    this.id = row.id;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -137,11 +139,12 @@ export class AllCourseComponent
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
-          (x) => x.CourseID === this.id
+          (x) => x.id === this.id
         );
         // for delete we use splice in order to remove single object from DataService
-        if (foundIndex != null && this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        // if (foundIndex != null && this.exampleDatabase) {
+          // this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+          this.refresh();
           this.refreshTable();
           this.showNotification(
             'snackbar-danger',
@@ -149,7 +152,7 @@ export class AllCourseComponent
             'bottom',
             'center'
           );
-        }
+        // }
       }
     });
   }
@@ -180,6 +183,7 @@ export class AllCourseComponent
       //console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       // this.exampleDatabase?.deleteCourse(item.CourseID);
       this.exampleDatabase?.dataChange.value.splice(index, 1);
+      this.refresh()
       this.refreshTable();
       this.selection = new SelectionModel<Course>(true, []);
     });

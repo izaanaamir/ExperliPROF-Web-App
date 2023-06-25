@@ -93,9 +93,10 @@ export class AllSchoolsComponent
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
-        this.exampleDatabase?.dataChange.value.unshift(
-          this.schoolsService.getDialogData()
-        );
+        // this.exampleDatabase?.dataChange.value.unshift(
+        //   this.schoolsService.getDialogData()
+        // );
+        this.refresh()
         this.refreshTable();
         this.showNotification(
           'snackbar-success',
@@ -108,6 +109,7 @@ export class AllSchoolsComponent
   }
   editCall(row: Schools) {
     this.id = row.id;
+    console.log("In Edit Call", this.id)
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -132,6 +134,7 @@ export class AllSchoolsComponent
           this.exampleDatabase.dataChange.value[foundIndex] =
             this.schoolsService.getDialogData();
           // And lastly refresh table
+          this.refresh()
           this.refreshTable();
           this.showNotification(
             'black',
@@ -145,6 +148,7 @@ export class AllSchoolsComponent
   }
   deleteItem(row: Schools) {
     this.id = row.id;
+    console.log(this.id)
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -199,6 +203,7 @@ export class AllSchoolsComponent
         (d) => d === item
       );
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+      this.exampleDatabase?.deleteSchools(item.id);
       this.exampleDatabase?.dataChange.value.splice(index, 1);
       this.refreshTable();
       this.selection = new SelectionModel<Schools>(true, []);
@@ -225,18 +230,17 @@ export class AllSchoolsComponent
         this.dataSource.filter = this.filter.nativeElement.value;
       }
     );
+    this.schoolsService.getAllSchools();
   }
   // export table data in excel file
   exportExcel() {
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        'Schools Name': x.dName,
+        'Schools Name': x.schoolName,
         'Head Of Schools': x.hod,
         Phone: x.phone,
         Email: x.email,
-        'Start Year': x.sYear,
-        'Students Capacity': x.sCapacity,
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');
@@ -302,7 +306,7 @@ export class ExampleDataSource extends DataSource<Schools> {
           .slice()
           .filter((schools: Schools) => {
             const searchStr = (
-              schools.dName +
+              schools.schoolName +
               schools.hod +
               schools.phone +
               schools.email
@@ -337,7 +341,7 @@ export class ExampleDataSource extends DataSource<Schools> {
           [propertyA, propertyB] = [a.id, b.id];
           break;
         case 'dName':
-          [propertyA, propertyB] = [a.dName, b.dName];
+          [propertyA, propertyB] = [a.schoolName, b.schoolName];
           break;
         case 'hod':
           [propertyA, propertyB] = [a.hod, b.hod];

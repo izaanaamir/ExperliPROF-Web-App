@@ -1,8 +1,10 @@
 import { formatDate } from '@angular/common';
+import { v4 as uuidv4 } from 'uuid';
+
 export class Students {
   id: number;
-  lastname: string;
-  firstname: string;
+  lastName: string;
+  firstName: string;
   schoolemail: string;
   personalemail: string;
   Title: string;
@@ -13,13 +15,14 @@ export class Students {
   specialrequirements: string;
   school: string;
   img: string;
+  user_uuid: string;
 
 
   constructor(students: Students) {
     {
       this.id = students.id || this.getRandomID();
-      this.lastname = students.lastname || '';
-      this.firstname = students.firstname || '';
+      this.lastName = students.lastName || '';
+      this.firstName = students.firstName || '';
       this.schoolemail = students.schoolemail || '';
       this.personalemail = students.personalemail || '';
       this.Title = students.Title || '';
@@ -30,6 +33,7 @@ export class Students {
       this.specialrequirements = students.specialrequirements || '';
       this.school = students.school || '';
       this.img = students.img || "";
+      this.user_uuid = uuidv4();
     }
   }
   public getRandomID(): number {

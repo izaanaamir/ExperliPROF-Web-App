@@ -27,7 +27,6 @@ class School(models.Model):
     city = models.CharField(max_length=255, blank=True,db_column='City')
     state = models.CharField(max_length=255, blank=True,db_column='State')
     country = models.CharField(max_length=255, blank=True,db_column='Country')
-    Teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, db_column='teacher_id')
     class Meta:
         db_table = 'schools'
         

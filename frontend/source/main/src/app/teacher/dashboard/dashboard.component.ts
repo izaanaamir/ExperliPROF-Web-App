@@ -16,6 +16,8 @@ import {
   ApexNonAxisChartSeries,
   ApexResponsive,
 } from 'ng-apexcharts';
+import { AuthService, Role } from '@core';
+
 
 export type avgLecChartOptions = {
   series: ApexAxisChartSeries;
@@ -51,7 +53,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
   public avgLecChartOptions!: Partial<avgLecChartOptions>;
   public pieChartOptions!: Partial<pieChartOptions>;
-
+  public userName!: string;
   breadscrums = [
     {
       items: [],
@@ -59,10 +61,15 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  constructor() {
+  constructor(
+    private authService: AuthService
+
+  ) {
     //constructor
+
   }
   ngOnInit() {
+    this.userName = this.authService.currentUserValue.lastName
     this.chart1();
     this.chart2();
   }

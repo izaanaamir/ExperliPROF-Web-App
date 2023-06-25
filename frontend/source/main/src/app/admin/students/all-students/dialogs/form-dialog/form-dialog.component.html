@@ -55,6 +55,9 @@
                 {{ school.label }}
               </mat-option>
             </mat-select>
+            <mat-error *ngIf="stdForm.get('school')?.hasError('required')">
+              School Name is required
+             </mat-error>
             <!-- error handling -->
           </mat-form-field>
         </div>
@@ -106,9 +109,9 @@
             <mat-label>Group Major</mat-label>
             <input matInput formControlName="groupmajor" required>
             <i class="material-icons-two-tone color-icon p-3" matSuffix>people</i>
-            <mat-error *ngIf="stdForm.get('groupmajor')?.hasError('groupmajor')">
-              Group major is required
-            </mat-error>
+            <mat-error *ngIf="stdForm.get('groupmajor')?.hasError('required')">
+              Major is required
+             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
@@ -165,9 +168,9 @@
             <mat-label>Personal Email</mat-label>
             <input matInput formControlName="personalemail">
             <i class="material-icons-two-tone color-icon p-3" matSuffix>email</i>
-            <!-- <mat-error *ngIf="stdForm.get('name')?.hasError('required')">
-              First Name is required
-            </mat-error> -->
+            <mat-error *ngIf="stdForm.get('personalemail')?.hasError('required')">
+              Personal Email is required
+            </mat-error>
           </mat-form-field>
         </div>
       </div>

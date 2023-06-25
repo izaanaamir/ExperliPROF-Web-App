@@ -1,4 +1,113 @@
 {
+
+    "firstNameRequired": "Le prénom est requis",
+    "lastNameRequired": "Le nom de famille est requis",
+    "Select School": "Sélectionner une école",
+    "School Name Required": "Le nom de l'école est requis",
+    "Select Email": "Sélectionner un e-mail",
+    "Please Enter a valid Email Address": "Veuillez saisir une adresse e-mail valide",
+    "Title": "Titre",
+    "Mr": "Monsieur",
+    "Ms": "Madame",
+    "other": "Autre",
+    "Registraion number": "Numéro d'enregistrement",
+    "Group Major": "Majeure de groupe",
+    "GSM (Optional)": "GSM (Facultatif)",
+    "Status of Student": "Statut de l'étudiant",
+    " Initial": "Initial",
+    "Alternating": "Alternant",
+    "Professional": "Professionnel",
+    "Other": "Autre",
+    "Joining date": "Date d'adhésion",
+    "Special Requirements": "Exigences particulières",
+    "Personal Email": "E-mail personnel",
+    "Personal Email is required": "L'e-mail personnel est requis",
+
+
+    "New Students": "Nouveaux étudiants",
+    "Total Courses": "Cours totaux",
+    "Total Teachers": "Enseignants totaux",
+    "studentPerformanceChart": "Graphique des performances des étudiants",
+    "Exam Schedule": "Calendrier des examens",
+    "Refresh": "Actualiser",
+    "Average Class Attendance": "Moyenne de présence en classe",
+    "New Student List": "Liste des nouveaux étudiants",
+    "Add": "Ajouter",
+    "Delete": "Supprimer",
+    "Student Name": "Nom de l'étudiant",
+    "Phone": "Téléphone",
+    "School": "École",
+    "Branch": "Branche",
+    "Date Of Admission": "Date d'admission",
+    "Email": "Email",
+
+    "Id": "Id",
+    "Last Name": "Nom de famille",
+    "First Name": "Prénom",
+    "School": "École",
+    "Mobile": "Mobile",
+
+    "Search": "Recherche",
+    "ADD": "AJOUTER",
+    "REFRESH": "RAFRAÎCHIR",
+    "DELETE": "SUPPRIMER",
+    "XLSX": "XLSX",
+    "No Results": "Aucun résultat",
+
+    "dialogTitle": "Ajouter une école",
+    "School Name": "Nom de l'école",
+    "Head Of School": "Directeur de l'école",
+    "Address": "Adresse",
+
+    "State": "État",
+    "Country": "Pays",
+
+    "School name is required": "Le nom de l'école est requis",
+    "HOS name is required": "Le nom du directeur est requis",
+    "Address is required": "L'adresse est requise",
+    "City is required": "La ville est requise",
+    "State is required": "L'état est requis",
+    "Country is required": "Le pays est requis",
+    "Phone is required": "Le téléphone est requis",
+    "Please enter a valid email address": "Veuillez entrer une adresse email valide",
+    "Save": "Enregistrer",
+    "Cancel": "Annuler",
+    "School name": "Nom de l'école",
+    "Head of Department": "Responsable du département",
+    "City": "Ville",
+    "Phone": "Téléphone",
+    "Email": "E-mail",
+    "Start Year": "Année de début",
+    "Actions": "Actions",
+    "Add Record": "Ajouter un enregistrement",
+    "Edit Record": "Modifier un enregistrement",
+    "Delete Record": "Supprimer un enregistrement",
+    "Refresh Record": "Actualiser les enregistrements",
+    "Disable": "Désactiver",
+    "Nested Menu": "Menu imbriqué",
+    "Item 1": "Élément 1",
+    "Item 2": "Élément 2",
+    "Item 3": "Élément 3",
+    "Contact Person": "Personne de contact",
+    "Contact Email": "E-mail de contact",
+    "No results": "Aucun résultat",
+
+
+    "tasks": {
+        "tasks": "Tâches",
+        "totalTasks": "Total des tâches",
+        "addTask": "Ajouter une tâche",
+        "title": "Titre",
+        "markComplete": "Marquer comme terminé",
+        "priority": "Priorité",
+        "priorityLow": "Basse",
+        "priorityNormal": "Normale",
+        "priorityHigh": "Élevée",
+        "dueDate": "Date d'échéance",
+        "eventDetails": "Détails de l'événement"
+    },
+
+
     "LOGIN": {
         "TITLE": "Bienvenue à ExperliPROF"
     },
@@ -150,5 +259,16 @@
         "CONTACTS": {
             "TEXT": "Contacts"
         }
-    }
+    },
+
+    "securitySettings": "Paramètres de sécurité",
+    "email": "Email",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "save": "Enregistrer",
+    "accountSettings": "Paramètres du compte",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille"
+
+
 }

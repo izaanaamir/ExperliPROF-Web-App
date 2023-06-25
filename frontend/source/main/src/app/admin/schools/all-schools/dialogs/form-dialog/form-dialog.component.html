@@ -4,34 +4,34 @@
             <div class="modalHeader clearfix">
                 <img src="assets/images/banner/img2.png" alt="">
                 <div class="modal-about">
-                    {{dialogTitle}}
+                    {{ 'dialogTitle' | translate }}
                 </div>
             </div>
         </div>
         <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
-            <mat-icon>close</mat-icon>
-        </button>
+          <mat-icon>close</mat-icon>
+      </button>
     </div>
     <div mat-dialog-content>
         <form class="register-form m-4" [formGroup]="schoolsForm" (ngSubmit)="submit">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>School Name</mat-label>
+                        <mat-label>{{ 'School Name' | translate }}</mat-label>
                         <input matInput formControlName="schoolName" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>school</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('schoolName')?.hasError('required')">
-                            School name is required
+                            {{ 'School name is required' | translate }}
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Head Of School</mat-label>
+                        <mat-label>{{ 'Head Of School' | translate }}</mat-label>
                         <input matInput formControlName="hod" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>person</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('hod')?.hasError('required')">
-                            HOS name is required
+                            {{ 'HOS name is required' | translate }}
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -39,21 +39,21 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Address</mat-label>
+                        <mat-label>{{ 'Address' | translate }}</mat-label>
                         <input matInput formControlName="address" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_on</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('address')?.hasError('required')">
-                            Address is required
+                            {{ 'Address is required' | translate }}
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>City</mat-label>
+                        <mat-label>{{ 'City' | translate }}</mat-label>
                         <input matInput formControlName="city" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_city</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('city')?.hasError('required')">
-                            City is required
+                            {{ 'City is required' | translate }}
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -61,21 +61,21 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>State</mat-label>
+                        <mat-label>{{ 'State' | translate }}</mat-label>
                         <input matInput formControlName="state" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_searching</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('state')?.hasError('required')">
-                            State is required
+                            {{ 'State is required' | translate }}
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Country</mat-label>
+                        <mat-label>{{ 'Country' | translate }}</mat-label>
                         <input matInput formControlName="country" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>public</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('country')?.hasError('required')">
-                            Country is required
+                            {{ 'Country is required' | translate }}
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -83,21 +83,21 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Phone</mat-label>
+                        <mat-label>{{ 'Phone' | translate }}</mat-label>
                         <input matInput formControlName="phone" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>phone</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('phone')?.hasError('required')">
-                            Phone is required
+                            {{ 'Phone is required' | translate }}
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Email</mat-label>
+                        <mat-label>{{ 'Email' | translate }}</mat-label>
                         <input matInput formControlName="email" required>
                         <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>email</mat-icon>
                         <mat-error *ngIf="schoolsForm.get('email')?.hasError('required') || schoolsForm.get('email')?.touched">
-                            Please enter a valid email address
+                            {{ 'Please enter a valid email address' | translate }}
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -105,8 +105,8 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <div class="example-button-row">
-                        <button mat-raised-button color="primary" [disabled]="!schoolsForm.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-                        <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+                        <button mat-raised-button color="primary" [disabled]="!schoolsForm.valid" [mat-dialog-close]="1" (click)="confirmAdd()">{{ 'Save' | translate }}</button>
+                        <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">{{ 'Cancel' | translate }}</button>
                     </div>
                 </div>
             </div>

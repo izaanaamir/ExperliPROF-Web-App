@@ -1,4 +1,116 @@
 {
+
+    "firstNameRequired": "First Name is required",
+    "lastNameRequired": "Last Name is required",
+    "Select School": "Select School",
+    "School Name Required": "School Name is required",
+    "Select Email": "Select Email",
+    "Please Enter a valid Email Address": "Please Enter a valid Email Address",
+    "Title": "Title",
+    "Mr": "Mr",
+    "Ms": "Ms",
+    "other": "Other",
+    "Registraion number": "Registration number",
+    "Group Major": "Group Major",
+    "GSM (Optional)": "GSM (Optional)",
+    "Status of Student": "Status of Student",
+    " Initial": " Initial",
+    "Alternating": "Alternating",
+    "Professional": "Professional",
+    "Other": "Other",
+    "Joining date": "Joining date",
+    "Special Requirements": "Special Requirements",
+    "Personal Email": "Personal Email",
+    "Personal Email is required": "Personal Email is required",
+    "New Students": "New Students",
+    "Total Courses": "Total Courses",
+    "Total Teachers": "Total Teachers",
+    "studentPerformanceChart": "Student Performance Chart",
+    "Exam Schedule": "Exam Schedule",
+    "Refresh": "Refresh",
+    "Average Class Attendance": "Average Class Attendance",
+    "New Student List": "New Student List",
+    "Add": "Add",
+    "Delete": "Delete",
+    "Student Name": "Student Name",
+    "Phone": "Phone",
+    "School": "School",
+    "Branch": "Branch",
+    "Date Of Admission": "Date Of Admission",
+    "Email": "Email",
+
+
+
+    "Id": "Id",
+    "Last Name": "Last Name",
+    "First Name": "First Name",
+    "School": "School",
+    "Mobile": "Mobile",
+
+    "Search": "Search",
+    "ADD": "ADD",
+    "REFRESH": "REFRESH",
+    "DELETE": "DELETE",
+    "XLSX": "XLSX",
+    "No Results": "No Results",
+
+    "dialogTitle": "Add School",
+    "School Name": "School Name",
+    "Head Of School": "Head Of School",
+    "Address": "Address",
+
+    "State": "State",
+    "Country": "Country",
+
+
+    "School name is required": "School name is required",
+    "HOS name is required": "HOS name is required",
+    "Address is required": "Address is required",
+    "City is required": "City is required",
+    "State is required": "State is required",
+    "Country is required": "Country is required",
+    "Phone is required": "Phone is required",
+    "Please enter a valid email address": "Please enter a valid email address",
+    "Save": "Save",
+    "Cancel": "Cancel",
+
+    "Contact Person": "Contact Person",
+    "Contact Email": "Contact Email",
+    "School name": "School name",
+    "Head of Department": "Head of Department",
+    "City": "City",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Start Year": "Start Year",
+    "Actions": "Actions",
+    "Add Record": "Add Record",
+    "Edit Record": "Edit Record",
+    "Delete Record": "Delete Record",
+    "Refresh Record": "Refresh Record",
+    "Disable": "Disable",
+    "Nested Menu": "Nested Menu",
+    "Item 1": "Item 1",
+    "Item 2": "Item 2",
+    "Item 3": "Item 3",
+
+    "No results": "No results",
+
+
+    "tasks": {
+        "tasks": "Tasks",
+        "totalTasks": "Total Tasks",
+        "addTask": "Add Task",
+        "title": "Title",
+        "markComplete": "Mark Complete",
+        "priority": "Priority",
+        "priorityLow": "Low",
+        "priorityNormal": "Normal",
+        "priorityHigh": "High",
+        "dueDate": "Due Date",
+        "eventDetails": "Event Details"
+    },
+
+
     "LOGIN": {
         "TITLE": "Welcome to ExperliPROF"
     },
@@ -116,5 +228,16 @@
         "CONTACTS": {
             "TEXT": "Contacts"
         }
-    }
+    },
+
+    "securitySettings": "Security Settings",
+    "email": "Email",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "save": "Save",
+    "accountSettings": "Account Settings",
+    "firstName": "First Name",
+    "lastName": "Last Name"
+
+
 }

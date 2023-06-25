@@ -125,13 +125,7 @@ class CoursesList(models.Model):
     class Meta:
         db_table = 'courses_list'
         
-class Section(models.Model):
-    id = models.AutoField(primary_key=True)
-    course = models.ForeignKey(CoursesList, on_delete=models.CASCADE,  db_column='courseID')
-    num_of_students = models.IntegerField( db_column='numOfStudents')
-    
-    class Meta:
-        db_table = 'sections'
+
         
         
 class TeacherSchool(models.Model):
@@ -142,4 +136,27 @@ class TeacherSchool(models.Model):
     class Meta:
         db_table = 'teacher_school'
         unique_together = ('teacher', 'school')
+        
+class TeacherCourses(models.Model):
+    id = models.AutoField(primary_key=True)
+    courseID = models.CharField(max_length=255)
+    courseName = models.CharField(max_length=255)
+    courseDetails = models.CharField(max_length=255)
+    school = models.ForeignKey(School, on_delete=models.CASCADE, db_column='school_id')
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, db_column='teacher_id')
 
+    def __str__(self):
+        return self.courseName
+
+    class Meta:
+        db_table = 'teachercourses'
+        unique_together = ('courseID', 'school')
+
+class Section(models.Model):
+    id = models.AutoField(primary_key=True)
+    sectionID = models.CharField(max_length=255)
+    course = models.ForeignKey(TeacherCourses, on_delete=models.CASCADE,  db_column='courseID')
+    num_of_students = models.IntegerField( db_column='numOfStudents')
+    
+    class Meta:
+        db_table = 'sections'

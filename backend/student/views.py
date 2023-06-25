@@ -86,30 +86,31 @@ def get_all_students(request: Request):
 
 
 def update_student(request):
-    if request.method == 'PUT':
-        data = json.loads(request.body)
-        print(data)
-        student = Student.objects.get(StudentID=data['id'])
-        student.LastName=data['LastName']
-        student.FirstName=data['FirstName']
-        student.Email=data['Email']
-        student.Phone=data['Phone']
-        student.address=data['address']
-        student.title=data['title']
-        # Extract the data from the request
-        student.save()
-        # Get the Teacher instance
-        # Create a new School instance
+    # if request.method == 'PUT':
+    #     data = json.loads(request.body)
+    #     print(data)
+    #     student = Student.objects.get(StudentID=data['id'])
+    #     student.LastName=data['LastName']
+    #     student.FirstName=data['FirstName']
+    #     student.Email=data['Email']
+    #     student.Phone=data['Phone']
+    #     student.address=data['address']
+    #     student.title=data['title']
+    #     # Extract the data from the request
+    #     student.save()
+    #     # Get the Teacher instance
+    #     # Create a new School instance
         
-        user = User.objects.get(uuid=teacher.user_uuid.uuid)
-        user.email = data["Email"]
-        user.first_name = data["FirstName"]
-        user.last_name = data["LastName"]
+    #     user = User.objects.get(uuid=teacher.user_uuid.uuid)
+    #     user.email = data["Email"]
+    #     user.first_name = data["FirstName"]
+    #     user.last_name = data["LastName"]
         
-        user.save()
-        return JsonResponse({'message': 'Teacher updated successfully'})
-    else:
-        return JsonResponse({'error': 'Invalid request method'})
+    #     user.save()
+    #     return JsonResponse({'message': 'Teacher updated successfully'})
+    # else:
+    #     return JsonResponse({'error': 'Invalid request method'})
+    pass
     
 def get_student_creds(request, user_id):
     student = Student.objects.get(StudentID=user_id)

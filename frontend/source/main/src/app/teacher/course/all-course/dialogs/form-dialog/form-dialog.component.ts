@@ -1,6 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { CourseService } from '../../course.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   UntypedFormControl,
   Validators,
@@ -9,6 +10,8 @@ import {
 } from '@angular/forms';
 import { Course } from '../../course.model';
 import { formatDate } from '@angular/common';
+import { Observable } from 'rxjs';
+import { Schools } from 'app/admin/schools/all-schools/schools.model';
 
 export interface DialogData {
   id: number;
@@ -26,11 +29,14 @@ export class FormDialogComponent {
   dialogTitle: string;
   proForm: UntypedFormGroup;
   course: Course;
+  schools: any;
+
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public courseService: CourseService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private httpClient: HttpClient
   ) {
     // Set the defaults
     this.action = data.action;
@@ -59,7 +65,7 @@ export class FormDialogComponent {
     return this.fb.group({
       courseID: [this.course.CourseID],
       courseName: [this.course.courseName],
-      schoolName: [this.course.schoolName],
+      schools: [this.getFormattedSchools()],
       courseDetails: [this.course.courseDetails],
     });
   }
@@ -74,9 +80,22 @@ export class FormDialogComponent {
     this.courseService.addCourse(this.proForm.getRawValue());
   }
   // Inside your component class
-  schools = [
-    { label: 'ESIEE', value: 'ESIEE' },
-    { label: 'Bilkent', value: 'Bilkent' }
-    ];
+   getSchools(): Observable<Schools[]> {
+  const url = 'http://localhost:8000/api/teacher/get_all_schools/'+localStorage.getItem("user_uuid");
+  return this.httpClient.get<Schools[]>(url);
+  }
 
+getFormattedSchools() {
+  this.getSchools().subscribe(
+    (schools: Schools[]) => {
+      this.schools = schools.map((school: Schools) => ({
+        label: school.schoolName,
+        value: school.id
+      }));
+    },
+    (error: HttpErrorResponse) => {
+      console.error(error);
+    }
+  );
+}
 }

@@ -28,8 +28,8 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Course Name</mat-label>
-                          <mat-select formControlName="courseName" required>
-                                <mat-option *ngFor="let course of courseNames" [value]="course.value">
+                          <mat-select formControlName="courses" required>
+                                <mat-option *ngFor="let course of courses" [value]="course.value">
                                 {{ course.label }}
                                     </mat-option>
                                 </mat-select>

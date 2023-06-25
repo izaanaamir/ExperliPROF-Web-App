@@ -15,5 +15,7 @@ urlpatterns = [
     path('update_school/<int:school_id>', update_school, name='update_school'),
     path('get_teacher_creds/<int:user_id>', get_teacher_creds, name='get_teacher_creds'),
     path('update_teacher/', update_teacher, name='update_teacher'),
+    path('delete_course/<int:course_id>', delete_course, name='delete_course'),
+    path('get_all_teacher_courses/<str:user_id>', get_all_teacher_courses, name='get_all_teacher_courses/')
 ]
 

@@ -1,6 +1,10 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { lessonsService } from '../../lessons.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AuthService, Role } from '@core';
+
+
 import {
   UntypedFormControl,
   Validators,
@@ -9,6 +13,8 @@ import {
 } from '@angular/forms';
 import { Lessons } from '../../lessons.model';
 import { formatDate } from '@angular/common';
+import { Course } from 'app/teacher/course/all-course/course.model';
+import { Observable } from 'rxjs';
 
 export interface DialogData {
   id: number;
@@ -26,11 +32,15 @@ export class FormDialogComponent {
   dialogTitle: string;
   proForm: UntypedFormGroup;
   lessons: Lessons;
+  courses: any
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public lessonsService: lessonsService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private httpClient: HttpClient,
+    private authService: AuthService,
+
   ) {
     // Set the defaults
     this.action = data.action;
@@ -58,7 +68,7 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       sectionID: [this.lessons.sectionID],
-      courseName: [this.lessons.courseName],
+      courses: [this.getFormattedCourses()],
       numOfStudents: [this.lessons.numOfStudents]
 
     });
@@ -74,9 +84,23 @@ export class FormDialogComponent {
     this.lessonsService.addLessons(this.proForm.getRawValue());
   }
   // Inside your component class
-  courseNames = [
-    { label: 'Intro To Programming', value: 'Intro To Programming' },
-    { label: 'Data Structures', value: 'Data Structures' },
-    ];
 
+  getCourses(): Observable<Course[]> {
+  const url = 'http://localhost:8000/api/teacher/get_all_teacher_courses/'+localStorage.getItem("user_uuid");
+  return this.httpClient.get<Course[]>(url);
+  }
+
+getFormattedCourses() {
+  this.getCourses().subscribe(
+    (schools: Course[]) => {
+      this.courses = schools.map((course: Course) => ({
+        label: course.courseName,
+        value: course.id
+      }));
+    },
+    (error: HttpErrorResponse) => {
+      console.error(error);
+    }
+  );
+}
 }

@@ -43,8 +43,8 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Select Students</mat-label>
-                        <mat-select formControlName="school" required>
-                            <mat-option [value]="'ESIEE'">
+                        <mat-select formControlName="Student" required>
+                            <!-- <mat-option [value]="'ESIEE'">
                                 ESIEE
                             </mat-option>
                             <mat-option [value]="'Bilkent'">
@@ -58,7 +58,7 @@
                             </mat-option>
                             <mat-option [value]="'Limerick'">
                                 Limerick
-                            </mat-option>
+                            </mat-option> -->
                         </mat-select>
                         <mat-error *ngIf="stdForm.get('school')?.hasError('required')">
                             Select Any Student

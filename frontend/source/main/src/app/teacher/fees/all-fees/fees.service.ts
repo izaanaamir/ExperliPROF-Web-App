@@ -21,10 +21,12 @@ export class FeesService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllFeess(): void {
-    this.subs.sink = this.httpClient.get<Fees[]>(this.API_URL).subscribe({
+    const url = "http://localhost:8000/api/teacher/get_fees/" + localStorage.getItem("user_uuid")
+    this.subs.sink = this.httpClient.get<Fees[]>(url).subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
+        console.log(data)
       },
       error: (error: HttpErrorResponse) => {
         this.isTblLoading = false;
@@ -35,15 +37,15 @@ export class FeesService extends UnsubscribeOnDestroyAdapter {
   addFees(fees: Fees): void {
     this.dialogData = fees;
 
-    // this.httpClient.post(this.API_URL, fees)
-    //   .subscribe({
-    //     next: (data) => {
-    //       this.dialogData = fees;
-    //     },
-    //     error: (error: HttpErrorResponse) => {
-    //        // error code here
-    //     },
-    //   });
+    this.httpClient.post(this.API_URL, fees)
+      .subscribe({
+        next: (data) => {
+          this.dialogData = fees;
+        },
+        error: (error: HttpErrorResponse) => {
+           // error code here
+        },
+      });
   }
   updateFees(fees: Fees): void {
     this.dialogData = fees;
@@ -61,14 +63,14 @@ export class FeesService extends UnsubscribeOnDestroyAdapter {
   deleteFees(id: number): void {
     console.log(id);
 
-    // this.httpClient.delete(this.API_URL + id)
-    //     .subscribe({
-    //       next: (data) => {
-    //         console.log(id);
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
+    this.httpClient.delete("http://localhost:8000/api/teacher/delete_fees/" + id)
+        .subscribe({
+          next: (data) => {
+            console.log(id);
+          },
+          error: (error: HttpErrorResponse) => {
+             // error code here
+          },
+        });
   }
 }

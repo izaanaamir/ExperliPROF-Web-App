@@ -1,6 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { FeesService } from '../../fees.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   UntypedFormControl,
   Validators,
@@ -32,12 +33,12 @@ export class FormDialogComponent {
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public feesService: FeesService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private httpClient: HttpClient,
   ) {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      console.log(data.fees.date);
       this.dialogTitle = data.fees.sName;
       this.fees = data.fees;
     } else {
@@ -61,14 +62,12 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       id: [this.fees.id],
-      rollNo: [this.fees.rollNo, [Validators.required]],
       sName: [this.fees.sName, [Validators.required]],
       fType: [this.fees.fType, [Validators.required]],
       date: [
         formatDate(this.fees.date, 'yyyy-MM-dd', 'en'),
         [Validators.required],
       ],
-      invoiceNo: [this.fees.invoiceNo, [Validators.required]],
       pType: [this.fees.pType, [Validators.required]],
       status: [this.fees.status, [Validators.required]],
       amount: [this.fees.amount, [Validators.required]],
@@ -81,6 +80,14 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.feesService.addFees(this.feesForm.getRawValue());
+    console.log(this.feesForm.getRawValue())
+    this.httpClient.post("http://localhost:8000/api/teacher/add_fees/"+localStorage.getItem("user_uuid"), this.feesForm.getRawValue())
+      .subscribe({
+        next: (data) => {
+        },
+        error: (error: HttpErrorResponse) => {
+           // error code here
+        },
+      });
   }
 }

@@ -97,7 +97,20 @@ class PedagogicalSynopsis(models.Model):
     DurationOfTraining = models.CharField(max_length=255)
     ObjectiveOfTraining = models.CharField(max_length=255)
     NumberOfSegments = models.CharField(max_length=255)
-
+    
+class Fees(models.Model):
+    id = models.AutoField(primary_key=True)
+    SchoolName = models.CharField(max_length=255)
+    FeesType = models.CharField(max_length=255)
+    Date = models.CharField(max_length=255)
+    PaymentType = models.CharField(max_length=255)
+    Status = models.CharField(max_length=255)
+    Amount = models.CharField(max_length=255)
+    teacher_uuid = models.CharField(max_length=255)
+    
+    
+    class Meta:
+        db_table = 'fee_collection'
 # class PriorToTrainingInfo(models.Model):
 #     PriorToTrainingInfoID = models.AutoField(primary_key=True)
 #     Course = models.ForeignKey(Course, on_delete=models.CASCADE, db_column='CourseID')

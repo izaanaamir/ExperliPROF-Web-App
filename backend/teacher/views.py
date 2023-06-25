@@ -155,7 +155,64 @@ def delete_section(request, section_id):
         return JsonResponse({'message': 'School deleted successfully'})
     else:
         return JsonResponse({'error': 'Invalid request method'})
+    
+def get_fees(request, user_id):
+    fees = Fees.objects.filter(teacher_uuid=user_id)
+    
+    if fees.exists():
+        response_data = []
+        for fee in fees:
+            school_data = {
+                'id': fee.id,
+                'sName': fee.SchoolName,
+                'fType': fee.FeesType,
+                'date': fee.Date,
+                'pType': fee.PaymentType,
+                'status': fee.Status,
+                'amount': fee.Amount,
+            }
+            response_data.append(school_data)
+            
+        return JsonResponse(response_data, safe=False)
+    else:
+      return JsonResponse({'error': 'Invalid request method'})
+  
+def add_fees(request, user_id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+        # Retrieve the course based on courseName
+        # Create and save the section in the Section table
+        section = Fees(
+            SchoolName=data['sName'],
+            FeesType=data['fType'],
+            Date=data['date'],
+            PaymentType=data['pType'],
+            Status=data['status'],
+            Amount=data['amount'],
+            teacher_uuid=user_id,
+        )
+        section.save()
 
+        # Return a success response or redirect to another page
+        return JsonResponse({'message': 'Teacher updated successfully'})
+    else:
+        # Handle GET request case
+        # Return an error response or redirect to another page
+        return HttpResponseBadRequest('Invalid request method')
+    
+def delete_fees(request, fee_id):
+    if request.method == 'DELETE':
+        fee = Fees.objects.get(id=fee_id)
+        # Extract the data from the request
+        fee.delete()
+        # Get the Teacher instance
+        # Create a new School instance
+        return JsonResponse({'message': 'School deleted successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
+    
+    
 def delete_course(request, course_id):
     if request.method == 'DELETE':
         course = TeacherCourses.objects.get(id=course_id)

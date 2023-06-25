@@ -8,6 +8,7 @@ export interface DialogData {
   sName: string;
   date: string;
   invoiceNo: string;
+  amount: string;
 }
 
 @Component({

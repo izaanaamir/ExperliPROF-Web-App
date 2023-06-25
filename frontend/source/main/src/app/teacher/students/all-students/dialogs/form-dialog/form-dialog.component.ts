@@ -59,7 +59,7 @@ export class FormDialogComponent {
     return this.fb.group({
       id: [this.students.id],
       // img: [this.students.img],
-      lastname: [this.students.lastname],
+
       firstname: [this.students.firstname],
       schoolemail: [
         this.students.schoolemail,

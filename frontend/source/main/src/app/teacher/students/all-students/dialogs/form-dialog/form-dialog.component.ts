@@ -57,26 +57,10 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.students.id],
-      // img: [this.students.img],
+      courses: [],
+      sections: [],
+      students: []
 
-      firstname: [this.students.firstname],
-      schoolemail: [
-        this.students.schoolemail,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      personalemail: [
-        this.students.personalemail,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-
-      Title: [this.students.Title],
-      registrationnumber: [this.students.registrationnumber],
-      groupmajor: [this.students.groupmajor],
-      GSM: [this.students.GSM],
-      statusofstudent: [this.students.statusofstudent],
-      specialrequirements: [this.students.specialrequirements],
-      school: [this.students.school],
     });
   }
   submit() {
@@ -89,5 +73,4 @@ export class FormDialogComponent {
     this.studentsService.addStudents(this.stdForm.getRawValue());
   }
   // Inside your component class
-
 }

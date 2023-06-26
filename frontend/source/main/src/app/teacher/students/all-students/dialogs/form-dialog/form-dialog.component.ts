@@ -57,12 +57,23 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      courses: [],
-      sections: [],
-      students: []
-
+      courseName: [this.courses],
+      sectionID: [this.sections],
+      studentName: [this.studentsList]
     });
   }
+  courses = [
+  { label: 'Basics of Engineering', value: 'Engineering' },
+  { label: 'Basics of Calculus', value: 'Basics of Calculus' },
+];
+  sections = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+];
+  studentsList = [
+  { label: 'Ayush', value: 'Ayush' },
+  { label: 'David', value: 'David' },
+];
   submit() {
     // emppty stuff
   }
@@ -73,4 +84,5 @@ export class FormDialogComponent {
     this.studentsService.addStudents(this.stdForm.getRawValue());
   }
   // Inside your component class
+
 }

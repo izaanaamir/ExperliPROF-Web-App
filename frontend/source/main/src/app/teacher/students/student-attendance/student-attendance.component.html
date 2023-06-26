@@ -107,11 +107,11 @@
                                         <div class="me-2 ms-2">{{row.sName}}</div>
                                     </mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="rollNo">
-                                    <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'" mat-sort-header>Roll No
+                                <ng-container matColumnDef="sectionID">
+                                    <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'" mat-sort-header>Section ID
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row" class="tbl-col-width-per-6" (contextmenu)="onContextMenu($event, row)">
-                                        <span class="mobile-label">Roll No:</span> {{row.rollNo}}</mat-cell>
+                                        <span class="mobile-label">Section ID:</span> {{row.sectionID}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="class">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Class</mat-header-cell>

@@ -19,7 +19,7 @@
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Student Name</mat-label>
             <mat-select formControlName="studentName" required>
-              <mat-option *ngFor="let student of students" [value]="student.value">
+              <mat-option *ngFor="let student of studentsList" [value]="student.value">
                 {{ student.label }}
               </mat-option>
             </mat-select>
@@ -29,24 +29,22 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Course Name</mat-label>
+            <mat-select formControlName="courseName" required>
+              <mat-option *ngFor="let course of courses" [value]="course.value">
+                {{ course.label }}
+              </mat-option>
+            </mat-select>
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>record_voice_over</mat-icon>
+            <mat-error *ngIf="stdForm.get('courseName')?.hasError('required')">
+              Course name required
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-        <mat-form-field class="example-full-width mb-3" appearance="outline">
-          <mat-label>Course Name</mat-label>
-          <mat-select formControlName="courseName" required>
-            <mat-option *ngFor="let course of courses" [value]="course.value">
-              {{ course.label }}
-            </mat-option>
-          </mat-select>
-          <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>record_voice_over</mat-icon>
-          <mat-error *ngIf="stdForm.get('courseName')?.hasError('required')">
-            Course name required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <!-- ... -->
       <div class="row">
-
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Section ID</mat-label>
@@ -61,11 +59,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <!-- ... -->
-        <!-- ... -->
       </div>
-
-
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <div class="example-button-row">
@@ -75,18 +69,6 @@
           </div>
         </div>
       </div>
-      </form>
-      </div>
-      </div>
-
-
-      <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Mobile</mat-label>
-            <input matInput formControlName="mobile" type="number">
-            <i class="material-icons-two-tone color-icon p-3" matSuffix>phone</i>
-            <mat-error *ngIf="stdForm.get('mobile')?.hasError('required')">
-              Mobile is required
-            </mat-error>
-          </mat-form-field>
-        </div> -->
+    </form>
+  </div>
+</div>

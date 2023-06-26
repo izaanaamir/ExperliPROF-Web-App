@@ -23,7 +23,6 @@ import {
   TableElement,
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
-
 @Component({
   selector: 'app-all-grades',
   templateUrl: './all-grades.component.html',
@@ -35,11 +34,14 @@ export class AllGradesComponent
 {
   displayedColumns = [
     'select',
-    'id',
-    'dName',
-    'hod',
-    'phone',
-    'grade',
+    // 'id',
+    'sName',
+    'courseName',
+    'sectionID',
+    'Module',
+    'GradeObtained',
+    // 'GradeTotal',
+    'actions'
   ];
   exampleDatabase?: GradesService;
   dataSource!: ExampleDataSource;
@@ -229,12 +231,12 @@ export class AllGradesComponent
     // key name with space add in brackets
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
-        'Schools Name': x.dName,
-        'Head Of Schools': x.hod,
-        Phone: x.phone,
-        Email: x.email,
-        'Start Year': x.sYear,
-        'Students Capacity': x.sCapacity,
+        'Student Name': x.dName,
+        'Course Name': x.hod,
+        'Section ID': x.phone,
+        'Module Name': x.email,
+        'Grade Obtained': x.sYear,
+        'Total Grade': x.sCapacity,
       }));
 
     TableExportUtil.exportToExcel(exportData, 'excel');
@@ -284,7 +286,7 @@ export class ExampleDataSource extends DataSource<Grades> {
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Grades[]> {
+ connect(): Observable<Grades[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this.exampleDatabase.dataChange,
@@ -298,17 +300,17 @@ export class ExampleDataSource extends DataSource<Grades> {
         // Filter data
         this.filteredData = this.exampleDatabase.data
           .slice()
-          .filter((grades: Grades) => {
+          .filter((grades: any) => {
             const searchStr = (
-              grades.dName +
-              grades.hod +
-              grades.phone +
-              grades.email
+              grades.sName +
+              grades.courseName +
+              grades.sectionID +
+              grades.Module
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
         // Sort filtered data
-        const sortedData = this.sortData(this.filteredData.slice());
+       const sortedData = this.sortData(this.filteredData.slice());
         // Grab the page's slice of the filtered sorted data.
         const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
         this.renderedData = sortedData.splice(

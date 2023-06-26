@@ -37,11 +37,11 @@ export class AllStudentsComponent
   displayedColumns = [
     'select',
     // 'rollNo',
-    'lastname',
-    'firstname',
-    'school',
+    'studentName',
+    'courseName',
+    'sectionID',
     // 'gender',
-    'schoolemail',
+    // 'schoolemail',
     // 'date',
     'actions',
   ];
@@ -294,41 +294,40 @@ export class ExampleDataSource extends DataSource<Students> {
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Students[]> {
-    // Listen for any changes in the base data, sorting, filtering, or pagination
-    const displayDataChanges = [
-      this.exampleDatabase.dataChange,
-      this._sort.sortChange,
-      this.filterChange,
-      this.paginator.page,
-    ];
-    this.exampleDatabase.getAllStudentss();
-    return merge(...displayDataChanges).pipe(
-      map(() => {
-        // Filter data
-        this.filteredData = this.exampleDatabase.data
-          .slice()
-          .filter((students: Students) => {
-            const searchStr = (
-              students.lastname +
-              students.firstname +
-              students.schoolemail +
-              students.school
+  // Listen for any changes in the base data, sorting, filtering, or pagination
+  const displayDataChanges = [
+    this.exampleDatabase.dataChange,
+    this._sort.sortChange,
+    this.filterChange,
+    this.paginator.page,
+  ];
+  this.exampleDatabase.getAllStudentss();
+  return merge(...displayDataChanges).pipe(
+    map(() => {
+      // Filter data
+      this.filteredData = this.exampleDatabase.data
+        .slice()
+        .filter((students: any) => {
+          const searchStr = (
+            students.studentName +
+            students.courseName +
+            students.sectionID
+          ).toLowerCase();
+          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+        });
+      // Sort filtered data
+      const sortedData = this.sortData(this.filteredData.slice());
+      // Grab the page's slice of the filtered sorted data.
+      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+      this.renderedData = sortedData.splice(
+        startIndex,
+        this.paginator.pageSize
+      );
+      return this.renderedData;
+    })
+  );
+}
 
-            ).toLowerCase();
-            return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-          });
-        // Sort filtered data
-        const sortedData = this.sortData(this.filteredData.slice());
-        // Grab the page's slice of the filtered sorted data.
-        const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-        this.renderedData = sortedData.splice(
-          startIndex,
-          this.paginator.pageSize
-        );
-        return this.renderedData;
-      })
-    );
-  }
   disconnect() {
     // disconnect
   }

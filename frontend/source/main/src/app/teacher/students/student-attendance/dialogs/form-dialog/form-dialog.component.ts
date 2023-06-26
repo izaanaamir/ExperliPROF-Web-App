@@ -63,9 +63,9 @@ export class FormDialogComponent {
     return this.fb.group({
       id: [this.studentAttendance.id],
       // img: [this.studentAttendance.img],
-      rollNo: [this.studentAttendance.rollNo, [Validators.required]],
-      sName: [this.studentAttendance.sName, [Validators.required]],
-      class: [this.studentAttendance.class, [Validators.required]],
+      sectionID: [this.sections],
+      sName: [this.studentsList],
+      class: [this.courses],
       date: [
         formatDate(this.studentAttendance.date, 'yyyy-MM-dd', 'en'),
         [Validators.required],
@@ -74,6 +74,28 @@ export class FormDialogComponent {
       note: [this.studentAttendance.note],
     });
   }
+  storedStudentListString = localStorage.getItem('studentList') as string;
+  courses = [
+  { label: 'Basics of Engineering', value: 'Engineering' },
+  { label: 'Basics of Calculus', value: 'Basics of Calculus' },
+];
+  sections = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+];
+  // Parse the stored string back into an array or use the default array if no value is stored
+  storedStudentList = this.storedStudentListString ? JSON.parse(this.storedStudentListString) : [];
+
+  // Extract the label and value properties from the storedStudentList
+  extractedStudentList = this.storedStudentList.map((student: any) => {
+    return {
+      label: student.studentName,
+      value: student.studentName
+    };
+  });
+
+// Assign the extractedStudentList to studentsList
+  studentsList = this.extractedStudentList;
   submit() {
     // emppty stuff
   }

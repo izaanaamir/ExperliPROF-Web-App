@@ -7,6 +7,7 @@ import { UnsubscribeOnDestroyAdapter } from '@shared';
 export class StudentAttendanceService extends UnsubscribeOnDestroyAdapter {
   private readonly API_URL = 'assets/data/student-attendance.json';
   isTblLoading = true;
+  studentAttendanceList: any[] = []
   dataChange: BehaviorSubject<StudentAttendance[]> = new BehaviorSubject<
     StudentAttendance[]
   >([]);
@@ -23,22 +24,30 @@ export class StudentAttendanceService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllStudentAttendances(): void {
-    this.subs.sink = this.httpClient
-      .get<StudentAttendance[]>(this.API_URL)
-      .subscribe({
-        next: (data) => {
-          this.isTblLoading = false;
-          this.dataChange.next(data);
-        },
-        error: (error: HttpErrorResponse) => {
-          this.isTblLoading = false;
-          console.log(error.name + ' ' + error.message);
-        },
-      });
+    this.isTblLoading = false;
+    const storedArrayString = localStorage.getItem('studentAttendanceList');
+    const storedArray = JSON.parse(storedArrayString || '[]');
+    console.log(storedArray)
+    this.dataChange.next(storedArray);
+    // localStorage.removeItem('studentAttendanceList')
+
+    // this.subs.sink = this.httpClient
+    //   .get<StudentAttendance[]>(this.API_URL)
+    //   .subscribe({
+    //     next: (data) => {
+    //       this.isTblLoading = false;
+    //       this.dataChange.next(data);
+    //     },
+    //     error: (error: HttpErrorResponse) => {
+    //       this.isTblLoading = false;
+    //       console.log(error.name + ' ' + error.message);
+    //     },
+    //   });
   }
   addStudentAttendance(studentAttendance: StudentAttendance): void {
     this.dialogData = studentAttendance;
-
+    this.studentAttendanceList.push(studentAttendance)
+    localStorage.setItem('studentAttendanceList', JSON.stringify(this.studentAttendanceList));
     // this.httpClient.post(this.API_URL, studentAttendance)
     //   .subscribe({
     //     next: (data) => {

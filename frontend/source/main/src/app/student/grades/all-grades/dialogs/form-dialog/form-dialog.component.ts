@@ -24,7 +24,7 @@ export interface DialogData {
 })
 export class FormDialogComponent {
   action: string;
-  dialogTitle: string;
+  // dialogTitle: string;
   gradesForm: UntypedFormGroup;
   grades: Grades;
   constructor(
@@ -36,10 +36,10 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.grades.dName;
+      // this.dialogTitle = data.grades.dName;
       this.grades = data.grades;
     } else {
-      this.dialogTitle = 'New Grades';
+      // this.dialogTitle = 'New Grades';
       const blankObject = {} as Grades;
       this.grades = new Grades(blankObject);
     }
@@ -57,18 +57,18 @@ export class FormDialogComponent {
       : '';
   }
   createContactForm(): UntypedFormGroup {
-    return this.fb.group({
-      id: [this.grades.id],
-      dName: [this.grades.dName, [Validators.required]],
-      hod: [this.grades.hod, [Validators.required]],
-      phone: [this.grades.phone, [Validators.required]],
-      email: [
-        this.grades.email,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      sYear: [this.grades.sYear, [Validators.required]],
-      sCapacity: [this.grades.sCapacity, [Validators.required]],
-    });
+    return this.fb.group({})
+    //   id: [this.grades.id],
+    //   dName: [this.grades.dName, [Validators.required]],
+    //   hod: [this.grades.hod, [Validators.required]],
+    //   phone: [this.grades.phone, [Validators.required]],
+    //   email: [
+    //     this.grades.email,
+    //     [Validators.required, Validators.email, Validators.minLength(5)],
+    //   ],
+    //   sYear: [this.grades.sYear, [Validators.required]],
+    //   sCapacity: [this.grades.sCapacity, [Validators.required]],
+    // });
   }
   submit() {
     // emppty stuff

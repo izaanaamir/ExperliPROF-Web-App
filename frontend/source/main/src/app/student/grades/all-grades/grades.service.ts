@@ -23,16 +23,21 @@ export class GradesService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllGrades(): void {
-    this.subs.sink = this.httpClient.get<Grades[]>(this.API_URL).subscribe({
-      next: (data) => {
-        this.isTblLoading = false;
-        this.dataChange.next(data);
-      },
-      error: (error: HttpErrorResponse) => {
-        this.isTblLoading = false;
-        console.log(error.name + ' ' + error.message);
-      },
-    });
+    this.isTblLoading = false;
+    const storedArrayString = localStorage.getItem('studentGradeList');
+    const storedArray = JSON.parse(storedArrayString || '[]');
+    console.log(storedArray)
+    this.dataChange.next(storedArray);
+    // this.subs.sink = this.httpClient.get<Grades[]>(this.API_URL).subscribe({
+    //   next: (data) => {
+    //     this.isTblLoading = false;
+    //     this.dataChange.next(data);
+    //   },
+    //   error: (error: HttpErrorResponse) => {
+    //     this.isTblLoading = false;
+    //     console.log(error.name + ' ' + error.message);
+    //   },
+    // });
   }
   addGrades(grades: Grades): void {
     this.dialogData = grades;

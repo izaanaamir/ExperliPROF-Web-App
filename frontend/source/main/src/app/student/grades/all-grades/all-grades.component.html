@@ -16,7 +16,9 @@
                                 </li>
                                 <li class="tbl-search-box">
                                     <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                                    <input placeholder="{{ 'Search' | translate }}" type="text" #filter class="browser-default search-field" aria-label="Search box" style="font-size: 30px; padding: 20px 50px; width: 400px;">
+                                    <input placeholder="{{ 'Search' | translate }}" type="text" #filter
+                                        class="browser-default search-field" aria-label="Search box"
+                                        style="font-size: 30px; padding: 20px 50px; width: 400px;">
                                 </li>
                             </ul>
                         </div>
@@ -32,15 +34,16 @@
                                 <li class="tbl-header-btn">
                                     <div class="m-l-10" matTooltip="{{ 'REFRESH' | translate }}">
                                         <button mat-mini-fab color="primary" (click)="refresh()">
-                      <mat-icon class="col-white">refresh</mat-icon>
-                    </button>
+                                            <mat-icon class="col-white">refresh</mat-icon>
+                                        </button>
                                     </div>
                                 </li>
                                 <li class="tbl-header-btn">
-                                    <div class="m-l-10" [hidden]=!selection.hasValue() matTooltip="{{ 'DELETE' | translate }}">
+                                    <div class="m-l-10" [hidden]=!selection.hasValue()
+                                        matTooltip="{{ 'DELETE' | translate }}">
                                         <button mat-mini-fab color="warn" (click)="removeSelectedRows()">
-                      <mat-icon class="col-white">delete</mat-icon>
-                    </button>
+                                            <mat-icon class="col-white">delete</mat-icon>
+                                        </button>
                                     </div>
                                 </li>
                                 <li>
@@ -57,40 +60,52 @@
                                 <!-- Checkbox Column -->
                                 <ng-container matColumnDef="select">
                                     <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-7'">
-                                        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
+                                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                            [ngClass]="'tbl-checkbox'">
                                         </mat-checkbox>
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-7'">
-                                        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'">
+                                        <mat-checkbox (click)="$event.stopPropagation()"
+                                            (change)="$event ? selection.toggle(row) : null"
+                                            [checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'">
                                         </mat-checkbox>
                                     </mat-cell>
                                 </ng-container>
                                 <!-- ID Column -->
                                 <ng-container matColumnDef="id">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Id' | translate }}</mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Id' | translate
+                                        }}</mat-header-cell>
                                     <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="dName">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'School Name' | translate }}</mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Course Name' | translate
+                                        }}</mat-header-cell>
                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                                        <span class="mobile-label">{{ 'Department Name' | translate }}:</span> {{row.dName}}</mat-cell>
+                                        <span class="mobile-label">{{ 'Department Name' | translate }}:</span>
+                                        Basics of Engineering</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="hod">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Courses' | translate }}
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SectionID' | translate }}
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                                        <span class="mobile-label">{{ 'Head Of Department' | translate }}:</span>{{row.hod}}</mat-cell>
+                                        <span class="mobile-label">{{ 'Head Of Department' | translate
+                                            }}:</span>2</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="phone">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Class' | translate }}</mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Module' | translate
+                                        }}</mat-header-cell>
                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                                        <span class="mobile-label">{{ 'Phone' | translate }}:</span> {{row.phone }}
+                                        <span class="mobile-label">{{ 'Phone' | translate }}:</span> Module 2
                                     </mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="email">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Module Name' | translate }}</mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Grade Obtained' | translate
+                                        }}</mat-header-cell>
                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                                        <span class="mobile-label">{{ 'Email' | translate }}:</span>{{row.email}}</mat-cell>
+                                        <span class="mobile-label">{{ 'Email' | translate
+                                            }}:</span>17</mat-cell>
                                 </ng-container>
                                 <!-- <ng-container matColumnDef="sYear">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Contact Email' | translate }}</mat-header-cell>
@@ -105,19 +120,23 @@
                 </ng-container> -->
                                 <!-- actions -->
                                 <ng-container matColumnDef="actions">
-                                    <mat-header-cell *matHeaderCellDef class="pr-0">{{ 'Actions' | translate }}</mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef class="pr-0">{{ 'Actions' | translate
+                                        }}</mat-header-cell>
                                     <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
                                         <!-- <button mat-icon-button (click)="$event.stopPropagation()" (click)="editCall(row)" class="tbl-action-btn">
                       <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
                     </button> -->
-                                        <button mat-icon-button (click)="$event.stopPropagation()" (click)="deleteItem(row)" class="tbl-action-btn">
-                      <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
-                    </button>
+                                        <button mat-icon-button (click)="$event.stopPropagation()"
+                                            (click)="deleteItem(row)" class="tbl-action-btn">
+                                            <app-feather-icons [icon]="'trash-2'"
+                                                [class]="'tbl-fav-delete'"></app-feather-icons>
+                                        </button>
                                     </mat-cell>
                                 </ng-container>
                                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                                 <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
-                                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editCall(row)" [style.cursor]="'pointer'" matRipple>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editCall(row)"
+                                    [style.cursor]="'pointer'" matRipple>
                                 </mat-row>
                             </table>
                             <!-- Loading spinner -->
@@ -126,55 +145,58 @@
                                 </mat-progress-spinner>
                             </div>
                             <!-- context menu start -->
-                            <div style="visibility: hidden; position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
+                            <div style="visibility: hidden; position: fixed" [style.left]="contextMenuPosition.x"
+                                [style.top]="contextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
                             </div>
                             <mat-menu #contextMenu="matMenu">
                                 <ng-template matMenuContent let-item="item">
                                     <button mat-menu-item (click)="addNew()">
-                    <mat-icon>add_box</mat-icon>
-                    <span>{{ 'Add Record' | translate }}</span>
-                  </button>
+                                        <mat-icon>add_box</mat-icon>
+                                        <span>{{ 'Add Record' | translate }}</span>
+                                    </button>
                                     <button mat-menu-item (click)="editCall(item)">
-                    <mat-icon>create</mat-icon>
-                    <span>{{ 'Edit Record' | translate }}</span>
-                  </button>
+                                        <mat-icon>create</mat-icon>
+                                        <span>{{ 'Edit Record' | translate }}</span>
+                                    </button>
                                     <button mat-menu-item (click)="deleteItem(item)">
-                    <mat-icon>delete</mat-icon>
-                    <span>{{ 'Delete Record' | translate }}</span>
-                  </button>
+                                        <mat-icon>delete</mat-icon>
+                                        <span>{{ 'Delete Record' | translate }}</span>
+                                    </button>
                                     <button mat-menu-item (click)="refresh()">
-                    <mat-icon>refresh</mat-icon>
-                    <span>{{ 'Refresh Record' | translate }}</span>
-                  </button>
+                                        <mat-icon>refresh</mat-icon>
+                                        <span>{{ 'Refresh Record' | translate }}</span>
+                                    </button>
                                     <button mat-menu-item disabled>
-                    <mat-icon>no_encryption</mat-icon>
-                    <span>{{ 'Disable' | translate }}</span>
-                  </button>
+                                        <mat-icon>no_encryption</mat-icon>
+                                        <span>{{ 'Disable' | translate }}</span>
+                                    </button>
                                     <button mat-menu-item [matMenuTriggerFor]="nestedmenu">
-                    <mat-icon>list_alt</mat-icon>
-                    <span>{{ 'Nested Menu' | translate }}</span>
-                  </button>
+                                        <mat-icon>list_alt</mat-icon>
+                                        <span>{{ 'Nested Menu' | translate }}</span>
+                                    </button>
                                 </ng-template>
                             </mat-menu>
                             <mat-menu #nestedmenu="matMenu">
                                 <button mat-menu-item>
-                  <mat-icon>mail_outline</mat-icon>
-                  <span>{{ 'Item 1' | translate }}</span>
-                </button>
+                                    <mat-icon>mail_outline</mat-icon>
+                                    <span>{{ 'Item 1' | translate }}</span>
+                                </button>
                                 <button mat-menu-item>
-                  <mat-icon>call</mat-icon>
-                  <span>{{ 'Item 2' | translate }}</span>
-                </button>
+                                    <mat-icon>call</mat-icon>
+                                    <span>{{ 'Item 2' | translate }}</span>
+                                </button>
                                 <button mat-menu-item>
-                  <mat-icon>chat</mat-icon>
-                  <span>{{ 'Item 3' | translate }}</span>
-                </button>
+                                    <mat-icon>chat</mat-icon>
+                                    <span>{{ 'Item 3' | translate }}</span>
+                                </button>
                             </mat-menu>
                             <!-- context menu end -->
-                            <div *ngIf="!exampleDatabase?.isTblLoading" class="no-results" [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
+                            <div *ngIf="!exampleDatabase?.isTblLoading" class="no-results"
+                                [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
                                 {{ 'No results' | translate }}
                             </div>
-                            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0"
+                                [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
                             </mat-paginator>
                         </div>
                     </div>

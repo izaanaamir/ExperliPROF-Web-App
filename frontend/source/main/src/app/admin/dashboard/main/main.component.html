@@ -79,19 +79,21 @@
                     <div class="header">
                         <h2>{{ 'studentPerformanceChart' | translate }}</h2>
                         <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
                         <mat-menu #menu="matMenu">
 
                             <button mat-menu-item>
-                        <mat-icon>refresh</mat-icon>
-                        <span>Refresh</span>
-                    </button>
+                                <mat-icon>refresh</mat-icon>
+                                <span>Refresh</span>
+                            </button>
                         </mat-menu>
                     </div>
                     <div class="body">
-                        <apx-chart [series]="barChartOptions.series!" [chart]="barChartOptions.chart!" [dataLabels]="barChartOptions.dataLabels!" [plotOptions]="barChartOptions.plotOptions!" [grid]="barChartOptions.grid!" [yaxis]="barChartOptions.yaxis!" [xaxis]="barChartOptions.xaxis!"
-                            [fill]="barChartOptions.fill!">
+                        <apx-chart [series]="barChartOptions.series!" [chart]="barChartOptions.chart!"
+                            [dataLabels]="barChartOptions.dataLabels!" [plotOptions]="barChartOptions.plotOptions!"
+                            [grid]="barChartOptions.grid!" [yaxis]="barChartOptions.yaxis!"
+                            [xaxis]="barChartOptions.xaxis!" [fill]="barChartOptions.fill!">
                         </apx-chart>
                     </div>
                 </div>
@@ -105,14 +107,14 @@
                     <div class="header">
                         <h2>{{ 'Exam Schedule' | translate }}</h2>
                         <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
                         <mat-menu #menu="matMenu">
 
                             <button mat-menu-item>
-                        <mat-icon>refresh</mat-icon>
-                        <span>{{ 'Refresh' | translate }}</span>
-                    </button>
+                                <mat-icon>refresh</mat-icon>
+                                <span>{{ 'Refresh' | translate }}</span>
+                            </button>
                         </mat-menu>
                     </div>
                     <div class="card-body">
@@ -185,14 +187,14 @@
                     <div class="header">
                         <h2>{{ 'Average Class Attendance' | translate }}</h2>
                         <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
                         <mat-menu #menu="matMenu">
 
                             <button mat-menu-item>
-                        <mat-icon>refresh</mat-icon>
-                        <span>{{ 'Refresh' | translate }}</span>
-                    </button>
+                                <mat-icon>refresh</mat-icon>
+                                <span>{{ 'Refresh' | translate }}</span>
+                            </button>
                         </mat-menu>
                     </div>
                     <div class="float-start ms-3 me-3">
@@ -200,8 +202,15 @@
                     </div>
                     <div class="body">
                         <!-- Content for the Average Class Attendance card -->
-                        <apx-chart [series]="performanceRateChartOptions.series!" [chart]="performanceRateChartOptions.chart!" [xaxis]="performanceRateChartOptions.xaxis!" [stroke]="performanceRateChartOptions.stroke!" [colors]="performanceRateChartOptions.colors!" [dataLabels]="performanceRateChartOptions.dataLabels!"
-                            [legend]="performanceRateChartOptions.legend!" [markers]="performanceRateChartOptions.markers!" [grid]="performanceRateChartOptions.grid!" [yaxis]="performanceRateChartOptions.yaxis!" [tooltip]="performanceRateChartOptions.tooltip!"
+                        <apx-chart [series]="performanceRateChartOptions.series!"
+                            [chart]="performanceRateChartOptions.chart!" [xaxis]="performanceRateChartOptions.xaxis!"
+                            [stroke]="performanceRateChartOptions.stroke!"
+                            [colors]="performanceRateChartOptions.colors!"
+                            [dataLabels]="performanceRateChartOptions.dataLabels!"
+                            [legend]="performanceRateChartOptions.legend!"
+                            [markers]="performanceRateChartOptions.markers!" [grid]="performanceRateChartOptions.grid!"
+                            [yaxis]="performanceRateChartOptions.yaxis!"
+                            [tooltip]="performanceRateChartOptions.tooltip!"
                             [title]="performanceRateChartOptions.title!">
                         </apx-chart>
                     </div>
@@ -216,21 +225,21 @@
                     <div class="header">
                         <h2>{{ 'New Student List' | translate }}</h2>
                         <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
-              <mat-icon>more_vert</mat-icon>
-            </button>
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item>
-                <mat-icon>add_circle_outline</mat-icon>
-                <span>Add</span>
-              </button>
+                                <mat-icon>add_circle_outline</mat-icon>
+                                <span>Add</span>
+                            </button>
                             <button mat-menu-item disabled>
-                <mat-icon>delete_outline</mat-icon>
-                <span>Delete</span>
-              </button>
+                                <mat-icon>delete_outline</mat-icon>
+                                <span>Delete</span>
+                            </button>
                             <button mat-menu-item>
-                <mat-icon>refresh</mat-icon>
-                <span>Refresh</span>
-              </button>
+                                <mat-icon>refresh</mat-icon>
+                                <span>Refresh</span>
+                            </button>
                         </mat-menu>
                     </div>
                     <div class="tableBody">

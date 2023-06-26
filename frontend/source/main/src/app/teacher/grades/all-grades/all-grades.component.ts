@@ -39,7 +39,7 @@ export class AllGradesComponent
     'courseName',
     'sectionID',
     'Module',
-    'GradeObtained',
+    'sYear',
     // 'GradeTotal',
     'actions'
   ];

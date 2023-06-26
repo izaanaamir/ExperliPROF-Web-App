@@ -27,6 +27,7 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
     const storedArray = JSON.parse(storedArrayString || '[]');
     console.log(storedArray)
     this.dataChange.next(storedArray);
+    // console.log(localStorage.removeItem('studentList'))
     // localStorage.removeItem('studentList')
 
     // this.subs.sink = this.httpClient.get<Students[]>("").subscribe({

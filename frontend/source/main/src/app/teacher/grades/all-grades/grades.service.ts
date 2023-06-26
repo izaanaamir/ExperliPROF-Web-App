@@ -29,6 +29,7 @@ export class GradesService extends UnsubscribeOnDestroyAdapter {
     const storedArray = JSON.parse(storedArrayString || '[]');
     console.log(storedArray)
     this.dataChange.next(storedArray);
+    // localStorage.removeItem('studentGradeList')
 
     // this.subs.sink = this.httpClient.get<Grades[]>(this.API_URL).subscribe({
     //   next: (data) => {
@@ -45,7 +46,7 @@ export class GradesService extends UnsubscribeOnDestroyAdapter {
     this.dialogData = grades;
     this.studentGradeList.push(grades)
     localStorage.setItem('studentGradeList', JSON.stringify(this.studentGradeList));
-    console.log(localStorage.getItem('studentGradeList'))
+
 
     // this.httpClient.post(this.API_URL, schools)
     //   .subscribe({

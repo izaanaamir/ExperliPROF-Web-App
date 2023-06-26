@@ -64,7 +64,7 @@ export class FormDialogComponent {
       sectionID: [this.sections],
       Module: [
       ],
-      GradeObtained: [this.grades.sYear],
+      sYear: [this.grades.sYear],
       GradeTotal: [this.grades.sCapacity],
     });
   }
@@ -94,6 +94,7 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
+    console.log(this.gradesForm.getRawValue())
     this.gradesService.addGrades(this.gradesForm.getRawValue());
   }
 }

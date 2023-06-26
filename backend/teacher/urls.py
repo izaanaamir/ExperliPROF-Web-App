@@ -21,6 +21,9 @@ urlpatterns = [
     path('remove_section/<int:section_id>', delete_section, name='delete_section'),
     path('get_fees/<str:user_id>', get_fees, name='get_fees'),
     path('add_fees/<str:user_id>', add_fees, name='add_fees'),
-    path('delete_fees/<int:fee_id>', delete_fees, name='delete_fees')
+    path('delete_fees/<int:fee_id>', delete_fees, name='delete_fees'),
+    path('add_lecture/<str:user_id>', add_lecture, name='add_lecture'),
+    path('get_all_lectures/<str:user_id>', get_all_lectures, name='get_all_lectures'),
+    path('delete_lecture/<int:lecture_id>', delete_lecture, name='delete_lecture'),
 ]
 

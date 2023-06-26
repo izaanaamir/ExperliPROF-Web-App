@@ -420,4 +420,54 @@ def get_all_sections(request, user_id):
 
         return JsonResponse(response_data, safe=False)
     else:
-      return JsonResponse({'error': 'Invalid request method'})  
+      return JsonResponse({'error': 'Invalid request method'})
+  
+def add_lecture(request, user_id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        # Retrieve the course based on courseName
+        # Create and save the section in the Section table
+        
+        lecture = TeacherLecture(
+            schoolName=data['schoolName'],
+            courseName=data['courseName'],
+            sectionID=data['sectionID'],
+            lectureDate=data['date'],
+            lectureTime=data['time'],
+            teacher_id=user_id
+        )
+        lecture.save()
+
+        # Return a success response or redirect to another page
+        return JsonResponse({'message': 'Teacher updated successfully'})
+    else:
+        # Handle GET request case
+        # Return an error response or redirect to another page
+        return HttpResponseBadRequest('Invalid request method')
+    
+def get_all_lectures(request, user_id):
+    lectures = TeacherLecture.objects.filter(teacher_id=user_id)
+    if lectures.exists():
+        response_data = []
+        for lecture in lectures:
+            lecture_data = {
+                'id': lecture.id,
+                'schoolName': lecture.schoolName,
+                'courseName': lecture.courseName,
+                'sectionID': lecture.sectionID,
+                'date': lecture.lectureDate,
+                'time': lecture.lectureTime,
+            }
+            response_data.append(lecture_data)
+
+        return JsonResponse(response_data, safe=False)
+    else:
+      return JsonResponse({'error': 'Invalid request method'})
+
+def delete_lecture(request, lecture_id):
+    lecture = TeacherLecture.objects.get(id=lecture_id)
+    
+    lecture.delete()
+    
+    return JsonResponse({'message': 'School deleted successfully'})
+    

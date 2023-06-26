@@ -88,6 +88,12 @@
                                         <span class="mobile-label">Phone:</span> {{row.phone }}
                                     </mat-cell>
                                 </ng-container>
+                                <ng-container matColumnDef="grade">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Grade Obtained</mat-header-cell>
+                                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
+                                        <span class="mobile-label">Phone:</span> {{row.grade }}
+                                    </mat-cell>
+                                </ng-container>
                                 <!-- <ng-container matColumnDef="email">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Contact Person</mat-header-cell>
                                     <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">

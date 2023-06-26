@@ -39,6 +39,7 @@ export class AllGradesComponent
     'dName',
     'hod',
     'phone',
+    'grade',
   ];
   exampleDatabase?: GradesService;
   dataSource!: ExampleDataSource;

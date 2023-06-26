@@ -3,14 +3,20 @@
   <div mat-dialog-content>
     <ul class="clearfix">
       <li>
-        <p><span class="font-weight-bold"> Subject Name: </span>{{data.sName}}</p>
+        <p><span class="font-weight-bold"> School Name: </span>{{data.schoolName}}</p>
       </li>
       <li>
-        <p><span class="font-weight-bold"> Class: </span>{{ data.class }}</p>
+        <p><span class="font-weight-bold"> Course Name: </span>{{ data.courseName }}</p>
       </li>
+      <li>
+        <p><span class="font-weight-bold"> Section ID: </span>{{ data.sectionID }}</p>
+      </li>
+        <li>
+          <p><span class="font-weight-bold"> Lecture Time: </span>{{ data.time }}</p>
+        </li>
       <li>
         <p>
-          <span class="font-weight-bold">Date: </span>{{data.date | date: 'MM/dd/yyyy'}}
+          <span class="font-weight-bold">Lecture Date: </span>{{data.date | date: 'MM/dd/yyyy'}}
         </p>
       </li>
     </ul>

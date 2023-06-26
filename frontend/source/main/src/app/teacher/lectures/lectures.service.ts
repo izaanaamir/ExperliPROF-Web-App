@@ -21,7 +21,7 @@ export class LecturesService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllLecturess(): void {
-    this.subs.sink = this.httpClient.get<Lectures[]>(this.API_URL).subscribe({
+    this.subs.sink = this.httpClient.get<Lectures[]>("http://localhost:8000/api/teacher/get_all_lectures/"+localStorage.getItem("user_uuid")).subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);

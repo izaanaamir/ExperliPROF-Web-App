@@ -97,9 +97,10 @@ export class LecturesComponent
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
-        this.exampleDatabase?.dataChange.value.unshift(
-          this.lecturesService.getDialogData()
-        );
+        // this.exampleDatabase?.dataChange.value.unshift(
+        //   this.lecturesService.getDialogData()
+        // );
+        this.refresh()
         this.refreshTable();
         this.showNotification(
           'snackbar-success',
@@ -132,10 +133,11 @@ export class LecturesComponent
           (x) => x.id === this.id
         );
         // Then you update that record using data from dialogData (values you enetered)
-        if (foundIndex != null && this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value[foundIndex] =
-            this.lecturesService.getDialogData();
+        // if (foundIndex != null && this.exampleDatabase) {
+        //   this.exampleDatabase.dataChange.value[foundIndex] =
+        //     this.lecturesService.getDialogData();
           // And lastly refresh table
+        this.refresh()
           this.refreshTable();
           this.showNotification(
             'black',
@@ -145,9 +147,10 @@ export class LecturesComponent
           );
         }
       }
-    });
+    );
   }
   deleteItem(row: Lectures) {
+    console.log(row)
     this.id = row.id;
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -167,6 +170,7 @@ export class LecturesComponent
         // for delete we use splice in order to remove single object from DataService
         if (foundIndex != null && this.exampleDatabase) {
           this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+          this.refresh()
           this.refreshTable();
           this.showNotification(
             'snackbar-danger',
